@@ -31,6 +31,7 @@ export interface Peptide {
   fdaSearchTerms: string[];
   pubmedKeywords: string[];
   imageUrl: string;
+  references?: StudyReference[];
 }
 
 export interface SymptomCategory {
@@ -97,6 +98,17 @@ export interface Review {
   helpful: number;
 }
 
+export interface StudyReference {
+  id: string;
+  title: string;
+  authors: string;
+  journal: string;
+  year: number;
+  doi?: string;
+  pmid?: string;
+  finding: string;
+}
+
 export interface Article {
   id: string;
   slug: string;
@@ -108,6 +120,7 @@ export interface Article {
   publishedAt: string;
   readingTime: number;
   imageUrl: string;
+  references?: StudyReference[];
 }
 
 export interface RecommendationResult {

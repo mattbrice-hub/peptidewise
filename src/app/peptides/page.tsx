@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { FlaskConical, Filter } from "lucide-react";
+import { FlaskConical } from "lucide-react";
 import { peptides } from "@/data/peptides";
 import { getCategoryLabel, getCategoryColor } from "@/lib/utils";
 
 export const metadata = {
   title: "Browse Peptides - PeptideWise",
-  description: "Explore 15+ therapeutic peptides with detailed information on benefits, dosage, safety, and available providers.",
+  description: "Explore 15+ therapeutic peptides with evidence-based information on benefits, dosage, safety, and published research.",
 };
 
 export default function PeptidesPage() {
@@ -14,9 +14,9 @@ export default function PeptidesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Browse Peptides</h1>
-        <p className="text-gray-600">
-          Explore our database of therapeutic peptides with detailed information on benefits,
+        <h1 className="text-3xl font-bold text-white mb-2">Browse Peptides</h1>
+        <p className="text-gray-400">
+          Explore our database of therapeutic peptides with evidence-based information on benefits,
           dosage, and safety.
         </p>
       </div>
@@ -39,14 +39,14 @@ export default function PeptidesPage() {
           <Link
             key={peptide.id}
             href={`/peptides/${peptide.slug}`}
-            className="group bg-white rounded-2xl border border-gray-100 p-6 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-600/5 transition-all"
+            className="group bg-white/5 rounded-2xl border border-white/10 p-6 hover:border-primary-500/30 hover:bg-white/[0.07] transition-all"
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
                 <FlaskConical className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h2 className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                <h2 className="font-semibold text-white group-hover:text-primary-300 transition-colors">
                   {peptide.name}
                 </h2>
                 <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${getCategoryColor(peptide.category)}`}>
@@ -54,10 +54,10 @@ export default function PeptidesPage() {
                 </span>
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2">{peptide.description}</p>
+            <p className="text-sm text-gray-400 mb-3 line-clamp-2">{peptide.description}</p>
             <div className="flex flex-wrap gap-1.5 mb-3">
               {peptide.benefits.slice(0, 2).map((b) => (
-                <span key={b} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+                <span key={b} className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-gray-400 border border-white/5">
                   {b.length > 35 ? b.slice(0, 35) + "..." : b}
                 </span>
               ))}
@@ -65,10 +65,10 @@ export default function PeptidesPage() {
             <div className="flex items-center gap-3 text-xs text-gray-500">
               <span className={`px-2 py-0.5 rounded-full ${
                 peptide.researchStatus === "well-studied"
-                  ? "bg-green-100 text-green-700"
+                  ? "bg-green-900/30 text-green-400"
                   : peptide.researchStatus === "emerging"
-                  ? "bg-blue-100 text-blue-700"
-                  : "bg-gray-100 text-gray-600"
+                  ? "bg-blue-900/30 text-blue-400"
+                  : "bg-gray-800 text-gray-400"
               }`}>
                 {peptide.researchStatus === "well-studied"
                   ? "Well Studied"

@@ -1,4 +1,4 @@
-import { Article } from "@/types";
+import { Article, StudyReference } from "@/types";
 
 export const articles: Article[] = [
   {
@@ -20,6 +20,28 @@ Always work with a qualified healthcare provider who can assess your needs, moni
     publishedAt: "2025-12-15",
     readingTime: 8,
     imageUrl: "/images/articles/beginner-guide.svg",
+    references: [
+      {
+        id: "art1-ref1",
+        title: "Sermorelin: A Review of Its Use in the Diagnosis and Treatment of Children with Idiopathic Growth Hormone Deficiency",
+        authors: "Prakash A, Goa KL",
+        journal: "BioDrugs",
+        year: 1999,
+        doi: "10.2165/00063030-199912020-00007",
+        pmid: "18031173",
+        finding: "Sermorelin produced significant increases in height velocity sustained over 12 months in GH-deficient children, demonstrating the clinical utility of peptide therapies.",
+      },
+      {
+        id: "art1-ref2",
+        title: "Once-Weekly Semaglutide in Adults with Overweight or Obesity",
+        authors: "Wilding JPH, Batterham RL, Calanna S, et al.",
+        journal: "New England Journal of Medicine",
+        year: 2021,
+        doi: "10.1056/NEJMoa2032183",
+        pmid: "33567185",
+        finding: "The STEP 1 trial demonstrated semaglutide's 14.9% mean weight loss over 68 weeks, showcasing peptide therapy's potential for transformative health outcomes.",
+      },
+    ],
   },
   {
     id: "bpc-157-complete-guide",
@@ -42,6 +64,35 @@ BPC-157 is often combined with TB-500 for synergistic healing effects, particula
     publishedAt: "2025-11-20",
     readingTime: 10,
     imageUrl: "/images/articles/bpc-157-guide.svg",
+    references: [
+      {
+        id: "art2-ref1",
+        title: "Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing",
+        authors: "Gwyer D, Wragg NM, Wilson SL",
+        journal: "Cell and Tissue Research",
+        year: 2019,
+        pmid: "30915550",
+        finding: "All studies reviewed demonstrated consistently positive and prompt healing effects for BPC-157 across multiple soft tissues including tendon, ligament, and skeletal muscle.",
+      },
+      {
+        id: "art2-ref2",
+        title: "The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration",
+        authors: "Chang CH, Tsai WC, Lin MS, Hsu YH, Pang JHS",
+        journal: "Journal of Applied Physiology",
+        year: 2011,
+        pmid: "21030672",
+        finding: "BPC-157 significantly accelerated tendon explant outgrowth, increased fibroblast survival under oxidative stress, and enhanced cell migration via FAK-paxillin signaling.",
+      },
+      {
+        id: "art2-ref3",
+        title: "Impact of pentadecapeptide BPC 157 on muscle healing impaired by systemic corticosteroid application",
+        authors: "Pevec D, Novinscak T, Brcic L, et al.",
+        journal: "Medical Science Monitor",
+        year: 2010,
+        pmid: "20190676",
+        finding: "BPC-157 induced faster muscle healing and completely reversed corticosteroid-impaired healing, demonstrated functionally, macroscopically, and histologically.",
+      },
+    ],
   },
   {
     id: "glp1-weight-loss-guide",
@@ -64,6 +115,38 @@ The choice between them often comes down to individual response, insurance cover
     publishedAt: "2026-01-10",
     readingTime: 7,
     imageUrl: "/images/articles/glp1-guide.svg",
+    references: [
+      {
+        id: "art3-ref1",
+        title: "Once-Weekly Semaglutide in Adults with Overweight or Obesity",
+        authors: "Wilding JPH, Batterham RL, Calanna S, et al.",
+        journal: "New England Journal of Medicine",
+        year: 2021,
+        doi: "10.1056/NEJMoa2032183",
+        pmid: "33567185",
+        finding: "Semaglutide 2.4 mg produced mean 14.9% body weight loss over 68 weeks vs 2.4% with placebo; 86% of participants achieved at least 5% weight loss.",
+      },
+      {
+        id: "art3-ref2",
+        title: "Tirzepatide Once Weekly for the Treatment of Obesity",
+        authors: "Jastreboff AM, Aronne LJ, Ahmad NN, et al.",
+        journal: "New England Journal of Medicine",
+        year: 2022,
+        doi: "10.1056/NEJMoa2206038",
+        pmid: "35658024",
+        finding: "Tirzepatide produced mean weight reductions of up to 20.9% at 72 weeks; up to 96% of participants on higher doses achieved at least 5% body weight reduction.",
+      },
+      {
+        id: "art3-ref3",
+        title: "Efficacy and safety of a novel dual GIP and GLP-1 receptor agonist tirzepatide in patients with type 2 diabetes (SURPASS-1)",
+        authors: "Rosenstock J, Wysham C, Frías JP, et al.",
+        journal: "The Lancet",
+        year: 2021,
+        doi: "10.1016/S0140-6736(21)01324-6",
+        pmid: "34186022",
+        finding: "Tirzepatide reduced HbA1c by up to 2.07% and body weight by up to 9.5 kg; up to 52% of participants achieved HbA1c below 5.7%.",
+      },
+    ],
   },
   {
     id: "choosing-peptide-provider",
@@ -108,5 +191,37 @@ These peptides are typically administered via subcutaneous injection before bedt
     publishedAt: "2025-10-28",
     readingTime: 9,
     imageUrl: "/images/articles/gh-peptides.svg",
+    references: [
+      {
+        id: "art5-ref1",
+        title: "Endocrine and Metabolic Effects of Long-Term Administration of [Nle27]Growth Hormone-Releasing Hormone-(1-29)-NH2 in Age-Advanced Men and Women",
+        authors: "Khorram O, Laughlin GA, Yen SSC",
+        journal: "Journal of Clinical Endocrinology & Metabolism",
+        year: 1997,
+        doi: "10.1210/jcem.82.5.3943",
+        pmid: "9141536",
+        finding: "Sermorelin analog significantly increased nocturnal GH levels in both women and men, with improvements in lean body mass and insulin sensitivity.",
+      },
+      {
+        id: "art5-ref2",
+        title: "Ipamorelin, the First Selective Growth Hormone Secretagogue",
+        authors: "Raun K, Hansen BS, Johansen NL, et al.",
+        journal: "European Journal of Endocrinology",
+        year: 1998,
+        doi: "10.1530/eje.0.1390552",
+        pmid: "9849822",
+        finding: "Ipamorelin did not increase ACTH or cortisol even at doses 200-fold above the ED50 for GH release, making it the first truly selective GH secretagogue.",
+      },
+      {
+        id: "art5-ref3",
+        title: "Prolonged Stimulation of Growth Hormone (GH) and Insulin-Like Growth Factor I Secretion by CJC-1295, a Long-Acting Analog of GH-Releasing Hormone, in Healthy Adults",
+        authors: "Teichman SL, Neale A, Lawrence B, Gagnon C, Castaigne JP, Frohman LA",
+        journal: "Journal of Clinical Endocrinology & Metabolism",
+        year: 2006,
+        doi: "10.1210/jc.2005-1536",
+        pmid: "16352683",
+        finding: "A single CJC-1295 injection produced dose-dependent GH increases of 2- to 10-fold lasting 6+ days, and IGF-I increases of 1.5- to 3-fold for 9-11 days.",
+      },
+    ],
   },
 ];

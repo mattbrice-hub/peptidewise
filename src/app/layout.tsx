@@ -4,9 +4,9 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "PeptideWise - Find the Right Peptides for Your Health Goals",
+  title: "PeptideWise - Evidence-Based Peptide Education by Dr. Pat Taylor",
   description:
-    "Compare peptide providers, get personalized recommendations based on your symptoms, and make informed decisions about peptide therapy.",
+    "Learn about peptide therapy from Dr. Patrick Taylor, MD. Evidence-based educational resources on BPC-157, semaglutide, tirzepatide, and more.",
 };
 
 export default function RootLayout({
@@ -15,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
+    <html lang="en" className="dark">
+      <body className="min-h-screen flex flex-col bg-[#0a0a0a]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
