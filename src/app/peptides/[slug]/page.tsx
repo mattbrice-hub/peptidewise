@@ -24,7 +24,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   if (!peptide) return { title: "Peptide Not Found" };
   return buildMeta({
     title: `${peptide.name}: Benefits, Dosage & Research`,
-    description: peptide.description,
+    description: `Dr. Patrick Taylor, MD reviews ${peptide.name} — ${peptide.description} Evidence-based dosage, safety profile, and published research.`,
     path: `/peptides/${peptide.slug}`,
     modifiedTime: peptide.lastUpdated,
   });

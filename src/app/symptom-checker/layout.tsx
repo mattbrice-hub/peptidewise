@@ -3,7 +3,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "Symptom Checker — Explore Peptide Options",
   description:
-    "Use our educational symptom explorer to discover which peptides researchers are studying for your health concerns. Guided by Dr. Patrick Taylor, MD.",
+    "Dr. Patrick Taylor, MD guides you through a symptom-based peptide explorer. Select your health concerns to discover which peptides researchers are studying for each condition.",
   path: "/symptom-checker",
 });
 

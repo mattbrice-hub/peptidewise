@@ -37,7 +37,7 @@ export function generateMetadata({ params }: { params: { pmid: string } }): Meta
   if (!study) return { title: "Study Not Found" };
   return buildMeta({
     title: study.title + " — Research",
-    description: study.keyFinding,
+    description: `Dr. Patrick Taylor, MD breaks down this ${study.peptideName} study: ${study.keyFinding}`,
     path: "/research/" + study.pmid,
   });
 }

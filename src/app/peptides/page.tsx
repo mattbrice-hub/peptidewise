@@ -116,7 +116,7 @@ function getScoreTextColor(score: number): string {
 
 export const metadata = buildMeta({
   title: "Browse Peptides — Therapeutic Peptide Database",
-  description: "Explore 15+ therapeutic peptides with evidence-based information on benefits, dosage, safety profiles, and published research. Curated by Dr. Patrick Taylor, MD.",
+  description: "Dr. Patrick Taylor, MD reviews 15+ therapeutic peptides with benefits, dosage protocols, safety profiles, and published PubMed research. BPC-157, semaglutide, tirzepatide, and more.",
   path: "/peptides",
 });
 

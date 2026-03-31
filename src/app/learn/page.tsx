@@ -7,7 +7,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "Learn About Peptides — Educational Articles",
   description:
-    "Educational articles about peptide therapy, safety guides, and research insights by Dr. Patrick Taylor, MD.",
+    "Dr. Patrick Taylor, MD writes in-depth guides on peptide therapy — from beginner basics to GLP-1 weight loss peptides, BPC-157, and choosing a provider.",
   path: "/learn",
 });
 

@@ -17,7 +17,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   if (!article) return { title: "Article Not Found" };
   return buildMeta({
     title: article.title,
-    description: article.excerpt,
+    description: `Dr. Patrick Taylor, MD explains: ${article.excerpt}`,
     path: "/learn/" + article.slug,
     ogType: "article",
     publishedTime: article.publishedAt,

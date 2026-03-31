@@ -19,7 +19,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "About Dr. Patrick Taylor, MD",
   description:
-    "Meet Dr. Patrick Taylor — board-eligible family medicine physician, cancer survivor, and founder of Live Vital MD. Evidence-based peptide therapy education.",
+    "Dr. Patrick Taylor, MD is a board-eligible family medicine physician, cancer survivor, and founder of Live Vital MD. UNC Chapel Hill trained. Specializes in peptide therapy, obesity medicine, and lifestyle optimization.",
   path: "/about",
 });
 

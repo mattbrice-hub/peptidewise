@@ -20,7 +20,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "PeptideWise — Evidence-Based Peptide Therapy Education",
   description:
-    "Physician-curated, research-backed peptide therapy education by Dr. Patrick Taylor, MD. Explore 15+ peptides, 100+ PubMed studies, and personalized stack recommendations.",
+    "Dr. Patrick Taylor, MD provides physician-curated peptide therapy education. Explore 15+ peptides, 99 PubMed studies, dosage guides, safety profiles, and personalized stack recommendations.",
   path: "/",
 });
 

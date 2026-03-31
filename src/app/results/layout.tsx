@@ -3,7 +3,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "Your Peptide Matches",
   description:
-    "View your personalized peptide matches based on your symptoms and health goals. Evidence-based results curated by Dr. Patrick Taylor, MD.",
+    "Dr. Patrick Taylor, MD matches peptides to your symptoms and health goals. Personalized, evidence-based recommendations with research scores and safety profiles.",
   path: "/results",
   noIndex: true,
 });
