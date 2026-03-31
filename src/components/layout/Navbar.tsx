@@ -6,7 +6,7 @@ import { Menu, X, FlaskConical } from "lucide-react";
 
 const navLinks = [
   { href: "/peptides", label: "Peptides" },
-  { href: "/stacks", label: "Stacks" },
+  { href: "/stacks", label: "Protocols" },
   { href: "/symptom-checker", label: "Symptom Checker" },
   { href: "/learn", label: "Learn" },
   { href: "/research", label: "Research" },
@@ -44,7 +44,7 @@ export default function Navbar() {
               href="/stacks"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg gradient-primary text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-sm"
             >
-              Find Your Stack
+              Find Your Protocol
             </Link>
           </div>
 
@@ -75,7 +75,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
               className="block px-3 py-2 mt-2 rounded-lg gradient-primary text-white text-center text-base font-medium"
             >
-              Find Your Stack
+              Find Your Protocol
             </Link>
           </div>
         </div>

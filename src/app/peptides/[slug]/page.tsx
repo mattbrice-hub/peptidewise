@@ -380,10 +380,10 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
         </div>
       )}
 
-      {/* Related Stacks */}
+      {/* Related Protocols */}
       {relatedStacks.length > 0 && (
         <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Stacks Featuring {peptide.name}</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Protocols Featuring {peptide.name}</h2>
           <div className="grid sm:grid-cols-2 gap-3">
             {relatedStacks.map((stack) => (
               <Link

@@ -1,4 +1,4 @@
-export interface PeptideStack {
+export interface PeptideProtocol {
   id: string;
   name: string;
   subtitle: string;
@@ -13,10 +13,13 @@ export interface PeptideStack {
   drTaylorNote: string;
 }
 
-export const stacks: PeptideStack[] = [
+/** @deprecated Use PeptideProtocol instead */
+export type PeptideStack = PeptideProtocol;
+
+export const stacks: PeptideProtocol[] = [
   {
     id: "tissue-repair",
-    name: "Recovery & Repair Stack",
+    name: "Recovery & Repair Protocol",
     subtitle: "Accelerate healing from injuries and surgery",
     description:
       "Dr. Taylor's go-to combination for patients dealing with tendon, ligament, or muscle injuries. BPC-157 and TB-500 work synergistically — BPC-157 promotes angiogenesis and gut healing while TB-500 upregulates actin for cellular repair. Adding GHK-Cu supports tissue remodeling at the skin and connective tissue level.",
@@ -37,7 +40,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "weight-loss-male",
-    name: "Body Recomposition Stack",
+    name: "Body Recomposition Protocol",
     subtitle: "Metabolic optimization for weight loss",
     description:
       "A research-supported approach combining GLP-1 receptor agonism with growth hormone optimization. Tirzepatide (or semaglutide) addresses appetite regulation and insulin sensitivity, while Ipamorelin + CJC-1295 stimulate natural GH release to support lean mass preservation during caloric deficit.",
@@ -58,7 +61,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "weight-loss-basic",
-    name: "GLP-1 Weight Management Stack",
+    name: "GLP-1 Weight Management Protocol",
     subtitle: "Evidence-based metabolic support",
     description:
       "For patients whose primary goal is weight loss, a GLP-1 agonist forms the foundation. Semaglutide is the most well-studied option with robust clinical trial data. Adding AOD-9604 may provide additional fat-specific metabolic support without affecting blood sugar or growth hormone levels.",
@@ -77,7 +80,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "longevity-male",
-    name: "Men's Longevity & Vitality Stack",
+    name: "Men's Longevity & Vitality Protocol",
     subtitle: "Anti-aging and cellular optimization",
     description:
       "Dr. Taylor's longevity protocol for men focuses on growth hormone optimization, telomere support, and tissue maintenance. Epithalon activates telomerase for cellular longevity, while Ipamorelin + CJC-1295 restore youthful GH pulsatility. GHK-Cu rounds out the stack with broad anti-aging effects on skin, joints, and DNA repair.",
@@ -97,7 +100,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "longevity-female",
-    name: "Women's Longevity & Vitality Stack",
+    name: "Women's Longevity & Vitality Protocol",
     subtitle: "Anti-aging and hormonal balance",
     description:
       "A tailored longevity approach for women emphasizing cellular protection, skin health, and gentle GH optimization. Epithalon supports telomere maintenance, GHK-Cu promotes collagen synthesis and skin rejuvenation, and Sermorelin provides a well-studied path to GH optimization with a strong safety profile.",
@@ -117,7 +120,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "sleep-recovery",
-    name: "Deep Sleep & Recovery Stack",
+    name: "Deep Sleep & Recovery Protocol",
     subtitle: "Optimize sleep architecture and recovery",
     description:
       "Poor sleep undermines every aspect of health. DSIP directly promotes delta wave sleep architecture, while Ipamorelin stimulates the natural nighttime GH pulse that drives tissue repair. For patients with injury or inflammation, BPC-157 supports overnight healing processes.",
@@ -137,7 +140,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "cognitive-performance",
-    name: "Cognitive Clarity Stack",
+    name: "Cognitive Clarity Protocol",
     subtitle: "Mental sharpness and mood support",
     description:
       "Selank is an anxiolytic nootropic that modulates GABA and serotonin systems without sedation. Combined with Epithalon for neuroprotective effects and Sermorelin for GH-mediated brain health, this stack addresses brain fog, anxiety, and cognitive decline from multiple angles.",
@@ -157,7 +160,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "gut-healing",
-    name: "Gut Restoration Stack",
+    name: "Gut Restoration Protocol",
     subtitle: "Heal the gut lining and reduce inflammation",
     description:
       "BPC-157 is the cornerstone of gut healing — it was originally isolated from gastric juice and has extensive research on GI repair. KPV is a potent anti-inflammatory tripeptide that calms mucosal inflammation. LL-37 provides antimicrobial support to help rebalance the gut microbiome.",
@@ -177,7 +180,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "immune-support",
-    name: "Immune Optimization Stack",
+    name: "Immune Optimization Protocol",
     subtitle: "Strengthen immune defenses",
     description:
       "LL-37 is a naturally occurring antimicrobial peptide that modulates innate and adaptive immunity. KPV reduces chronic inflammatory signaling that can suppress immune function. Epithalon supports thymic function and T-cell maturation, which decline significantly with age.",
@@ -197,7 +200,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "skin-rejuvenation",
-    name: "Skin & Hair Renewal Stack",
+    name: "Skin & Hair Renewal Protocol",
     subtitle: "Collagen, elastin, and follicle support",
     description:
       "GHK-Cu is one of the most well-studied peptides for skin health — it stimulates collagen, elastin, and glycosaminoglycan synthesis while also promoting hair follicle growth. Combined with BPC-157 for wound healing and Epithalon for cellular renewal, this stack targets visible aging from multiple pathways.",
@@ -217,7 +220,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "sexual-health-male",
-    name: "Men's Sexual Health Stack",
+    name: "Men's Sexual Health Protocol",
     subtitle: "Libido and performance support",
     description:
       "PT-141 (bremelanotide) acts on melanocortin receptors in the brain to enhance sexual desire — it's the only FDA-approved peptide for hypoactive sexual desire. Combined with Ipamorelin for GH optimization (which supports testosterone and overall vitality) and BPC-157 for vascular health.",
@@ -236,7 +239,7 @@ export const stacks: PeptideStack[] = [
   },
   {
     id: "sexual-health-female",
-    name: "Women's Sexual Wellness Stack",
+    name: "Women's Sexual Wellness Protocol",
     subtitle: "Desire and hormonal balance",
     description:
       "PT-141 is FDA-approved for hypoactive sexual desire disorder in premenopausal women and works centrally to enhance arousal. Sermorelin supports hormonal balance through GH optimization, and Selank can address the anxiety component that often underlies low libido.",

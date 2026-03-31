@@ -8,7 +8,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata: Metadata = buildMeta({
   title: "PeptideWise — Evidence-Based Peptide Education by Dr. Pat Taylor",
   description:
-    "Dr. Patrick Taylor, MD brings evidence-based peptide therapy education to patients. Explore 15+ peptides, 99 PubMed studies, and physician-curated stack recommendations.",
+    "Dr. Patrick Taylor, MD brings evidence-based peptide therapy education to patients. Explore 15+ peptides, 99 PubMed studies, and physician-curated personalized protocols.",
 });
 
 export default function RootLayout({

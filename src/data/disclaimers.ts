@@ -10,5 +10,5 @@ export const disclaimers: Disclaimers = {
   results:
     "Disclaimer: These results are for educational purposes only and are not medical advice. Peptide research relevance scores are based on published studies and do not constitute treatment recommendations. Always consult with a qualified healthcare provider, such as Dr. Taylor at Live Vital MD, before starting any protocol.",
   stacks:
-    "Disclaimer: These stacks are for educational purposes only and are not prescriptions or medical advice. Peptide protocols must be individualized by a qualified physician based on lab work, medical history, and clinical evaluation. To discuss a personalized protocol, consult Dr. Taylor at Live Vital MD.",
+    "Disclaimer: These protocols are for educational purposes only and are not prescriptions or medical advice. Peptide protocols must be individualized by a qualified physician based on lab work, medical history, and clinical evaluation. To discuss a personalized protocol, consult Dr. Taylor at Live Vital MD.",
 };

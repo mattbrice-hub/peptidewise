@@ -25,7 +25,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li><Link href="/peptides" className="text-sm hover:text-gray-900 transition-colors">Browse Peptides</Link></li>
-              <li><Link href="/stacks" className="text-sm hover:text-gray-900 transition-colors">Recommended Stacks</Link></li>
+              <li><Link href="/stacks" className="text-sm hover:text-gray-900 transition-colors">Personalized Protocols</Link></li>
               <li><Link href="/symptom-checker" className="text-sm hover:text-gray-900 transition-colors">Symptom Checker</Link></li>
               <li><Link href="/learn" className="text-sm hover:text-gray-900 transition-colors">Articles</Link></li>
               <li><Link href="/research" className="text-sm hover:text-gray-900 transition-colors">Research</Link></li>

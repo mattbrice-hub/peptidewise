@@ -201,7 +201,7 @@ export default function AboutPage() {
             href="/stacks"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-semibold border border-white/20 hover:bg-white/20 transition-colors"
           >
-            Explore Recommended Stacks
+            Find Your Protocol
           </Link>
         </div>
       </div>

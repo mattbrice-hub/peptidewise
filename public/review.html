@@ -442,7 +442,7 @@ function renderStack(s){
   return `<div class="section" id="sec-${sid}">
     <div class="section-header">
       <div style="flex:1">
-        <input class="edit-inline${nameChanged?" changed":""}" value="${currentName.replace(/"/g,"&quot;")}" style="font-size:22px;font-weight:700;background:transparent;padding:4px 8px" data-section="${sid}" data-field="name" data-original="${btoa(unescape(encodeURIComponent(s.name)))}" oninput="handleInline(this)" placeholder="Stack name...">
+        <input class="edit-inline${nameChanged?" changed":""}" value="${currentName.replace(/"/g,"&quot;")}" style="font-size:22px;font-weight:700;background:transparent;padding:4px 8px" data-section="${sid}" data-field="name" data-original="${btoa(unescape(encodeURIComponent(s.name)))}" oninput="handleInline(this)" placeholder="Protocol name...">
         ${s.highlight?`<span style="font-size:12px;color:var(--orange);margin-left:8px">${s.highlight}</span>`:""}
       </div>
       <span class="section-badge badge-${st.status}">${st.status}</span>
@@ -476,7 +476,7 @@ function renderDisclaimers(){
     <div class="card">
       <div class="field"><div class="field-label">Footer Disclaimer (all pages)</div>${renderEditable("disclaimers","footer",DATA.disclaimers.footer)}</div>
       <div class="field"><div class="field-label">Results Page Disclaimer</div>${renderEditable("disclaimers","results",DATA.disclaimers.results)}</div>
-      <div class="field"><div class="field-label">Stacks Page Disclaimer</div>${renderEditable("disclaimers","stacks",DATA.disclaimers.stacks)}</div>
+      <div class="field"><div class="field-label">Protocols Page Disclaimer</div>${renderEditable("disclaimers","stacks",DATA.disclaimers.stacks)}</div>
     </div>
     ${renderReviewControls("disclaimers")}
   </div>`;
@@ -489,7 +489,7 @@ function renderSidebar(){
   DATA.peptides.forEach(p => {
     html += `<div class="nav-item" onclick="navTo('sec-${p.id}')"><span class="nav-status ${(state[p.id]||{}).status||"pending"}"></span>${p.name}</div>`;
   });
-  html += `<h3>Stacks (${DATA.stacks.length})</h3>`;
+  html += `<h3>Protocols (${DATA.stacks.length})</h3>`;
   DATA.stacks.forEach(s => {
     const sid = "stack-"+s.id;
     html += `<div class="nav-item" onclick="navTo('sec-${sid}')"><span class="nav-status ${(state[sid]||{}).status||"pending"}"></span>${s.name}</div>`;
@@ -503,7 +503,7 @@ function renderMain(){
   let html = renderBio();
   html += `<div class="divider"></div><h2 style="font-size:28px;font-weight:700;margin-bottom:24px">Peptide Profiles</h2>`;
   DATA.peptides.forEach(p => html += renderPeptide(p));
-  html += `<div class="divider"></div><h2 style="font-size:28px;font-weight:700;margin-bottom:24px">Peptide Stacks</h2>`;
+  html += `<div class="divider"></div><h2 style="font-size:28px;font-weight:700;margin-bottom:24px">Peptide Protocols</h2>`;
   DATA.stacks.forEach(s => html += renderStack(s));
   html += `<div class="divider"></div>` + renderDisclaimers();
   document.getElementById("main").innerHTML = html;

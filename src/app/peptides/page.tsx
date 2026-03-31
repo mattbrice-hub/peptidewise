@@ -158,7 +158,7 @@ export default function PeptidesPage() {
           href="#common-stacks"
           className="text-xs font-medium px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 text-blue-700 hover:opacity-80 transition-opacity"
         >
-          Rated Stacks
+          Rated Protocols
         </a>
       </div>
 
@@ -293,22 +293,22 @@ export default function PeptidesPage() {
         })}
       </div>
 
-      {/* Common Stacks — Rated */}
+      {/* Curated Protocols — Rated */}
       <section className="mt-16 pt-12 border-t border-gray-200" id="common-stacks" style={{ scrollMarginTop: "5rem" }}>
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-1">
-              Dr. Taylor&apos;s Rated Stacks
+              Dr. Taylor&apos;s Curated Protocols
             </h2>
             <p className="text-gray-600 text-sm">
-              Common peptide combinations scored by average research evidence and safety profile.
+              Physician-curated peptide protocols scored by average research evidence and safety profile.
             </p>
           </div>
           <Link
             href="/stacks"
             className="hidden md:inline-flex items-center gap-1 text-blue-600 font-medium text-sm hover:text-blue-500"
           >
-            Personalize Stacks <ArrowRight className="h-4 w-4" />
+            Get Your Protocol <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -325,7 +325,7 @@ export default function PeptidesPage() {
                 key={stack.id}
                 className="bg-white shadow-sm rounded-2xl border border-gray-200 overflow-hidden"
               >
-                {/* Stack header */}
+                {/* Protocol header */}
                 <div className="p-5">
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
@@ -346,7 +346,7 @@ export default function PeptidesPage() {
                     </div>
                   </div>
 
-                  {/* Peptides in stack */}
+                  {/* Peptides in protocol */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {stackPeptides.map(
                       (p) =>
@@ -415,7 +415,7 @@ export default function PeptidesPage() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-primary text-white font-medium text-sm hover:opacity-90 transition-opacity shadow-md"
           >
             <Star className="h-4 w-4" />
-            Get Personalized Stack Recommendations
+            Build Your Personalized Protocol
           </Link>
         </div>
       </section>

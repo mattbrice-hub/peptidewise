@@ -20,7 +20,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "PeptideWise — Evidence-Based Peptide Therapy Education",
   description:
-    "Dr. Patrick Taylor, MD provides physician-curated peptide therapy education. Explore 15+ peptides, 99 PubMed studies, dosage guides, safety profiles, and personalized stack recommendations.",
+    "Dr. Patrick Taylor, MD provides physician-curated peptide therapy education. Explore 15+ peptides, 99 PubMed studies, dosage guides, safety profiles, and personalized peptide protocols.",
   path: "/",
 });
 
@@ -281,7 +281,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Recommended Stacks CTA */}
+      {/* Personalized Protocols CTA */}
       <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white shadow-sm border border-gray-200 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
@@ -291,18 +291,18 @@ export default function HomePage() {
                 Physician-Curated
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                Dr. Taylor&apos;s Recommended Stacks
+                Get a Personalized Protocol
               </h2>
               <p className="text-gray-600 mb-6">
-                Enter your age, gender, height, weight, and symptoms to see
-                which peptide combinations Dr. Taylor recommends for your
-                profile. Personalized, evidence-based stack suggestions.
+                Answer a few questions about your body and health goals, and
+                Dr. Taylor will match you with a personalized peptide protocol
+                designed specifically for your profile.
               </p>
               <Link
                 href="/stacks"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-md"
               >
-                Find Your Stack <ArrowRight className="h-5 w-5" />
+                Find Your Protocol <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
             <div className="flex-shrink-0 grid grid-cols-3 gap-3">

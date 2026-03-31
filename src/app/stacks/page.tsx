@@ -25,7 +25,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { stacks, type PeptideStack } from "@/data/stacks";
+import { stacks, type PeptideProtocol } from "@/data/stacks";
 import { peptides } from "@/data/peptides";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -166,7 +166,7 @@ function matchStacks(
   heightInches: number,
   weightLbs: number,
   selectedSymptoms: string[]
-): { stack: PeptideStack; relevance: number; matchedSymptoms: string[] }[] {
+): { stack: PeptideProtocol; relevance: number; matchedSymptoms: string[] }[] {
   const bmi = getBmiCategory(heightInches, weightLbs);
 
   return stacks
@@ -262,21 +262,21 @@ export default function StacksPage() {
             <Stethoscope className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            Dr. Taylor&apos;s Recommended Stacks
+            Your Personalized Protocols
           </h1>
           <p className="text-gray-600">
             {results.length > 0
-              ? `${results.length} stack${results.length !== 1 ? "s" : ""} matched for a ${age}-year-old ${gender}, BMI ${bmiValue}`
-              : "No stacks matched your profile"}
+              ? `Dr. Taylor selected ${results.length} protocol${results.length !== 1 ? "s" : ""} for a ${age}-year-old ${gender}, BMI ${bmiValue}`
+              : "No protocols matched your profile"}
           </p>
         </div>
 
         {results.length === 0 ? (
           <div className="text-center py-16 bg-white shadow-sm rounded-2xl border border-gray-200">
             <AlertTriangle className="h-12 w-12 text-amber-700 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">No Matching Stacks</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-2">No Matching Protocols</h2>
             <p className="text-gray-600 mb-6 max-w-md mx-auto">
-              We couldn&apos;t find stacks matching your specific profile. Try selecting
+              We couldn&apos;t find protocols matching your specific profile. Try selecting
               different symptoms or adjusting your inputs.
             </p>
             <button
@@ -302,7 +302,7 @@ export default function StacksPage() {
                   key={stack.id}
                   className="bg-white shadow-sm rounded-2xl border border-gray-200 overflow-hidden"
                 >
-                  {/* Stack header */}
+                  {/* Protocol header */}
                   <div className="p-6 md:p-8">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center">
@@ -352,10 +352,10 @@ export default function StacksPage() {
                     </div>
                   </div>
 
-                  {/* Peptides in this stack */}
+                  {/* Peptides in this protocol */}
                   <div className="border-t border-gray-200 bg-white px-6 md:px-8 py-4">
                     <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                      Peptides in this stack
+                      Peptides in your protocol
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {stackPeptides.map(
@@ -406,7 +406,7 @@ export default function StacksPage() {
           <div className="flex gap-3">
             <AlertTriangle className="h-5 w-5 text-amber-700 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-700">
-              <strong>Disclaimer:</strong> These stacks are for educational purposes only
+              <strong>Disclaimer:</strong> These protocols are for educational purposes only
               and are not prescriptions or medical advice. Peptide protocols must be
               individualized by a qualified physician based on lab work, medical history,
               and clinical evaluation. To discuss a personalized protocol, consult{" "}
@@ -457,11 +457,11 @@ export default function StacksPage() {
             <Stethoscope className="h-7 w-7 text-white" />
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            Dr. Taylor&apos;s Recommended Stacks
+            Build Your Personalized Protocol
           </h1>
           <p className="text-gray-600">
-            Tell us about yourself to see which peptide combinations Dr. Taylor
-            recommends for your profile.
+            Tell us about yourself and Dr. Taylor will match you with a
+            personalized peptide protocol tailored to your body and goals.
           </p>
         </div>
 
@@ -499,7 +499,7 @@ export default function StacksPage() {
                 Basic Information
               </h2>
               <p className="text-gray-500 text-sm">
-                Age and gender help us recommend the most appropriate stacks.
+                Age and gender help us personalize the right protocol for you.
               </p>
             </div>
 
@@ -569,7 +569,7 @@ export default function StacksPage() {
                 Body Metrics
               </h2>
               <p className="text-gray-500 text-sm">
-                Height and weight help us determine relevant body composition stacks.
+                Height and weight help us fine-tune your personalized protocol.
               </p>
             </div>
 
@@ -800,7 +800,7 @@ export default function StacksPage() {
                 disabled={!canProceedStep3}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                See Recommended Stacks <ArrowRight className="h-4 w-4" />
+                Build My Protocol <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
