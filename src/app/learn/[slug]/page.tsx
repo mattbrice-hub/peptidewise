@@ -77,11 +77,25 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="prose max-w-none">
-          {paragraphs.map((para, idx) => (
-            <p key={idx} className="text-gray-700 leading-relaxed mb-4">
-              {para}
-            </p>
-          ))}
+          {paragraphs.map((para, idx) => {
+            if (para.startsWith("## ")) {
+              return <h2 key={idx} className="text-xl font-bold text-gray-900 mt-8 mb-3">{para.slice(3)}</h2>;
+            }
+            if (para.startsWith("### ")) {
+              return <h3 key={idx} className="text-lg font-semibold text-gray-900 mt-6 mb-2">{para.slice(4)}</h3>;
+            }
+            if (para.startsWith("- ")) {
+              const items = para.split("\n").filter(Boolean);
+              return (
+                <ul key={idx} className="list-disc pl-6 mb-4 space-y-1">
+                  {items.map((item, i) => (
+                    <li key={i} className="text-gray-700 leading-relaxed">{item.replace(/^- /, "")}</li>
+                  ))}
+                </ul>
+              );
+            }
+            return <p key={idx} className="text-gray-700 leading-relaxed mb-4">{para}</p>;
+          })}
         </div>
       </article>
 
