@@ -28,6 +28,7 @@ export default function Footer() {
               <li><Link href="/stacks" className="text-sm hover:text-gray-900 transition-colors">Recommended Stacks</Link></li>
               <li><Link href="/symptom-checker" className="text-sm hover:text-gray-900 transition-colors">Symptom Checker</Link></li>
               <li><Link href="/learn" className="text-sm hover:text-gray-900 transition-colors">Articles</Link></li>
+              <li><Link href="/research" className="text-sm hover:text-gray-900 transition-colors">Research</Link></li>
             </ul>
           </div>
 

@@ -108,9 +108,7 @@ export default function HomePage() {
       <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-6">
-              <Stethoscope className="h-8 w-8 text-white" />
-            </div>
+            <img src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" className="w-28 h-28 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Led by Dr. Patrick Taylor, MD
             </h2>

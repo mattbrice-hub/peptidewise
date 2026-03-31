@@ -9,7 +9,30 @@
       "Bash(node add-fields.js)",
       "mcp__d15f1691-c4fb-4c88-a68d-7e6df6cf3562__deploy_to_vercel",
       "Bash(git add:*)",
-      "Bash(git commit -m \"Update booking links to tinyurl, remove U of U references:*)"
+      "Bash(git commit -m \"Update booking links to tinyurl, remove U of U references:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:medicine.utah.edu)",
+      "Bash(curl -sL -o /dev/null -w \"%{http_code}\" \"https://medicine.utah.edu/dfpm/residents/patrick-taylor\")",
+      "Bash(curl -sL \"https://medicine.utah.edu/dfpm/residents/patrick-taylor\")",
+      "Bash(curl -sL -o \"C:\\\\Users\\\\Nanu\\\\Desktop\\\\Claude\\\\peptidewise\\\\public\\\\images\\\\dr-taylor.jpg\" \"https://medicine.utah.edu/sites/g/files/zrelqx411/files/media/images/2023/patrick-taylor.jpg\")",
+      "Bash(for term:*)",
+      "Bash(do echo:*)",
+      "Bash(curl -s \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=$term&retmax=8&sort=relevance&retmode=json\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('''',''''.join\\(d[''''esearchresult''''][''''idlist'''']\\)\\)\")",
+      "Bash(done)",
+      "Bash(ALL_IDS=\"30915550,40005999,34267654,40756949,34324435,21030672,29998800,34380875,22962027,23084823,37689229,38706788,17468232,19668473,37018981,11950239,34665524,18046908,41490200,18031173,33842627,32257855,37688464,37806509,10373343,9849822,41476424,38996787,39043357,10496658,12168778,16352683,26771670,30938069,30489688,21204297,16822960,38976257,33755728,33625476,35015037,33567185,36578889,34942372,36216945,35658024,38078870,34170647,38912654,38819983,39536238,37385275,34186022,15134289,35428435,31369224,34436837,34510696,31429064,16839319,37365323,36322304,31625062,30255741,28280289,24913576,28293190,14552529,40141333,40908429,12374906,39788414,41240216,35413689,12096440,35083444,26236730,32371360,32867146,27517151,25731775,39795193,37896245,11437870,16539679,3550726,6145137,34500605,3620931,25063142,14751449,24124033,11713213,15134286,14685303,15834452,26213263,16625817,14571286,12750433,17934097,15102092,18092346,21222263,11268348,11268347,12851308,27117377,40869425,30980360,36769137,37068711,32019695,36781570,34600462,38675421,36551977,32329684,18061177,28143741,34846053,19909746,28349696,27458604,22837805,7817664,39444618,2664725\" echo \"$ALL_IDS\")",
+      "Bash(python3:*)",
+      "Bash(ls /tmp/pubmed*)",
+      "Read(//c//**)",
+      "Read(//c/Users/Nanu/AppData/Local/Temp/**)",
+      "Bash(npx tsc:*)",
+      "Bash(for pmid:*)",
+      "Bash(do grep:*)",
+      "Bash(node -e \":*)",
+      "Bash(wc -l \"C:/Users/Nanu/Desktop/Claude/peptidewise/src/data/\"*.ts)",
+      "Bash(wc -l C:/Users/Nanu/Desktop/Claude/peptidewise/src/data/*.ts)",
+      "Bash(node build-research-review.js)",
+      "Bash(gh auth:*)"
     ]
   }
 }

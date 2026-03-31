@@ -211,9 +211,7 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
       {/* Dr. Taylor's 2 Cents */}
       <div className="bg-blue-50 rounded-2xl border border-blue-200 p-6 mb-6">
         <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-12 h-12 rounded-full gradient-primary flex items-center justify-center text-white font-bold text-sm">
-            PT
-          </div>
+          <img src="/images/dr-taylor.jpg" alt="Dr. Taylor" className="flex-shrink-0 w-12 h-12 rounded-full object-cover" />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <h2 className="text-lg font-semibold text-gray-900">Dr. Taylor&apos;s 2 Cents</h2>

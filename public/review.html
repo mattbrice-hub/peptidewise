@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeptideWise Content Review — Dr. Taylor</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--card:#1e293b;--card2:#334155;--border:#475569;--text:#e2e8f0;--muted:#94a3b8;--accent:#3b82f6;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--orange:#f97316}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.topbar h1{font-size:18px;font-weight:700;white-space:nowrap}
+.topbar .stats{display:flex;gap:16px;font-size:13px;color:var(--muted)}
+.topbar .stats span{display:flex;align-items:center;gap:4px}
+.stat-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.stat-dot.green{background:var(--green)}.stat-dot.red{background:var(--red)}.stat-dot.gray{background:var(--muted)}
+.topbar .actions{display:flex;gap:8px}
+.btn{padding:8px 16px;border-radius:8px;border:none;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#2563eb}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:#16a34a}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{background:var(--card2)}
+
+/* Sidebar nav */
+.layout{display:flex;min-height:calc(100vh - 60px)}
+.sidebar{width:280px;min-width:280px;background:var(--card);border-right:1px solid var(--border);padding:16px;overflow-y:auto;position:sticky;top:60px;height:calc(100vh - 60px)}
+.sidebar h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:16px 0 8px;padding:0 8px}
+.sidebar h3:first-child{margin-top:0}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .1s}
+.nav-item:hover{background:var(--card2);color:var(--text)}
+.nav-item.active{background:var(--accent);color:#fff}
+.nav-status{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.nav-status.pending{background:var(--muted)}
+.nav-status.approved{background:var(--green)}
+.nav-status.revision{background:var(--red)}
+
+/* Main content */
+.main{flex:1;padding:32px;max-width:900px;margin:0 auto}
+.section{margin-bottom:48px}
+.section-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.section-title{font-size:24px;font-weight:700}
+.section-badge{font-size:11px;padding:4px 10px;border-radius:99px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge-pending{background:var(--card2);color:var(--muted)}
+.badge-approved{background:rgba(34,197,94,.15);color:var(--green)}
+.badge-revision{background:rgba(239,68,68,.15);color:var(--red)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px}
+.card h3{font-size:18px;font-weight:600;margin-bottom:12px}
+.card h4{font-size:14px;font-weight:600;color:var(--accent);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.5px}
+
+.field{margin-bottom:16px}
+.field-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.field-value{font-size:14px;color:var(--text)}
+.editable{background:var(--card2);border:1px solid transparent;border-radius:8px;padding:12px;font-size:14px;color:var(--text);line-height:1.6;width:100%;font-family:inherit;resize:vertical;min-height:60px;transition:border-color .15s}
+.editable:focus{outline:none;border-color:var(--accent)}
+.editable.changed{border-color:var(--orange);background:rgba(249,115,22,.05)}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;background:var(--card2);color:var(--muted);margin:2px}
+
+.ref-card{background:var(--card2);border-radius:8px;padding:12px;margin-bottom:8px;font-size:13px}
+.ref-card .ref-title{font-weight:600;color:var(--text);margin-bottom:4px}
+.ref-card .ref-meta{color:var(--muted);font-size:12px;margin-bottom:4px}
+.ref-card .ref-finding{color:var(--text);font-style:italic}
+.ref-card a{font-size:12px}
+
+.review-controls{display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap;align-items:start}
+.review-controls .btn{font-size:12px;padding:6px 14px}
+.note-input{flex:1;min-width:200px;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--text);font-family:inherit}
+.note-input:focus{outline:none;border-color:var(--accent)}
+.note-display{margin-top:8px;padding:8px 12px;background:rgba(239,68,68,.08);border-left:3px solid var(--red);border-radius:0 8px 8px 0;font-size:13px;color:var(--red)}
+
+.score-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.score-badge.high{background:rgba(34,197,94,.15);color:var(--green)}
+.score-badge.mid{background:rgba(234,179,8,.15);color:var(--yellow)}
+.score-badge.low{background:rgba(239,68,68,.15);color:var(--red)}
+
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.pill{padding:4px 10px;border-radius:6px;font-size:12px;background:var(--card2);color:var(--muted)}
+
+.edit-select{background:var(--card2);border:1px solid transparent;border-radius:8px;padding:8px 12px;font-size:14px;color:var(--text);font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:32px;transition:border-color .15s}
+.edit-select:focus{outline:none;border-color:var(--accent)}
+.edit-select.changed{border-color:var(--orange);background-color:rgba(249,115,22,.05)}
+.edit-inline{background:var(--card2);border:1px solid transparent;border-radius:8px;padding:8px 12px;font-size:14px;color:var(--text);font-family:inherit;width:100%;transition:border-color .15s}
+.edit-inline:focus{outline:none;border-color:var(--accent)}
+.edit-inline.changed{border-color:var(--orange);background:rgba(249,115,22,.05)}
+.checkbox-group{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0}
+.checkbox-label{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;background:var(--card2);font-size:13px;color:var(--muted);cursor:pointer;transition:all .15s;border:1px solid transparent;user-select:none}
+.checkbox-label:hover{background:var(--border);color:var(--text)}
+.checkbox-label.active{background:rgba(59,130,246,.15);color:var(--accent);border-color:var(--accent)}
+.checkbox-label.changed-group{border-color:var(--orange)}
+.checkbox-label input{display:none}
+.peptide-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:12px;background:rgba(59,130,246,.12);color:var(--accent);cursor:pointer;border:1px solid transparent;transition:all .15s}
+.peptide-chip:hover{background:rgba(59,130,246,.25)}
+.peptide-chip.selected{background:var(--accent);color:#fff}
+.peptide-chip.removed{background:rgba(239,68,68,.12);color:var(--red);text-decoration:line-through}
+.field-row{display:flex;gap:12px;margin-bottom:12px;align-items:start}
+.field-row .field{flex:1;margin-bottom:0}
+.edit-number{background:var(--card2);border:1px solid transparent;border-radius:8px;padding:8px 12px;font-size:14px;color:var(--text);font-family:inherit;width:80px;transition:border-color .15s}
+.edit-number:focus{outline:none;border-color:var(--accent)}
+.edit-number.changed{border-color:var(--orange);background:rgba(249,115,22,.05)}
+
+.dr-note{background:rgba(59,130,246,.08);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;font-size:14px;font-style:italic;margin:12px 0}
+
+/* Export modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;max-width:800px;width:100%;max-height:80vh;display:flex;flex-direction:column}
+.modal h2{font-size:20px;margin-bottom:16px}
+.modal textarea{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:13px;color:var(--text);resize:none;min-height:400px}
+.modal textarea:focus{outline:none;border-color:var(--accent)}
+.modal .actions{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
+
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+table.info-table{width:100%;border-collapse:collapse;font-size:13px}
+table.info-table td{padding:6px 0;vertical-align:top}
+table.info-table td:first-child{font-weight:600;color:var(--muted);width:160px;white-space:nowrap;padding-right:16px}
+
+@media(max-width:768px){
+  .sidebar{display:none}
+  .main{padding:16px}
+  .topbar{padding:8px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>PeptideWise Content Review</h1>
+  <div class="stats">
+    <span><span class="stat-dot green"></span> Approved: <strong id="stat-approved">0</strong></span>
+    <span><span class="stat-dot red"></span> Needs Revision: <strong id="stat-revision">0</strong></span>
+    <span><span class="stat-dot gray"></span> Pending: <strong id="stat-pending">0</strong></span>
+  </div>
+  <div class="actions">
+    <button class="btn btn-outline" onclick="approveAll()">Approve All</button>
+    <button class="btn btn-primary" onclick="exportMarkdown()">Export Changes</button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main" id="main"></div>
+</div>
+
+<div class="modal-overlay" id="exportModal">
+  <div class="modal">
+    <h2>Export Review — Copy & Send to Developer</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Copy the markdown below and paste it to your developer. Only changed/flagged sections are included.</p>
+    <textarea id="exportText" readonly></textarea>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="document.getElementById('exportModal').classList.remove('show')">Close</button>
+      <button class="btn btn-green" onclick="copyExport()">Copy to Clipboard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const DATA = {
+bio: {
+  id: "bio",
+  title: "About Dr. Taylor — Bio & Background",
+  fields: {
+    homepage_bio: {
+      label: "Homepage Bio",
+      value: "Board-eligible family medicine physician specializing in obesity and lifestyle medicine, chronic disease management, and sports medicine. A cancer and Cushing's syndrome survivor who lost over 100 lbs, Dr. Taylor founded Live Vital MD to deliver proactive, optimization-focused healthcare."
+    },
+    credentials_line: {
+      label: "Credentials Line",
+      value: "UNC Chapel Hill School of Medicine \u00b7 University of Utah Family Medicine Residency"
+    },
+    header_title: { label: "Header Title", value: "Dr. Patrick Taylor, MD" },
+    header_subtitle: { label: "Header Subtitle", value: "Board-Eligible Family Medicine Physician" },
+    header_location: { label: "Location", value: "Salt Lake City, UT" },
+    his_story: {
+      label: "His Story (About Page)",
+      value: "Dr. Patrick Taylor's path to medicine was shaped by personal adversity. After surviving cancer treatment and subsequently developing Cushing's syndrome \u2014 a condition that caused dramatic weight gain \u2014 he found himself over 100 lbs heavier and struggling with the metabolic consequences.\n\nThrough a combination of evidence-based medicine, lifestyle optimization, and peptide therapy, Dr. Taylor lost the weight and reclaimed his health. This transformative experience gave him a deeply personal understanding of metabolic disease and the power of proactive medicine \u2014 something he now brings to every patient interaction.\n\nA former championship rugby player at BYU, Dr. Taylor understands the demands athletes place on their bodies and the importance of recovery, performance optimization, and longevity. He founded Live Vital MD to provide data-driven, proactive healthcare that goes beyond just managing sickness \u2014 focusing instead on optimizing health, extending healthspan, and helping patients thrive."
+    },
+    why_peptides: {
+      label: "Why Peptides? (Quotes attributed to you)",
+      value: "\"Peptides represent one of the most exciting frontiers in medicine today. These are molecules that your body already makes \u2014 we're not introducing foreign substances, we're supplementing and optimizing natural biological pathways.\"\n\n\"After my own health crisis, I dove deep into the peptide research literature. I was struck by how much solid science existed for compounds like BPC-157, semaglutide, and GHK-Cu \u2014 yet how little of that information was reaching patients in an accessible, honest format. That's why I created PeptideWise: to bridge the gap between the research and the people who can benefit from understanding it.\"\n\n\"My commitment is to education, not sales. I want you to understand the evidence \u2014 what's proven, what's promising, and what's still unknown. Peptide therapy should always be supervised by a qualified physician who can evaluate your individual needs, monitor your labs, and adjust protocols based on your response.\""
+    },
+    education: {
+      label: "Education & Training",
+      value: "Residency: Family Medicine \u2014 University of Utah, Salt Lake City, UT\nMedical Degree: Doctor of Medicine (MD) \u2014 University of North Carolina at Chapel Hill, School of Medicine"
+    },
+    clinical_interests: {
+      label: "Clinical Interests",
+      value: "Obesity & Lifestyle Medicine\nPeptide Therapy Protocols\nChronic Disease Management\nSports Medicine & Athletic Recovery\nPreventive & Longevity Medicine"
+    }
+  }
+},
+
+peptides: [
+  {id:"bpc-157",name:"BPC-157",category:"Tissue Repair",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:7,safetyScore:8,
+   description:"A pentadecapeptide derived from human gastric juice that promotes tissue repair, gut healing, and tendon and ligament recovery.",
+   detailedDescription:"BPC-157 is a 15-amino-acid peptide originally isolated from human gastric juice. It has demonstrated significant cytoprotective and healing properties across multiple organ systems in preclinical studies. BPC-157 promotes angiogenesis, modulates nitric oxide synthesis, and upregulates growth factor expression, which collectively accelerate the repair of tendons, ligaments, muscles, and the gastrointestinal lining. It has also shown neuroprotective effects and the ability to counteract organ damage caused by NSAIDs and alcohol in animal models.",
+   benefits:["Accelerates tendon and ligament healing","Promotes gut lining repair and reduces intestinal inflammation","Supports muscle injury recovery","Exhibits neuroprotective properties","Promotes angiogenesis and blood vessel formation","May counteract NSAID-induced gastrointestinal damage"],
+   dosage:"200-500 mcg once or twice daily",cycle:"4-12 weeks",routes:"Subcutaneous, Oral",
+   sideEffects:["Nausea (rare)","Dizziness (rare)","Injection site irritation","Headache (infrequent)"],
+   contraindications:["Active cancer or history of malignancy","Pregnancy or breastfeeding","Concurrent use of anticoagulant medications without medical supervision"],
+   drTaylorNote:"BPC-157 is the single most versatile peptide in my clinical toolkit. I've seen it accelerate recovery from tendon injuries, calm gut inflammation, and even support patients healing from surgery. The animal data is extensive and consistent \u2014 we're still waiting on formal human trials, but the mechanism of action is well-understood. I recommend this to almost every patient dealing with musculoskeletal or GI issues.",
+   references:[{title:"Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing",authors:"Gwyer D, Wragg NM, Wilson SL",journal:"Cell and Tissue Research",year:2019,pmid:"30915550",finding:"All studies investigating BPC-157 demonstrated consistently positive and prompt healing effects for various injury types across multiple soft tissues."},{title:"The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration",authors:"Chang CH, Tsai WC, Lin MS, Hsu YH, Pang JHS",journal:"Journal of Applied Physiology",year:2011,pmid:"21030672",finding:"BPC-157 significantly accelerated tendon explant outgrowth, increased tendon fibroblast survival under oxidative stress, and dose-dependently enhanced cell migration."},{title:"Impact of pentadecapeptide BPC 157 on muscle healing impaired by systemic corticosteroid application",authors:"Pevec D, Novinscak T, Brcic L, et al.",journal:"Medical Science Monitor",year:2010,pmid:"20190676",finding:"BPC-157 induced faster muscle healing and full function restoration in transected quadriceps muscle, completely reversing corticosteroid-impaired healing."}]},
+  {id:"tb-500",name:"TB-500",category:"Tissue Repair",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:6,safetyScore:8,
+   description:"A synthetic version of thymosin beta-4, a naturally occurring peptide involved in wound healing, cell migration, and tissue repair throughout the body.",
+   detailedDescription:"TB-500 is a synthetic peptide that replicates the active region of thymosin beta-4, a 43-amino-acid protein produced naturally by the thymus gland. It plays a central role in actin regulation, cell migration, and new blood vessel formation, all critical processes for tissue repair.",
+   benefits:["Promotes wound healing and tissue regeneration","Reduces inflammation and fibrosis","Improves flexibility and range of motion","Supports cardiac tissue repair","Enhances hair regrowth in some individuals","Accelerates recovery from muscle injuries"],
+   dosage:"2-5 mg twice/week loading, then 2 mg twice/month maintenance",cycle:"4-8 weeks loading, then ongoing",routes:"Subcutaneous",
+   sideEffects:["Head rush or lightheadedness shortly after injection","Injection site redness or irritation","Temporary fatigue","Mild nausea"],
+   contraindications:["Active cancer or history of malignancy","Pregnancy or breastfeeding","Children and adolescents"],
+   drTaylorNote:"TB-500 is my second favorite repair peptide. I typically pair it with BPC-157 for synergistic healing \u2014 they hit different pathways. TB-500 excels at systemic repair because it's small enough to travel through the bloodstream to find injury sites. Great for athletes and patients with chronic injuries that haven't responded to conventional treatment.",
+   references:[{title:"Thymosin beta4 accelerates wound healing",authors:"Malinda KM, et al.",journal:"Journal of Investigative Dermatology",year:1999,pmid:"10469335",finding:"Thymosin beta-4 increased re-epithelialization by 42% at 4 days and up to 61% at 7 days versus controls."},{title:"The regenerative peptide thymosin beta4 accelerates the rate of dermal healing in preclinical animal models and in patients",authors:"Treadwell T, et al.",journal:"Annals of the New York Academy of Sciences",year:2012,pmid:"23050815",finding:"Thymosin beta-4 accelerated dermal healing in multiple animal models and two Phase 2 clinical trials."}]},
+  {id:"sermorelin",name:"Sermorelin",category:"Growth Hormone",researchStatus:"Well-studied",legalStatus:"Prescription",researchScore:9,safetyScore:9,
+   description:"A growth hormone-releasing hormone (GHRH) analog that stimulates the pituitary gland to produce and secrete growth hormone naturally.",
+   detailedDescription:"Sermorelin is a 29-amino-acid peptide that corresponds to the first 29 amino acids of endogenous GHRH. It was one of the first GHRH analogs approved for clinical use. It stimulates the pituitary to release GH in a pulsatile, physiological pattern, maintaining natural feedback mechanisms.",
+   benefits:["Stimulates natural growth hormone production","Improves sleep quality and depth","Supports lean muscle development","Enhances fat metabolism","May improve skin elasticity and appearance","Supports bone density maintenance"],
+   dosage:"200-300 mcg before bedtime daily",cycle:"3-6 months, with periodic breaks",routes:"Subcutaneous",
+   sideEffects:["Injection site reactions (redness, swelling)","Facial flushing","Headache","Dizziness","Drowsiness"],
+   contraindications:["Active malignancy","Hypersensitivity to sermorelin or mannitol","Pregnancy or breastfeeding","Untreated hypothyroidism"],
+   drTaylorNote:"Sermorelin is my go-to GH secretagogue for patients new to peptide therapy. It has the longest track record of any GHRH analog \u2014 it was actually FDA-approved for pediatric GH deficiency. The safety profile is excellent because it works through your body's natural feedback loops. I use this as a foundation for anti-aging and recovery protocols.",
+   references:[{title:"Sermorelin: A Review of Its Use in the Diagnosis and Treatment of Children with Idiopathic Growth Hormone Deficiency",authors:"Prakash A, Goa KL",journal:"BioDrugs",year:1999,pmid:"18031173",finding:"Subcutaneous sermorelin produced significant increases in height velocity sustained over 12 months."},{title:"Endocrine and Metabolic Effects of Long-Term Administration of [Nle27]Growth Hormone-Releasing Hormone-(1-29)-NH2 in Age-Advanced Men and Women",authors:"Khorram O, Laughlin GA, Yen SSC",journal:"Journal of Clinical Endocrinology & Metabolism",year:1997,pmid:"9141536",finding:"Sermorelin analog significantly increased nocturnal GH levels in both women and men, with improvements in lean body mass and insulin sensitivity."}]},
+  {id:"ipamorelin",name:"Ipamorelin",category:"Growth Hormone",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:7,safetyScore:9,
+   description:"A selective growth hormone secretagogue that stimulates GH release without significantly affecting cortisol or prolactin levels.",
+   detailedDescription:"Ipamorelin is a pentapeptide GH secretagogue acting on the ghrelin receptor (GHS-R1a). It is highly selective and does not cause significant increases in cortisol, prolactin, or appetite. It produces dose-dependent GH release that mimics natural pulsatile secretion.",
+   benefits:["Selective GH release without cortisol spikes","Improved recovery from exercise and injury","Enhanced fat metabolism and body composition","Better sleep quality","Supports collagen synthesis and joint health","Minimal impact on appetite"],
+   dosage:"200-300 mcg two to three times daily",cycle:"8-12 weeks, with 4-week breaks",routes:"Subcutaneous",
+   sideEffects:["Mild headache","Transient lightheadedness","Injection site irritation","Water retention (uncommon)"],
+   contraindications:["Active cancer or history of malignancy","Pregnancy or breastfeeding","Pituitary disorders","Type 1 diabetes (use with caution)"],
+   drTaylorNote:"What sets ipamorelin apart is its selectivity \u2014 it stimulates GH release without spiking cortisol or prolactin, which is a problem with older secretagogues like GHRP-6. I combine it with CJC-1295 in most of my GH optimization protocols. Patients love it because it improves sleep almost immediately, and the body composition changes follow within weeks.",
+   references:[{title:"Ipamorelin, the First Selective Growth Hormone Secretagogue",authors:"Raun K, Hansen BS, Johansen NL, et al.",journal:"European Journal of Endocrinology",year:1998,pmid:"9849822",finding:"Ipamorelin did not increase ACTH or cortisol even at doses 200-fold above the ED50 for GH release."},{title:"Pharmacokinetic-Pharmacodynamic Modeling of Ipamorelin in Human Volunteers",authors:"Gobburu JVS, et al.",journal:"Pharmaceutical Research",year:1999,pmid:"10496658",finding:"Ipamorelin induced dose-proportional GH release at all dose levels in healthy male volunteers."}]},
+  {id:"cjc-1295",name:"CJC-1295",category:"Growth Hormone",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:7,safetyScore:8,
+   description:"A synthetic GHRH analog with an extended half-life that provides sustained growth hormone release over days rather than minutes.",
+   detailedDescription:"CJC-1295 is a 30-amino-acid GHRH analog modified for extended activity. The DAC variant has a half-life of 6-8 days. The non-DAC version (Mod GRF 1-29) has ~30 min half-life. Frequently stacked with ipamorelin for synergistic GH optimization.",
+   benefits:["Sustained elevation of growth hormone levels","Increased IGF-1 production","Enhanced muscle growth and strength","Improved fat metabolism","Better deep sleep quality","Supports bone density and connective tissue health"],
+   dosage:"1-2 mg once or twice per week (DAC) or 100-300 mcg per injection (non-DAC)",cycle:"8-12 weeks with periodic breaks",routes:"Subcutaneous",
+   sideEffects:["Water retention","Tingling or numbness in extremities","Injection site reactions","Headache","Flushing","Increased hunger"],
+   contraindications:["Active malignancy","Pregnancy or breastfeeding","Diabetic retinopathy","Pituitary tumors","Uncontrolled diabetes"],
+   drTaylorNote:"CJC-1295 is the sustained-release partner to ipamorelin. The DAC version gives you steady GH elevation over days, while the non-DAC version (Mod GRF 1-29) provides sharper pulses. I use the non-DAC version combined with ipamorelin for most patients \u2014 it's more physiological. This combo is the backbone of my body recomposition and anti-aging stacks.",
+   references:[{title:"Prolonged Stimulation of GH and IGF-I Secretion by CJC-1295 in Healthy Adults",authors:"Teichman SL, et al.",journal:"Journal of Clinical Endocrinology & Metabolism",year:2006,pmid:"16352683",finding:"A single injection produced dose-dependent GH increases of 2- to 10-fold lasting 6+ days."},{title:"Pulsatile Secretion of GH Persists during Continuous Stimulation by CJC-1295",authors:"Ionescu M, Frohman LA",journal:"Journal of Clinical Endocrinology & Metabolism",year:2006,pmid:"17018654",finding:"CJC-1295 preserved natural GH pulsatility while increasing basal GH levels 7.5-fold."}]},
+  {id:"semaglutide",name:"Semaglutide",category:"Weight Management",researchStatus:"Well-studied",legalStatus:"Prescription",researchScore:10,safetyScore:10,
+   description:"An FDA-approved GLP-1 receptor agonist for type 2 diabetes and chronic weight management.",
+   detailedDescription:"Semaglutide mimics the incretin hormone GLP-1, stimulating insulin secretion, suppressing glucagon, slowing gastric emptying, and reducing appetite. STEP trials demonstrated 15-17% body weight loss over 68 weeks. Available as weekly injection or daily oral tablet.",
+   benefits:["Significant and sustained weight loss","Improved glycemic control and HbA1c reduction","Reduced cardiovascular risk","Decreased appetite and food cravings","Improved blood pressure and lipid profiles","Potential neuroprotective effects under investigation"],
+   dosage:"0.25 mg weekly escalating to 1.0-2.4 mg weekly over 16-20 weeks",cycle:"Ongoing under medical supervision",routes:"Subcutaneous, Oral",
+   sideEffects:["Nausea (most common, typically transient)","Vomiting","Diarrhea","Constipation","Abdominal pain","Headache","Fatigue","Injection site reactions"],
+   contraindications:["Personal or family history of medullary thyroid carcinoma","MEN 2","History of pancreatitis","Pregnancy or breastfeeding","Severe GI disease","Known hypersensitivity"],
+   drTaylorNote:"Semaglutide is the most well-studied peptide on this list, period. The STEP trials are gold-standard evidence \u2014 15-17% body weight loss sustained over years. As someone who lost over 100 lbs after Cushing's syndrome, I deeply understand the metabolic challenges of weight loss. GLP-1 agonists are game-changers, but they require medical supervision for dose titration and monitoring. The GI side effects are real but manageable with proper protocol.",
+   references:[{title:"Once-Weekly Semaglutide in Adults with Overweight or Obesity",authors:"Wilding JPH, et al.",journal:"New England Journal of Medicine",year:2021,pmid:"33567185",finding:"Semaglutide 2.4 mg: mean 14.9% body weight loss over 68 weeks; 86% achieved at least 5% loss."},{title:"STEP 4: Effect of Continued Semaglutide vs Placebo on Weight Loss Maintenance",authors:"Rubino D, et al.",journal:"JAMA",year:2021,pmid:"33755728",finding:"Continuing semaglutide achieved 17.4% total weight reduction; stopping led to regain."},{title:"Long-term weight loss effects of semaglutide in obesity without diabetes in SELECT",authors:"Lingvay I, et al.",journal:"Nature Medicine",year:2024,pmid:"38740993",finding:"Weight loss sustained for up to 4 years, mean 10.2% at 208 weeks."}]},
+  {id:"tirzepatide",name:"Tirzepatide",category:"Weight Management",researchStatus:"Well-studied",legalStatus:"Prescription",researchScore:10,safetyScore:10,
+   description:"An FDA-approved dual GIP/GLP-1 receptor agonist with superior weight loss and glycemic control.",
+   detailedDescription:"First-in-class dual GIP and GLP-1 receptor agonist. SURMOUNT trials demonstrated 20-26% body weight loss at highest dose over 72 weeks. Once-weekly subcutaneous injection with dose titration.",
+   benefits:["Industry-leading weight loss efficacy","Superior glycemic control for type 2 diabetes","Reduced appetite through dual-incretin action","Improved insulin sensitivity","Beneficial effects on blood pressure and lipids","Potential cardiovascular event reduction"],
+   dosage:"2.5 mg weekly, titrated up to 5, 10, or 15 mg weekly over 4-week intervals",cycle:"Ongoing under medical supervision; dose titration over 16+ weeks",routes:"Subcutaneous",
+   sideEffects:["Nausea","Diarrhea","Decreased appetite","Vomiting","Constipation","Abdominal pain","Dyspepsia","Injection site reactions"],
+   contraindications:["Personal or family history of medullary thyroid carcinoma","MEN 2","History of severe pancreatitis","Pregnancy or breastfeeding","Known hypersensitivity","Severe GI disease"],
+   drTaylorNote:"Tirzepatide is the most exciting development in metabolic medicine. The dual GIP/GLP-1 mechanism produces weight loss results we've never seen before \u2014 20%+ in clinical trials. I'm seeing similar results in practice. It's particularly effective for patients with insulin resistance and metabolic syndrome. The key is slow dose titration to minimize GI side effects. This is prescription-only and requires close physician monitoring.",
+   references:[{title:"Tirzepatide Once Weekly for the Treatment of Obesity",authors:"Jastreboff AM, et al.",journal:"New England Journal of Medicine",year:2022,pmid:"35658024",finding:"Mean weight reductions of 15.0% (5 mg), 19.5% (10 mg), and 20.9% (15 mg) vs 3.1% placebo at 72 weeks."},{title:"Efficacy and safety of tirzepatide in patients with type 2 diabetes (SURPASS-1)",authors:"Rosenstock J, et al.",journal:"The Lancet",year:2021,pmid:"34186022",finding:"HbA1c reduced by up to 2.07%; up to 52% achieved HbA1c below 5.7%."},{title:"Tirzepatide for obesity in people with type 2 diabetes (SURMOUNT-2)",authors:"Garvey WT, et al.",journal:"The Lancet",year:2023,pmid:"37385275",finding:"Mean weight reductions of 13.4% (10 mg) and 15.7% (15 mg) vs 3.3% placebo."}]},
+  {id:"pt-141",name:"PT-141 (Bremelanotide)",category:"Sexual Health",researchStatus:"Well-studied",legalStatus:"Prescription",researchScore:8,safetyScore:7,
+   description:"An FDA-approved melanocortin receptor agonist for hypoactive sexual desire disorder, acting centrally rather than vascularly.",
+   detailedDescription:"PT-141 targets MC4R in the CNS to enhance sexual desire. FDA-approved in 2019 as Vyleesi for HSDD in premenopausal women. Novel mechanism modulating brain-based desire pathways.",
+   benefits:["Increases sexual desire through CNS pathways","FDA-approved for HSDD in women","Works independently of vascular mechanisms","On-demand dosing ~45 min before activity","May benefit both men and women"],
+   dosage:"1.75 mg at least 45 minutes before anticipated sexual activity",cycle:"On-demand; no more than 1 dose/24h or 8 doses/month",routes:"Subcutaneous",
+   sideEffects:["Nausea (~40%)","Facial flushing","Headache","Injection site reactions","Transient BP increase","Skin hyperpigmentation with repeated use"],
+   contraindications:["Uncontrolled hypertension","Cardiovascular disease","Pregnancy or breastfeeding","Known hypersensitivity","Concurrent use with naltrexone"],
+   drTaylorNote:"PT-141 is unique because it works on desire, not just mechanics. It's the only FDA-approved treatment for hypoactive sexual desire disorder, and it works through a completely different mechanism than Viagra or Cialis. I use it for both men and women. The main side effect is nausea, which can be significant, so I always start with a test dose. It's an on-demand medication \u2014 you don't take it daily.",
+   references:[{title:"An effect on the subjective sexual response in premenopausal women with sexual arousal disorder by bremelanotide",authors:"Diamond LE, et al.",journal:"Journal of Sexual Medicine",year:2006,pmid:"16839319",finding:"Significantly more women reported moderate or high sexual desire following bremelanotide vs placebo."},{title:"Safety and pharmacodynamic effects of intranasal PT-141 in males with mild-to-moderate ED",authors:"Diamond LE, et al.",journal:"International Journal of Impotence Research",year:2004,pmid:"14963471",finding:"PT-141 induced statistically significant erectile response vs placebo at doses above 7 mg."}]},
+  {id:"selank",name:"Selank",category:"Cognitive / Anxiolytic",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:6,safetyScore:9,
+   description:"A synthetic analog of tuftsin with anxiolytic and nootropic properties, developed in Russia.",
+   detailedDescription:"Selank is a heptapeptide developed at the Institute of Molecular Genetics of the Russian Academy of Sciences. It modulates BDNF expression and influences serotonergic, dopaminergic, and GABAergic systems without sedation or dependence.",
+   benefits:["Reduces anxiety without sedation or addiction","Enhances cognitive function and memory","Increases BDNF expression","Modulates serotonin and dopamine","Supports immune function via tuftsin pathway","May improve focus and mental clarity"],
+   dosage:"250-500 mcg intranasally or subcutaneously, 1-3 times daily",cycle:"2-4 weeks, with breaks between cycles",routes:"Nasal, Subcutaneous",
+   sideEffects:["Mild nasal irritation (intranasal)","Fatigue (rare)","Mild headache (infrequent)"],
+   contraindications:["Pregnancy or breastfeeding","Known hypersensitivity to selank or tuftsin","Active autoimmune conditions"],
+   drTaylorNote:"Selank is my favorite anxiolytic peptide because it provides meaningful anxiety relief without any of the downsides of benzodiazepines \u2014 no sedation, no dependence, no cognitive impairment. The Russian clinical data is solid. I use it for patients with generalized anxiety, brain fog, and stress-related cognitive issues. The nasal spray format makes it extremely convenient.",
+   references:[{title:"Efficacy and mechanisms of selank in therapy of generalized anxiety disorders and neurasthenia",authors:"Zozulia AA, et al.",journal:"Zhurnal Nevrologii i Psikhiatrii",year:2008,pmid:"18454096",finding:"Selank's anxiolytic effects were comparable to medazepam without benzodiazepine side effects."},{title:"The optimizing action of Selank on a conditioned active avoidance reflex in rats",authors:"Kozlovskii II, Danchev ND",journal:"Neuroscience and Behavioral Physiology",year:2003,pmid:"14552529",finding:"Selank significantly activated the learning process in rats with initially poor learning ability."}]},
+  {id:"epithalon",name:"Epithalon",category:"Anti-Aging",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:6,safetyScore:9,
+   description:"A synthetic tetrapeptide studied for its ability to activate telomerase and potentially extend cellular lifespan.",
+   detailedDescription:"Epithalon (Ala-Glu-Asp-Gly) was developed by Professor Vladimir Khavinson. Research shows it activates telomerase, normalizes melatonin secretion, and improves age-related biomarkers.",
+   benefits:["Activates telomerase enzyme activity","May slow cellular aging through telomere maintenance","Normalizes circadian rhythm and melatonin","Antioxidant properties","May support retinal health","Promotes neuroendocrine regulation"],
+   dosage:"5-10 mg daily for 10-20 day cycles",cycle:"10-20 days, repeated 2-3 times per year",routes:"Subcutaneous",
+   sideEffects:["Injection site irritation (mild)","Drowsiness (infrequent)","Headache (rare)"],
+   contraindications:["Pregnancy or breastfeeding","Active autoimmune disease","Under 30 years of age"],
+   drTaylorNote:"Epithalon is the most intriguing anti-aging peptide available. The telomerase activation data from Khavinson's lab is compelling, and the safety profile is remarkably clean. I include it in my longevity protocols as a 10-20 day cycle a few times per year. It's also one of the few peptides shown to normalize melatonin secretion, which is a bonus for sleep.",
+   references:[{title:"Epithalon peptide induces telomerase activity and telomere elongation in human somatic cells",authors:"Khavinson VKh, et al.",journal:"Bulletin of Experimental Biology and Medicine",year:2003,pmid:"12937682",finding:"Epithalon reactivated telomerase in human fetal fibroblasts and caused telomere elongation."},{title:"Epitalon increases telomere length in human cell lines through telomerase upregulation",authors:"Al-dulaimi S, et al.",journal:"Biogerontology",year:2025,pmid:"40908429",finding:"Dose-dependent telomere extension with 12-fold hTERT expression increase at 1 mcg/ml."}]},
+  {id:"ghk-cu",name:"GHK-Cu",category:"Skin & Hair",researchStatus:"Well-studied",legalStatus:"Supplement",researchScore:8,safetyScore:9,
+   description:"A naturally occurring copper-binding tripeptide for skin remodeling, wound healing, collagen synthesis, and hair growth.",
+   detailedDescription:"GHK-Cu is a tripeptide first isolated from human plasma in 1973. Plasma levels decline from ~200 ng/mL at age 20 to ~80 ng/mL by age 60. It upregulates over 4,000 genes involved in tissue remodeling.",
+   benefits:["Stimulates collagen and elastin production","Promotes wound healing and tissue remodeling","Reduces fine lines and improves skin firmness","Supports hair follicle growth","Anti-inflammatory and antioxidant effects","Promotes angiogenesis in damaged tissue"],
+   dosage:"Topical: 1-2 times daily; Injectable: 1-2 mg daily",cycle:"Topical: ongoing; Injectable: 4-8 weeks",routes:"Topical, Subcutaneous",
+   sideEffects:["Mild skin irritation with topical use","Injection site redness","Temporary skin discoloration (rare)"],
+   contraindications:["Known copper sensitivity or Wilson disease","Pregnancy or breastfeeding","Active skin infections at application site"],
+   drTaylorNote:"GHK-Cu is the Swiss Army knife of skin and tissue health. The gene expression data is staggering \u2014 it modulates over 4,000 genes involved in tissue repair. I use it both topically and as an injectable. For skin rejuvenation and hair regrowth, topical is usually sufficient. For systemic tissue repair, I add the injectable form. It pairs beautifully with BPC-157.",
+   references:[{title:"GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration",authors:"Pickart L, et al.",journal:"BioMed Research International",year:2015,pmid:"26236730",finding:"GHK-Cu modulates at least 4,000 human genes and improved skin elasticity, density, firmness."},{title:"Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data",authors:"Pickart L, Margolina A",journal:"International Journal of Molecular Sciences",year:2018,pmid:"29986520",finding:"GHK-Cu stimulates blood vessel and nerve outgrowth, increases collagen and elastin synthesis."}]},
+  {id:"dsip",name:"DSIP",category:"Sleep",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:5,safetyScore:8,
+   description:"A neuromodulatory nonapeptide that promotes delta-wave sleep with stress-protective properties.",
+   detailedDescription:"DSIP is a nine-amino-acid peptide discovered in 1977. It crosses the blood-brain barrier and modulates the sleep-wake cycle by promoting slow-wave (delta) sleep. Acts as a neuromodulator rather than a direct sedative.",
+   benefits:["Promotes restorative delta-wave deep sleep","Normalizes sleep architecture without sedation","Stress-protective properties","May regulate cortisol levels","Potential analgesic effects","Supports hormonal balance during sleep"],
+   dosage:"100-300 mcg before bedtime",cycle:"2-4 weeks, followed by equal break",routes:"Subcutaneous, Nasal",
+   sideEffects:["Morning grogginess (infrequent)","Mild headache","Injection site irritation","Vivid dreams"],
+   contraindications:["Pregnancy or breastfeeding","Severe depression","Concurrent sedative use without medical guidance"],
+   drTaylorNote:"DSIP is a niche peptide that I reserve for patients with genuine sleep architecture problems \u2014 people who can fall asleep but don't get restorative deep sleep. It works as a neuromodulator, not a sedative. I typically use it in short 2-4 week cycles. I combine it with ipamorelin for patients who also need GH optimization.",
+   references:[{title:"Acute and delayed effects of DSIP on human sleep behavior",authors:"Schneider-Helmert D, et al.",journal:"Int J Clin Pharmacol Ther Toxicol",year:1981,pmid:"6895513",finding:"DSIP caused a 59% increase in sleep within 130 minutes, improved sleep efficiency without acting as a sedative."},{title:"Effects of DSIP on 24-hour sleep-wake behaviour in severe chronic insomnia",authors:"Schneider-Helmert D",journal:"European Neurology",year:1987,pmid:"3622582",finding:"In 14 chronic insomniacs, DSIP improved night sleep to levels comparable to normal controls."}]},
+  {id:"aod-9604",name:"AOD-9604",category:"Weight Management",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:5,safetyScore:8,
+   description:"A modified fragment of human growth hormone that stimulates lipolysis without growth-promoting or diabetogenic effects.",
+   detailedDescription:"AOD-9604 is the fat-metabolizing region of HGH (amino acids 176-191) without growth, insulin, or IGF-1 effects. FDA GRAS status since 2014.",
+   benefits:["Stimulates fat breakdown without affecting blood sugar","Inhibits new fat cell formation","No IGF-1 effects or growth effects","No HGH-related antibodies","May support cartilage repair","GRAS status indicates favorable safety profile"],
+   dosage:"300-500 mcg daily on empty stomach",cycle:"8-12 weeks",routes:"Subcutaneous, Oral",
+   sideEffects:["Injection site irritation","Mild headache","Indigestion (oral)","Flu-like symptoms (rare)"],
+   contraindications:["Pregnancy or breastfeeding","Active malignancy","Children and adolescents","Severe liver or kidney disease"],
+   drTaylorNote:"AOD-9604 is the fat-targeting fragment of growth hormone without the growth or insulin effects. I use it as a complement to GLP-1 agonists, not standalone. The clinical trial results for weight loss alone were underwhelming, but it earned FDA GRAS status for safety. Best suited as part of a broader metabolic optimization protocol.",
+   references:[{title:"Increase of fat oxidation and weight loss in obese mice caused by chronic treatment with hGH or AOD-9604",authors:"Heffernan MA, et al.",journal:"International Journal of Obesity",year:2001,pmid:"11673763",finding:"AOD-9604 significantly reduced body weight gain via increased fat oxidation without hyperglycemia."},{title:"Effects of hGH and AOD9604 on lipid metabolism in obese mice",authors:"Heffernan MA, et al.",journal:"Endocrinology",year:2001,pmid:"11713213",finding:"AOD-9604 reduced body weight and fat while restoring beta-3 adrenergic receptor expression."}]},
+  {id:"kpv",name:"KPV",category:"Immune",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:6,safetyScore:9,
+   description:"A tripeptide from alpha-MSH with potent anti-inflammatory and antimicrobial properties.",
+   detailedDescription:"KPV (Lys-Pro-Val) inhibits NF-kB activation and reduces TNF-alpha, IL-6, and IL-1beta. Demonstrated efficacy in IBD models when administered orally.",
+   benefits:["Potent anti-inflammatory via NF-kB inhibition","Reduces pro-inflammatory cytokines","Supports gut mucosal healing","Exhibits antimicrobial activity","May improve IBD symptoms","Well-tolerated with minimal systemic effects"],
+   dosage:"200-500 mcg once or twice daily",cycle:"4-8 weeks",routes:"Oral, Subcutaneous, Topical",
+   sideEffects:["Mild GI discomfort (rare)","Injection site irritation (if injected)","Skin irritation with topical use (rare)"],
+   contraindications:["Pregnancy or breastfeeding","Known hypersensitivity to alpha-MSH peptides","Concurrent immunosuppressive therapy without guidance"],
+   drTaylorNote:"KPV is a powerhouse anti-inflammatory that I use extensively for gut health. It's a tiny tripeptide derived from alpha-MSH, but it packs a serious punch against NF-kB-driven inflammation. The IBD research is particularly promising. I use it orally for gut-specific inflammation and subcutaneously for systemic conditions. One of the best-tolerated peptides I prescribe.",
+   references:[{title:"PepT1-mediated tripeptide KPV uptake reduces intestinal inflammation",authors:"Dalmasso G, et al.",journal:"Gastroenterology",year:2008,pmid:"18061177",finding:"Oral KPV reduced colitis incidence by inhibiting NF-kB and MAPK signaling."},{title:"Melanocortin-derived tripeptide KPV has anti-inflammatory potential in murine models of IBD",authors:"Kannengiesser K, et al.",journal:"Inflammatory Bowel Diseases",year:2008,pmid:"18092346",finding:"KPV led to earlier recovery and rescued all treated animals from death during severe colitis."}]},
+  {id:"ll-37",name:"LL-37",category:"Immune",researchStatus:"Emerging",legalStatus:"Research-only",researchScore:7,safetyScore:7,
+   description:"The only human cathelicidin antimicrobial peptide, critical for innate immune defense.",
+   detailedDescription:"LL-37 is a 37-amino-acid peptide expressed by neutrophils, macrophages, and epithelial cells. It disrupts microbial membranes, promotes wound healing, and modulates immune response.",
+   benefits:["Broad-spectrum antimicrobial activity","Disrupts biofilm formation","Modulates innate immune response","Promotes wound healing and angiogenesis","Recruits immune cells to infection sites","May enhance defense against URIs"],
+   dosage:"50-100 mcg daily via subcutaneous injection",cycle:"4-8 weeks",routes:"Subcutaneous, Topical",
+   sideEffects:["Injection site irritation or redness","Mild inflammatory response at injection site","Headache (infrequent)","Potential mast cell activation in sensitive individuals"],
+   contraindications:["Pregnancy or breastfeeding","Active psoriasis or rosacea","Known mast cell activation disorder","Concurrent immunosuppressive therapy without supervision"],
+   drTaylorNote:"LL-37 is our body's own antimicrobial peptide, and supplementing it can meaningfully boost immune defense. I use it for patients with chronic infections, biofilm-related conditions, and those who seem to catch everything. It's also excellent for wound healing. The main caution is for patients with autoimmune skin conditions like psoriasis \u2014 LL-37 overexpression is actually part of the psoriasis pathology.",
+   references:[{title:"Antimicrobial cathelicidin peptide LL-37 inhibits pyroptosis and improves survival in polybacterial septic mice",authors:"Hu Z, et al.",journal:"International Immunology",year:2016,pmid:"26746575",finding:"LL-37 improved survival by inhibiting macrophage pyroptosis and reducing bacterial burdens."},{title:"Therapeutic Potential of Cathelicidin Peptide LL-37 in a Murine Sepsis Model",authors:"Nagaoka I, et al.",journal:"International Journal of Molecular Sciences",year:2020,pmid:"32825174",finding:"LL-37 demonstrated three protective mechanisms: suppressed pyroptosis, enhanced NETs, stimulated antimicrobial microvesicles."}]}
+],
+
+stacks: [
+  {id:"tissue-repair",name:"Recovery & Repair Stack",subtitle:"Accelerate healing from injuries and surgery",highlight:"Most Popular",peptides:"BPC-157, TB-500, GHK-Cu",target:"Joint pain, chronic inflammation, slow wound healing, tendon/ligament issues, gut inflammation",age:"25-80",gender:"All",bmi:"All",
+   description:"Dr. Taylor's go-to combination for patients dealing with tendon, ligament, or muscle injuries. BPC-157 and TB-500 work synergistically \u2014 BPC-157 promotes angiogenesis and gut healing while TB-500 upregulates actin for cellular repair. Adding GHK-Cu supports tissue remodeling.",
+   drTaylorNote:"This is my most-prescribed stack. BPC-157 and TB-500 are synergistic \u2014 they hit different repair pathways and the results together are greater than the sum of their parts. I add GHK-Cu for patients over 40 or those with connective tissue damage."},
+  {id:"weight-loss-male",name:"Body Recomposition Stack",subtitle:"Metabolic optimization for weight loss",highlight:"Dr. Taylor's Pick",peptides:"Tirzepatide, Ipamorelin, CJC-1295",target:"Difficulty losing weight, slow metabolism, excess belly fat, increased appetite, low energy",age:"25-65",gender:"All",bmi:"Overweight, Obese",
+   description:"Combines GLP-1 receptor agonism with growth hormone optimization. Tirzepatide addresses appetite and insulin sensitivity, while Ipamorelin + CJC-1295 support lean mass preservation during caloric deficit.",
+   drTaylorNote:"This is my comprehensive approach for patients who want to lose fat while preserving or building lean mass. Tirzepatide handles appetite and insulin sensitivity, while the Ipa/CJC combo maintains GH pulsatility that protects muscle. I monitor labs every 6-8 weeks."},
+  {id:"weight-loss-basic",name:"GLP-1 Weight Management Stack",subtitle:"Evidence-based metabolic support",peptides:"Semaglutide, AOD-9604",target:"Difficulty losing weight, slow metabolism, excess belly fat, increased appetite",age:"18-75",gender:"All",bmi:"Overweight, Obese",
+   description:"GLP-1 agonist foundation with fat-specific metabolic support from AOD-9604.",
+   drTaylorNote:"For patients whose primary goal is weight loss, I start here. Semaglutide is the most proven option. AOD-9604 adds fat-specific support. Great entry point before considering the full recomposition stack."},
+  {id:"longevity-male",name:"Men's Longevity & Vitality Stack",subtitle:"Anti-aging and cellular optimization",peptides:"Epithalon, Ipamorelin, CJC-1295, GHK-Cu",target:"Premature aging, low energy, declining vitality, telomere concerns",age:"35-80",gender:"Male",bmi:"All",
+   description:"GH optimization, telomere support, and tissue maintenance for men.",
+   drTaylorNote:"This is my premium longevity protocol for men over 35. Ipa/CJC restores youthful GH levels, Epithalon addresses cellular aging, GHK-Cu provides broad tissue maintenance. I cycle Epithalon 10-20 days every 4-6 months."},
+  {id:"longevity-female",name:"Women's Longevity & Vitality Stack",subtitle:"Anti-aging and hormonal balance",peptides:"Epithalon, Sermorelin, GHK-Cu",target:"Premature aging, low energy, declining vitality, wrinkles/fine lines, dull skin",age:"35-80",gender:"Female",bmi:"All",
+   description:"Cellular protection, skin health, and gentle GH optimization tailored for women.",
+   drTaylorNote:"Designed with the female hormonal landscape in mind. Sermorelin is gentler than Ipamorelin for GH stimulation. GHK-Cu is a standout for skin and hair. Particularly popular with my perimenopausal patients."},
+  {id:"sleep-recovery",name:"Deep Sleep & Recovery Stack",subtitle:"Optimize sleep architecture and recovery",peptides:"DSIP, Ipamorelin, BPC-157",target:"Poor sleep quality, difficulty falling asleep, waking unrefreshed, slow recovery",age:"25-75",gender:"All",bmi:"All",
+   description:"DSIP promotes delta wave sleep, Ipamorelin stimulates nighttime GH pulse, BPC-157 supports overnight healing.",
+   drTaylorNote:"Sleep is the foundation of health. DSIP promotes delta-wave architecture, Ipamorelin amplifies the natural nighttime GH surge, BPC-157 ensures repair happens while you sleep. Better sleep often reported within the first week."},
+  {id:"cognitive-performance",name:"Cognitive Clarity Stack",subtitle:"Mental sharpness and mood support",peptides:"Selank, Epithalon, Sermorelin",target:"Brain fog, anxiety, poor focus, mood swings, mental fatigue",age:"25-75",gender:"All",bmi:"All",
+   description:"Selank modulates GABA and serotonin without sedation. Epithalon provides neuroprotection. Sermorelin supports GH-mediated brain health.",
+   drTaylorNote:"Brain fog is one of the most common complaints I hear. Selank addresses anxiety and stress, Epithalon provides neuroprotection, Sermorelin supports brain health through GH optimization. Particularly effective for professionals with chronic stress."},
+  {id:"gut-healing",name:"Gut Restoration Stack",subtitle:"Heal the gut lining and reduce inflammation",peptides:"BPC-157, KPV, LL-37",target:"IBS symptoms, leaky gut, bloating, gut inflammation, food sensitivities",age:"18-75",gender:"All",bmi:"All",
+   description:"BPC-157 for GI repair, KPV for mucosal inflammation, LL-37 for antimicrobial support and microbiome rebalancing.",
+   drTaylorNote:"I'm passionate about gut health. BPC-157 was literally discovered in gastric juice. KPV calms mucosal inflammation, LL-37 helps rebalance the microbiome. I typically run this for 8-12 weeks with dietary modifications."},
+  {id:"immune-support",name:"Immune Optimization Stack",subtitle:"Strengthen immune defenses",peptides:"LL-37, KPV, Epithalon",target:"Frequent infections, slow immune healing, autoimmune concerns, chronic inflammation",age:"30-80",gender:"All",bmi:"All",
+   description:"LL-37 modulates innate and adaptive immunity. KPV reduces chronic inflammatory signaling. Epithalon supports thymic function and T-cell maturation.",
+   drTaylorNote:"For patients who catch every bug or have chronic low-grade infections. LL-37 provides antimicrobial support, KPV reduces chronic inflammation, Epithalon supports thymic health for T-cell production as we age."},
+  {id:"skin-rejuvenation",name:"Skin & Hair Renewal Stack",subtitle:"Collagen, elastin, and follicle support",peptides:"GHK-Cu, BPC-157, Epithalon",target:"Wrinkles, hair thinning, slow skin healing, dull skin, acne scarring",age:"25-75",gender:"All",bmi:"All",
+   description:"GHK-Cu stimulates collagen/elastin/GAGs and hair follicle growth. BPC-157 for wound healing. Epithalon for cellular renewal.",
+   drTaylorNote:"GHK-Cu is the star here. I combine it with BPC-157 for wound healing (great post-procedure) and Epithalon for cellular renewal. Skin texture improvements within 4-6 weeks. For hair, at least 3 months."},
+  {id:"sexual-health-male",name:"Men's Sexual Health Stack",subtitle:"Libido and performance support",peptides:"PT-141, Ipamorelin, BPC-157",target:"Low libido, erectile dysfunction, sexual performance, hormonal imbalance",age:"30-70",gender:"Male",bmi:"All",
+   description:"PT-141 enhances desire via melanocortin receptors. Ipamorelin supports testosterone via GH optimization. BPC-157 for vascular health.",
+   drTaylorNote:"PT-141 works on desire at the brain level \u2014 not just blood flow like Viagra. Ipamorelin supports testosterone and vitality through GH optimization. BPC-157 supports vascular health. I always do a comprehensive hormone panel first."},
+  {id:"sexual-health-female",name:"Women's Sexual Wellness Stack",subtitle:"Desire and hormonal balance",peptides:"PT-141, Sermorelin, Selank",target:"Low libido, sexual performance, hormonal imbalance",age:"25-65",gender:"Female",bmi:"All",
+   description:"PT-141 FDA-approved for HSDD in premenopausal women. Sermorelin for hormonal balance. Selank addresses the anxiety component of low libido.",
+   drTaylorNote:"PT-141 is FDA-approved specifically for women with HSDD. Sermorelin provides gentle hormonal support. Selank addresses anxiety that often underlies low desire. I approach female sexual wellness holistically."}
+],
+
+disclaimers: {
+  footer: "Medical Disclaimer: The information provided on PeptideWise is for educational purposes only and does not constitute medical advice, diagnosis, or treatment recommendations. All content is curated by Dr. Patrick Taylor, MD for informational purposes. Always consult with a qualified healthcare provider before starting any peptide therapy or making changes to your health regimen. Individual results may vary. Peptide therapies should only be administered under proper medical supervision.",
+  results: "Disclaimer: These results are for educational purposes only and are not medical advice. Peptide research relevance scores are based on published studies and do not constitute treatment recommendations. Always consult with a qualified healthcare provider, such as Dr. Taylor at Live Vital MD, before starting any protocol.",
+  stacks: "Disclaimer: These stacks are for educational purposes only and are not prescriptions or medical advice. Peptide protocols must be individualized by a qualified physician based on lab work, medical history, and clinical evaluation. To discuss a personalized protocol, consult Dr. Taylor at Live Vital MD."
+}
+};
+
+// ==================== STATE ====================
+let state = {};
+function initState(){
+  state.bio = {status:"pending",note:"",changes:{}};
+  DATA.peptides.forEach(p => state[p.id] = {status:"pending",note:"",changes:{}});
+  DATA.stacks.forEach(s => state["stack-"+s.id] = {status:"pending",note:"",changes:{}});
+  state.disclaimers = {status:"pending",note:"",changes:{}};
+  // Load from localStorage
+  try{const s=localStorage.getItem("pw-review");if(s)state=JSON.parse(s)}catch(e){}
+}
+function saveState(){try{localStorage.setItem("pw-review",JSON.stringify(state))}catch(e){}}
+
+// ==================== RENDER ====================
+function scoreClass(s){return s>=8?"high":s>=6?"mid":"low"}
+
+function renderRef(r){
+  return `<div class="ref-card">
+    <div class="ref-title">${r.title}</div>
+    <div class="ref-meta">${r.authors} \u2014 <em>${r.journal}</em>, ${r.year}</div>
+    <div class="ref-finding">${r.finding}</div>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/" target="_blank">PubMed: ${r.pmid}</a>
+  </div>`;
+}
+
+function renderReviewControls(sectionId){
+  const s = state[sectionId]||{status:"pending",note:""};
+  return `<div class="review-controls">
+    <button class="btn ${s.status==="approved"?"btn-green":"btn-outline"}" onclick="setStatus('${sectionId}','approved')">Approve</button>
+    <button class="btn ${s.status==="revision"?"btn-primary":"btn-outline"}" style="${s.status==="revision"?"background:var(--red)":""}" onclick="setStatus('${sectionId}','revision')">Needs Revision</button>
+    <input class="note-input" placeholder="Add notes or corrections..." value="${(s.note||"").replace(/"/g,"&quot;")}" onchange="setNote('${sectionId}',this.value)">
+  </div>${s.note?`<div class="note-display">Note: ${s.note}</div>`:""}`;
+}
+
+function renderEditable(sectionId,fieldKey,value){
+  const s = state[sectionId];
+  const current = (s&&s.changes&&s.changes[fieldKey]!==undefined) ? s.changes[fieldKey] : value;
+  const changed = s&&s.changes&&s.changes[fieldKey]!==undefined && s.changes[fieldKey]!==value;
+  const rows = Math.max(3, current.split("\n").length+1);
+  return `<textarea class="editable${changed?" changed":""}" rows="${rows}" data-section="${sectionId}" data-field="${fieldKey}" data-original="${btoa(unescape(encodeURIComponent(value)))}" oninput="handleEdit(this)">${current}</textarea>`;
+}
+
+function renderBio(){
+  const f = DATA.bio.fields;
+  let html = `<div class="section" id="sec-bio">
+    <div class="section-header"><div class="section-title">About Dr. Taylor</div><span class="section-badge badge-${state.bio.status}">${state.bio.status}</span></div>`;
+  for(const[key,field] of Object.entries(f)){
+    html += `<div class="card"><div class="field"><div class="field-label">${field.label}</div>${renderEditable("bio",key,field.value)}</div></div>`;
+  }
+  html += renderReviewControls("bio") + `</div>`;
+  return html;
+}
+
+function renderPeptide(p){
+  const categories=["Tissue Repair","Growth Hormone","Weight Management","Sexual Health","Cognitive / Anxiolytic","Anti-Aging","Skin & Hair","Sleep","Immune"];
+  const researchStatuses=["Emerging","Well-studied","Preliminary"];
+  const legalStatuses=["Research-only","Prescription","Supplement","FDA-approved"];
+
+  return `<div class="section" id="sec-${p.id}">
+    <div class="section-header">
+      <div><div class="section-title">${p.name}</div></div>
+      <span class="section-badge badge-${(state[p.id]||{}).status||"pending"}">${(state[p.id]||{}).status||"pending"}</span>
+    </div>
+    <div class="card">
+      <div class="field-row" style="margin-bottom:16px">
+        <div class="field"><div class="field-label">Category</div>${renderSelectEdit(p.id,"category",p.category,categories)}</div>
+        <div class="field"><div class="field-label">Research Status</div>${renderSelectEdit(p.id,"researchStatus",p.researchStatus,researchStatuses)}</div>
+        <div class="field"><div class="field-label">Legal Status</div>${renderSelectEdit(p.id,"legalStatus",p.legalStatus,legalStatuses)}</div>
+      </div>
+      <div class="field"><div class="field-label">Short Description</div>${renderEditable(p.id,"description",p.description)}</div>
+      <div class="field"><div class="field-label">Detailed Description</div>${renderEditable(p.id,"detailedDescription",p.detailedDescription)}</div>
+      <div class="field-row">
+        <div class="field"><div class="field-label">Research Score (1-10)</div>${renderPeptideSelect(p.id,"researchScore",String(p.researchScore))}</div>
+        <div class="field"><div class="field-label">Safety Score (1-10)</div>${renderPeptideSelect(p.id,"safetyScore",String(p.safetyScore))}</div>
+      </div>
+      <div class="field"><div class="field-label">Typical Dosage</div>${renderInlineEdit(p.id,"dosage",p.dosage,"e.g. 200-500 mcg daily")}</div>
+      <div class="field-row">
+        <div class="field"><div class="field-label">Cycle Length</div>${renderInlineEdit(p.id,"cycle",p.cycle,"e.g. 4-12 weeks")}</div>
+        <div class="field"><div class="field-label">Administration Routes</div>${renderInlineEdit(p.id,"routes",p.routes,"e.g. Subcutaneous, Oral")}</div>
+      </div>
+      <h4>Benefits</h4><div class="pills">${p.benefits.map(b=>`<span class="pill">${b}</span>`).join("")}</div>
+      <h4>Side Effects</h4><div class="pills">${p.sideEffects.map(s=>`<span class="pill">${s}</span>`).join("")}</div>
+      <h4>Contraindications</h4><div class="pills">${p.contraindications.map(c=>`<span class="pill" style="border:1px solid rgba(239,68,68,.3)">${c}</span>`).join("")}</div>
+      <h4>Dr. Taylor's Clinical Note</h4>
+      <div class="dr-note">${renderEditable(p.id,"drTaylorNote",p.drTaylorNote)}</div>
+      <h4>Published References</h4>
+      ${p.references.map(renderRef).join("")}
+    </div>
+    ${renderReviewControls(p.id)}
+  </div>`;
+}
+
+function getStackVal(sid,field,original){
+  const s=state[sid];
+  return (s&&s.changes&&s.changes[field]!==undefined)?s.changes[field]:original;
+}
+
+function renderPeptideSelect(sectionId,fieldKey,value){
+  const current=getStackVal(sectionId,fieldKey,value);
+  const changed=current!==value;
+  const opts=["1","2","3","4","5","6","7","8","9","10"];
+  return `<select class="edit-select${changed?" changed":""}" style="width:80px" data-section="${sectionId}" data-field="${fieldKey}" data-original="${value}" onchange="handleInline(this)">
+    ${opts.map(o=>`<option value="${o}"${current===o?" selected":""}>${o}/10</option>`).join("")}
+  </select>`;
+}
+
+function renderInlineEdit(sectionId,fieldKey,value,placeholder){
+  const current=getStackVal(sectionId,fieldKey,value);
+  const changed=current!==value;
+  return `<input class="edit-inline${changed?" changed":""}" value="${current.replace(/"/g,"&quot;")}" placeholder="${placeholder||""}" data-section="${sectionId}" data-field="${fieldKey}" data-original="${btoa(unescape(encodeURIComponent(value)))}" oninput="handleInline(this)">`;
+}
+
+function renderNumberEdit(sectionId,fieldKey,value){
+  const current=getStackVal(sectionId,fieldKey,String(value));
+  const changed=current!==String(value);
+  return `<input type="number" class="edit-number${changed?" changed":""}" value="${current}" data-section="${sectionId}" data-field="${fieldKey}" data-original="${value}" oninput="handleInline(this)">`;
+}
+
+function renderSelectEdit(sectionId,fieldKey,value,options){
+  const current=getStackVal(sectionId,fieldKey,value);
+  const changed=current!==value;
+  return `<select class="edit-select${changed?" changed":""}" data-section="${sectionId}" data-field="${fieldKey}" data-original="${value}" onchange="handleInline(this)">
+    ${options.map(o=>`<option value="${o}"${current===o?" selected":""}>${o}</option>`).join("")}
+  </select>`;
+}
+
+function renderPeptideSelector(sectionId,currentPeptides){
+  const original=currentPeptides;
+  const current=getStackVal(sectionId,"peptides",original);
+  const selected=current.split(", ").map(s=>s.trim()).filter(Boolean);
+  const allNames=DATA.peptides.map(p=>p.name);
+  return `<div class="field"><div class="field-label">Peptides Included <span style="font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0">(click to add/remove)</span></div>
+    <div class="pills" style="margin-top:8px">${allNames.map(name=>{
+      const isSelected=selected.includes(name);
+      return `<span class="peptide-chip${isSelected?" selected":""}" onclick="togglePeptide('${sectionId}','${name}','${btoa(unescape(encodeURIComponent(original)))}')">${name}</span>`;
+    }).join("")}</div>
+  </div>`;
+}
+
+function renderBmiSelector(sectionId,currentBmi){
+  const original=currentBmi;
+  const current=getStackVal(sectionId,"bmi",original);
+  const selectedCats=current.split(", ").map(s=>s.trim());
+  const allCats=["All","Underweight","Normal","Overweight","Obese"];
+  return `<div class="field"><div class="field-label">BMI Categories</div>
+    <div class="checkbox-group">${allCats.map(cat=>{
+      const isActive=selectedCats.includes(cat)||(cat==="All"&&current==="All");
+      return `<label class="checkbox-label${isActive?" active":""}${current!==original?" changed-group":""}">
+        <input type="checkbox" ${isActive?"checked":""} onchange="toggleBmi('${sectionId}','${cat}','${btoa(unescape(encodeURIComponent(original)))}')"> ${cat}
+      </label>`;
+    }).join("")}</div>
+  </div>`;
+}
+
+function renderGenderSelector(sectionId,currentGender){
+  const original=currentGender;
+  const current=getStackVal(sectionId,"gender",original);
+  const opts=["All","Male","Female"];
+  return `<div class="field"><div class="field-label">Gender</div>
+    <div class="checkbox-group">${opts.map(g=>{
+      const isActive=current===g;
+      return `<label class="checkbox-label${isActive?" active":""}${current!==original?" changed-group":""}">
+        <input type="radio" name="gender-${sectionId}" ${isActive?"checked":""} onchange="handleGender('${sectionId}','${g}','${btoa(unescape(encodeURIComponent(original)))}')"> ${g}
+      </label>`;
+    }).join("")}</div>
+  </div>`;
+}
+
+function togglePeptide(sectionId,name,origB64){
+  const original=decodeURIComponent(escape(atob(origB64)));
+  const current=getStackVal(sectionId,"peptides",original);
+  let arr=current.split(", ").map(s=>s.trim()).filter(Boolean);
+  if(arr.includes(name))arr=arr.filter(x=>x!==name);
+  else arr.push(name);
+  const newVal=arr.join(", ");
+  if(!state[sectionId])state[sectionId]={status:"pending",note:"",changes:{}};
+  if(!state[sectionId].changes)state[sectionId].changes={};
+  if(newVal===original)delete state[sectionId].changes.peptides;
+  else state[sectionId].changes.peptides=newVal;
+  saveState();render();
+}
+
+function toggleBmi(sectionId,cat,origB64){
+  const original=decodeURIComponent(escape(atob(origB64)));
+  const current=getStackVal(sectionId,"bmi",original);
+  let arr=current.split(", ").map(s=>s.trim()).filter(Boolean);
+  if(cat==="All"){arr=["All"]}
+  else{
+    arr=arr.filter(x=>x!=="All");
+    if(arr.includes(cat))arr=arr.filter(x=>x!==cat);
+    else arr.push(cat);
+    if(arr.length===0)arr=["All"];
+  }
+  const newVal=arr.join(", ");
+  if(!state[sectionId])state[sectionId]={status:"pending",note:"",changes:{}};
+  if(!state[sectionId].changes)state[sectionId].changes={};
+  if(newVal===original)delete state[sectionId].changes.bmi;
+  else state[sectionId].changes.bmi=newVal;
+  saveState();render();
+}
+
+function handleGender(sectionId,val,origB64){
+  const original=decodeURIComponent(escape(atob(origB64)));
+  if(!state[sectionId])state[sectionId]={status:"pending",note:"",changes:{}};
+  if(!state[sectionId].changes)state[sectionId].changes={};
+  if(val===original)delete state[sectionId].changes.gender;
+  else state[sectionId].changes.gender=val;
+  saveState();render();
+}
+
+function handleInline(el){
+  const section=el.dataset.section;
+  const field=el.dataset.field;
+  const original=el.dataset.original.length>20?decodeURIComponent(escape(atob(el.dataset.original))):el.dataset.original;
+  if(!state[section])state[section]={status:"pending",note:"",changes:{}};
+  if(!state[section].changes)state[section].changes={};
+  if(el.value===original)delete state[section].changes[field];
+  else state[section].changes[field]=el.value;
+  el.classList.toggle("changed",el.value!==original);
+  saveState();
+}
+
+function renderStack(s){
+  const sid = "stack-"+s.id;
+  const st = state[sid]||{status:"pending",note:"",changes:{}};
+  const currentName = getStackVal(sid,"name",s.name);
+  const nameChanged = currentName!==s.name;
+
+  return `<div class="section" id="sec-${sid}">
+    <div class="section-header">
+      <div style="flex:1">
+        <input class="edit-inline${nameChanged?" changed":""}" value="${currentName.replace(/"/g,"&quot;")}" style="font-size:22px;font-weight:700;background:transparent;padding:4px 8px" data-section="${sid}" data-field="name" data-original="${btoa(unescape(encodeURIComponent(s.name)))}" oninput="handleInline(this)" placeholder="Stack name...">
+        ${s.highlight?`<span style="font-size:12px;color:var(--orange);margin-left:8px">${s.highlight}</span>`:""}
+      </div>
+      <span class="section-badge badge-${st.status}">${st.status}</span>
+    </div>
+    <div class="card">
+      <div class="field"><div class="field-label">Subtitle</div>${renderInlineEdit(sid,"subtitle",s.subtitle,"Subtitle...")}</div>
+
+      ${renderPeptideSelector(sid,s.peptides)}
+
+      <div class="field"><div class="field-label">Target Symptoms</div>${renderInlineEdit(sid,"target",s.target,"Comma-separated symptoms...")}</div>
+
+      <div class="field-row">
+        <div class="field"><div class="field-label">Age Min</div>${renderNumberEdit(sid,"ageMin",s.age.split("-")[0])}</div>
+        <div class="field"><div class="field-label">Age Max</div>${renderNumberEdit(sid,"ageMax",s.age.split("-")[1])}</div>
+      </div>
+
+      ${renderGenderSelector(sid,s.gender)}
+      ${renderBmiSelector(sid,s.bmi)}
+
+      <h4>Description</h4>${renderEditable(sid,"description",s.description)}
+      <h4>Dr. Taylor's Note</h4>
+      <div class="dr-note">${renderEditable(sid,"drTaylorNote",s.drTaylorNote)}</div>
+    </div>
+    ${renderReviewControls(sid)}
+  </div>`;
+}
+
+function renderDisclaimers(){
+  return `<div class="section" id="sec-disclaimers">
+    <div class="section-header"><div class="section-title">Disclaimers & Legal Language</div><span class="section-badge badge-${state.disclaimers.status}">${state.disclaimers.status}</span></div>
+    <div class="card">
+      <div class="field"><div class="field-label">Footer Disclaimer (all pages)</div>${renderEditable("disclaimers","footer",DATA.disclaimers.footer)}</div>
+      <div class="field"><div class="field-label">Results Page Disclaimer</div>${renderEditable("disclaimers","results",DATA.disclaimers.results)}</div>
+      <div class="field"><div class="field-label">Stacks Page Disclaimer</div>${renderEditable("disclaimers","stacks",DATA.disclaimers.stacks)}</div>
+    </div>
+    ${renderReviewControls("disclaimers")}
+  </div>`;
+}
+
+function renderSidebar(){
+  let html = `<h3>Bio & Background</h3>`;
+  html += `<div class="nav-item" onclick="navTo('sec-bio')"><span class="nav-status ${state.bio.status}"></span>About Dr. Taylor</div>`;
+  html += `<h3>Peptides (${DATA.peptides.length})</h3>`;
+  DATA.peptides.forEach(p => {
+    html += `<div class="nav-item" onclick="navTo('sec-${p.id}')"><span class="nav-status ${(state[p.id]||{}).status||"pending"}"></span>${p.name}</div>`;
+  });
+  html += `<h3>Stacks (${DATA.stacks.length})</h3>`;
+  DATA.stacks.forEach(s => {
+    const sid = "stack-"+s.id;
+    html += `<div class="nav-item" onclick="navTo('sec-${sid}')"><span class="nav-status ${(state[sid]||{}).status||"pending"}"></span>${s.name}</div>`;
+  });
+  html += `<h3>Legal</h3>`;
+  html += `<div class="nav-item" onclick="navTo('sec-disclaimers')"><span class="nav-status ${state.disclaimers.status}"></span>Disclaimers</div>`;
+  document.getElementById("sidebar").innerHTML = html;
+}
+
+function renderMain(){
+  let html = renderBio();
+  html += `<div class="divider"></div><h2 style="font-size:28px;font-weight:700;margin-bottom:24px">Peptide Profiles</h2>`;
+  DATA.peptides.forEach(p => html += renderPeptide(p));
+  html += `<div class="divider"></div><h2 style="font-size:28px;font-weight:700;margin-bottom:24px">Peptide Stacks</h2>`;
+  DATA.stacks.forEach(s => html += renderStack(s));
+  html += `<div class="divider"></div>` + renderDisclaimers();
+  document.getElementById("main").innerHTML = html;
+}
+
+function updateStats(){
+  let a=0,r=0,p=0;
+  for(const k of Object.keys(state)){
+    if(state[k].status==="approved")a++;
+    else if(state[k].status==="revision")r++;
+    else p++;
+  }
+  document.getElementById("stat-approved").textContent=a;
+  document.getElementById("stat-revision").textContent=r;
+  document.getElementById("stat-pending").textContent=p;
+}
+
+function render(){renderSidebar();renderMain();updateStats()}
+
+// ==================== ACTIONS ====================
+function setStatus(id,status){
+  if(!state[id])state[id]={status:"pending",note:"",changes:{}};
+  state[id].status = state[id].status===status ? "pending" : status;
+  saveState();render();
+}
+
+function setNote(id,note){
+  if(!state[id])state[id]={status:"pending",note:"",changes:{}};
+  state[id].note=note;
+  saveState();
+}
+
+function handleEdit(el){
+  const section=el.dataset.section;
+  const field=el.dataset.field;
+  const original=decodeURIComponent(escape(atob(el.dataset.original)));
+  if(!state[section])state[section]={status:"pending",note:"",changes:{}};
+  if(!state[section].changes)state[section].changes={};
+  if(el.value===original){delete state[section].changes[field]}
+  else{state[section].changes[field]=el.value}
+  el.classList.toggle("changed",el.value!==original);
+  saveState();
+}
+
+function navTo(id){const el=document.getElementById(id);if(el){const top=el.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top,behavior:"smooth"})}}
+
+function approveAll(){
+  for(const k of Object.keys(state)){if(state[k].status==="pending")state[k].status="approved"}
+  saveState();render();
+}
+
+function exportMarkdown(){
+  let md = `# PeptideWise Content Review \u2014 Dr. Taylor's Feedback\n**Exported: ${new Date().toLocaleDateString()}\n\n`;
+
+  // Summary
+  let approved=0,revision=0,pending=0;
+  for(const k of Object.keys(state)){
+    if(state[k].status==="approved")approved++;
+    else if(state[k].status==="revision")revision++;
+    else pending++;
+  }
+  md += `## Summary\n- Approved: ${approved}\n- Needs Revision: ${revision}\n- Pending: ${pending}\n\n`;
+
+  // Only include sections with changes or revision status
+  let hasChanges = false;
+
+  for(const[id,s] of Object.entries(state)){
+    const changes = s.changes && Object.keys(s.changes).length > 0;
+    const hasNote = s.note && s.note.trim();
+    if(s.status==="revision" || changes || hasNote){
+      hasChanges = true;
+      const name = id==="bio"?"About Dr. Taylor":id==="disclaimers"?"Disclaimers":id.startsWith("stack-")?DATA.stacks.find(x=>"stack-"+x.id===id)?.name||id:DATA.peptides.find(x=>x.id===id)?.name||id;
+      md += `---\n\n### ${name}\n**Status:** ${s.status.toUpperCase()}\n`;
+      if(hasNote) md += `**Note:** ${s.note}\n`;
+      if(changes){
+        md += `\n**Content Changes:**\n`;
+        for(const[field,value] of Object.entries(s.changes)){
+          md += `\n#### Field: \`${field}\`\n\`\`\`\n${value}\n\`\`\`\n`;
+        }
+      }
+      md += "\n";
+    }
+  }
+
+  if(!hasChanges) md += `---\n\nNo revisions or changes requested. All content approved as-is.\n`;
+
+  document.getElementById("exportText").value = md;
+  document.getElementById("exportModal").classList.add("show");
+}
+
+function copyExport(){
+  const t=document.getElementById("exportText");
+  t.select();
+  document.execCommand("copy");
+  alert("Copied to clipboard!");
+}
+
+// ==================== INIT ====================
+initState();
+render();
+</script>
+</body>
+</html>

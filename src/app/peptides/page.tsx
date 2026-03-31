@@ -396,9 +396,7 @@ export default function PeptidesPage() {
                 {/* Dr. Taylor's note */}
                 <div className="border-t border-gray-100 bg-blue-50/50 px-5 py-3">
                   <div className="flex items-start gap-2">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full gradient-primary flex items-center justify-center text-white text-[9px] font-bold mt-0.5">
-                      PT
-                    </div>
+                    <img src="/images/dr-taylor.jpg" alt="Dr. Taylor" className="flex-shrink-0 w-6 h-6 rounded-full object-cover mt-0.5" />
                     <p className="text-xs text-gray-600 italic leading-relaxed line-clamp-3">
                       &ldquo;{stack.drTaylorNote}&rdquo;
                     </p>

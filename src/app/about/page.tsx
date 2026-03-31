@@ -24,9 +24,7 @@ export default function AboutPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
       {/* Hero */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-28 h-28 rounded-full gradient-primary text-white text-3xl font-bold mb-6 shadow-md">
-          PT
-        </div>
+        <img src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" className="w-36 h-36 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
           Dr. Patrick Taylor, MD
         </h1>

@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/stacks", label: "Stacks" },
   { href: "/symptom-checker", label: "Symptom Checker" },
   { href: "/learn", label: "Learn" },
+  { href: "/research", label: "Research" },
   { href: "/about", label: "About Dr. Taylor" },
 ];
 
@@ -39,12 +40,6 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/about"
-              className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <span className="w-7 h-7 rounded-full gradient-primary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">PT</span>
-            </Link>
             <Link
               href="/stacks"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg gradient-primary text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-sm"
