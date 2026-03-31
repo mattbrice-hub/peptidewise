@@ -38,15 +38,15 @@ export function getCategoryLabel(category: string): string {
 
 export function getCategoryColor(category: string): string {
   const colors: Record<string, string> = {
-    "growth-hormone": "bg-blue-900/30 text-blue-400",
-    "weight-management": "bg-green-900/30 text-green-400",
-    "tissue-repair": "bg-orange-900/30 text-orange-400",
-    "anti-aging": "bg-purple-900/30 text-purple-400",
-    cognitive: "bg-indigo-900/30 text-indigo-400",
-    immune: "bg-red-900/30 text-red-400",
-    "sexual-health": "bg-pink-900/30 text-pink-400",
-    sleep: "bg-violet-900/30 text-violet-400",
-    "skin-hair": "bg-amber-900/30 text-amber-400",
+    "growth-hormone": "bg-blue-100 text-blue-700",
+    "weight-management": "bg-green-100 text-green-700",
+    "tissue-repair": "bg-orange-100 text-orange-700",
+    "anti-aging": "bg-purple-100 text-purple-700",
+    cognitive: "bg-indigo-100 text-indigo-700",
+    immune: "bg-red-100 text-red-700",
+    "sexual-health": "bg-pink-100 text-pink-700",
+    sleep: "bg-violet-100 text-violet-700",
+    "skin-hair": "bg-amber-100 text-amber-700",
   };
-  return colors[category] || "bg-gray-800 text-gray-400";
+  return colors[category] || "bg-gray-100 text-gray-600";
 }

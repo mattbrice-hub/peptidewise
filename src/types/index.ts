@@ -32,6 +32,9 @@ export interface Peptide {
   pubmedKeywords: string[];
   imageUrl: string;
   references?: StudyReference[];
+  researchScore: number; // 1-10 scale based on volume and quality of published evidence
+  safetyScore: number; // 1-10 scale based on known side-effect profile and tolerability
+  drTaylorNote: string; // Dr. Taylor's clinical perspective
 }
 
 export interface SymptomCategory {

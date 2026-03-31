@@ -57,15 +57,15 @@ export default function HomePage() {
         <div className="absolute inset-0 gradient-primary opacity-[0.05] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-900/30 text-primary-300 text-sm font-medium mb-6 border border-primary-800/30">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-6 border border-blue-200">
               <FlaskConical className="h-4 w-4" />
               Evidence-Based Peptide Education
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight mb-6">
               Understand Peptides with{" "}
               <span className="gradient-text">Science, Not Hype</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
               Dr. Patrick Taylor, MD brings you physician-curated, research-backed
               education on peptide therapy. Explore the science, understand the
               evidence, and make informed decisions about your health.
@@ -73,14 +73,14 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <Link
                 href="/symptom-checker"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-all shadow-lg shadow-primary-600/20"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-all shadow-md"
               >
                 Explore by Symptoms
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href="/peptides"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 text-gray-300 font-semibold border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-gray-600 font-semibold border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
               >
                 Browse All Peptides
               </Link>
@@ -93,7 +93,7 @@ export default function HomePage() {
                 <Link
                   key={s.label}
                   href={`/results?symptoms=${s.symptoms}&severity=moderate`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400 hover:border-primary-500/30 hover:text-primary-300 hover:bg-primary-900/20 transition-all"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-sm text-gray-600 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50 transition-all"
                 >
                   <s.icon className="h-3.5 w-3.5" />
                   {s.label}
@@ -105,40 +105,40 @@ export default function HomePage() {
       </section>
 
       {/* About Dr. Taylor */}
-      <section className="py-16 md:py-20 border-t border-white/5">
+      <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-6">
               <Stethoscope className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Led by Dr. Patrick Taylor, MD
             </h2>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              Board-eligible family medicine physician at the University of Utah,
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Board-eligible family medicine physician
               specializing in obesity and lifestyle medicine, chronic disease management,
               and sports medicine. A cancer and Cushing&apos;s syndrome survivor who lost over 100 lbs,
               Dr. Taylor founded{" "}
-              <a href="https://www.livevital.io/" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-300">
+              <a href="https://tinyurl.com/drtaylorfreeconsult" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-500">
                 Live Vital MD
               </a>{" "}
               to deliver proactive, optimization-focused healthcare.
             </p>
             <p className="text-gray-500 text-sm">
-              University of North Carolina at Chapel Hill, School of Medicine &middot; University of Utah Residency
+              UNC Chapel Hill School of Medicine &middot; University of Utah Family Medicine Residency
             </p>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-16 md:py-20 border-t border-white/5">
+      <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
               How PeptideWise Works
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
+            <p className="text-gray-600 max-w-xl mx-auto">
               Three simple steps to learn about peptide therapy options.
             </p>
           </div>
@@ -146,15 +146,15 @@ export default function HomePage() {
             {steps.map((step) => (
               <div
                 key={step.num}
-                className="relative text-center p-6 rounded-2xl bg-white/5 border border-white/10"
+                className="relative text-center p-6 rounded-2xl bg-white shadow-sm border border-gray-200"
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full gradient-primary text-white font-bold text-lg mb-4">
                   {step.num}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-400 text-sm">{step.desc}</p>
+                <p className="text-gray-600 text-sm">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -162,12 +162,12 @@ export default function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 border-y border-white/5">
+      <section className="py-12 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold text-primary-400 mb-1">
+                <div className="text-3xl font-bold text-blue-600 mb-1">
                   {stat.value}
                 </div>
                 <div className="text-sm text-gray-500">{stat.label}</div>
@@ -182,16 +182,16 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-2">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 Popular Peptides
               </h2>
-              <p className="text-gray-400">
+              <p className="text-gray-600">
                 The most researched therapeutic peptides in current literature.
               </p>
             </div>
             <Link
               href="/peptides"
-              className="hidden md:inline-flex items-center gap-1 text-primary-400 font-medium text-sm hover:text-primary-300"
+              className="hidden md:inline-flex items-center gap-1 text-blue-600 font-medium text-sm hover:text-blue-500"
             >
               View All <ArrowRight className="h-4 w-4" />
             </Link>
@@ -201,42 +201,42 @@ export default function HomePage() {
               {
                 name: "BPC-157",
                 cat: "Tissue Repair",
-                catColor: "bg-orange-900/30 text-orange-400",
+                catColor: "bg-orange-50 text-orange-600",
                 benefit: "Accelerates healing of gut, tendons, and ligaments",
                 slug: "bpc-157",
               },
               {
                 name: "Semaglutide",
                 cat: "Weight Management",
-                catColor: "bg-green-900/30 text-green-400",
+                catColor: "bg-green-50 text-green-600",
                 benefit: "GLP-1 receptor agonist for significant weight loss",
                 slug: "semaglutide",
               },
               {
                 name: "Sermorelin",
                 cat: "Growth Hormone",
-                catColor: "bg-blue-900/30 text-blue-400",
+                catColor: "bg-blue-50 text-blue-600",
                 benefit: "Stimulates natural growth hormone production",
                 slug: "sermorelin",
               },
               {
                 name: "TB-500",
                 cat: "Tissue Repair",
-                catColor: "bg-orange-900/30 text-orange-400",
+                catColor: "bg-orange-50 text-orange-600",
                 benefit: "Enhances tissue regeneration and wound healing",
                 slug: "tb-500",
               },
               {
                 name: "Tirzepatide",
                 cat: "Weight Management",
-                catColor: "bg-green-900/30 text-green-400",
+                catColor: "bg-green-50 text-green-600",
                 benefit: "Dual GIP/GLP-1 agonist for weight and blood sugar",
                 slug: "tirzepatide",
               },
               {
                 name: "GHK-Cu",
                 cat: "Skin & Hair",
-                catColor: "bg-amber-900/30 text-amber-400",
+                catColor: "bg-amber-50 text-amber-700",
                 benefit: "Copper peptide for skin rejuvenation and hair growth",
                 slug: "ghk-cu",
               },
@@ -244,14 +244,14 @@ export default function HomePage() {
               <Link
                 key={p.slug}
                 href={`/peptides/${p.slug}`}
-                className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary-500/30 hover:bg-white/[0.07] transition-all"
+                className="group p-6 rounded-2xl bg-white shadow-sm border border-gray-200 hover:border-blue-300 hover:bg-gray-50 transition-all"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
                     <FlaskConical className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white group-hover:text-primary-300 transition-colors">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                       {p.name}
                     </h3>
                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${p.catColor}`}>
@@ -259,14 +259,14 @@ export default function HomePage() {
                     </span>
                   </div>
                 </div>
-                <p className="text-sm text-gray-400">{p.benefit}</p>
+                <p className="text-sm text-gray-600">{p.benefit}</p>
               </Link>
             ))}
           </div>
           <div className="mt-6 text-center md:hidden">
             <Link
               href="/peptides"
-              className="inline-flex items-center gap-1 text-primary-400 font-medium text-sm"
+              className="inline-flex items-center gap-1 text-blue-600 font-medium text-sm"
             >
               View All Peptides <ArrowRight className="h-4 w-4" />
             </Link>
@@ -274,11 +274,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Recommended Stacks CTA */}
+      <section className="py-16 md:py-20 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-white shadow-sm border border-gray-200 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-sm font-medium mb-4 border border-amber-200">
+                <Stethoscope className="h-4 w-4" />
+                Physician-Curated
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                Dr. Taylor&apos;s Recommended Stacks
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Enter your age, gender, height, weight, and symptoms to see
+                which peptide combinations Dr. Taylor recommends for your
+                profile. Personalized, evidence-based stack suggestions.
+              </p>
+              <Link
+                href="/stacks"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-md"
+              >
+                Find Your Stack <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+            <div className="flex-shrink-0 grid grid-cols-3 gap-3">
+              {[
+                { label: "Recovery", icon: Flame },
+                { label: "Weight", icon: Scale },
+                { label: "Sleep", icon: Moon },
+                { label: "Cognition", icon: Brain },
+                { label: "Longevity", icon: Clock },
+                { label: "Immune", icon: Shield },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="w-20 h-20 rounded-xl bg-gray-50 border border-gray-200 flex flex-col items-center justify-center gap-1"
+                >
+                  <item.icon className="h-5 w-5 text-blue-600" />
+                  <span className="text-[10px] text-gray-500 font-medium">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Trust / Why PeptideWise */}
-      <section className="py-16 md:py-20 border-t border-white/5">
+      <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
               Why Trust PeptideWise?
             </h2>
           </div>
@@ -306,11 +354,11 @@ export default function HomePage() {
               },
             ].map((item) => (
               <div key={item.title} className="text-center p-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-900/30 mb-4">
-                  <item.icon className="h-6 w-6 text-primary-400" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 mb-4">
+                  <item.icon className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-400">{item.desc}</p>
+                <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -337,7 +385,7 @@ export default function HomePage() {
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <a
-                href="https://www.livevital.io/"
+                href="https://tinyurl.com/drtaylorfreeconsult"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors border border-white/20"

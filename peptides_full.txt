@@ -89,9 +89,6 @@ export const peptides: Peptide[] = [
         finding: "BPC-157 induced faster muscle healing and full function restoration in transected quadriceps muscle, completely reversing corticosteroid-impaired healing.",
       },
     ],
-    researchScore: 7,
-    safetyScore: 8,
-    drTaylorNote: "BPC-157 is the single most versatile peptide in my clinical toolkit. I've seen it accelerate recovery from tendon injuries, calm gut inflammation, and even support patients healing from surgery. The animal data is extensive and consistent — we're still waiting on formal human trials, but the mechanism of action is well-understood. I recommend this to almost every patient dealing with musculoskeletal or GI issues.",
   },
   {
     id: "tb-500",
@@ -174,9 +171,6 @@ export const peptides: Peptide[] = [
         finding: "Thymosin beta-4 accelerated dermal healing in multiple animal models and two Phase 2 clinical trials for ulcers, accelerating healing by nearly one month in patients who healed.",
       },
     ],
-    researchScore: 6,
-    safetyScore: 8,
-    drTaylorNote: "TB-500 is my second favorite repair peptide. I typically pair it with BPC-157 for synergistic healing — they hit different pathways. TB-500 excels at systemic repair because it's small enough to travel through the bloodstream to find injury sites. Great for athletes and patients with chronic injuries that haven't responded to conventional treatment.",
   },
   {
     id: "sermorelin",
@@ -261,9 +255,6 @@ export const peptides: Peptide[] = [
         finding: "Sermorelin analog significantly increased nocturnal GH levels in both women and men, along with increased IGF-1 and improvements in lean body mass and insulin sensitivity.",
       },
     ],
-    researchScore: 9,
-    safetyScore: 9,
-    drTaylorNote: "Sermorelin is my go-to GH secretagogue for patients new to peptide therapy. It has the longest track record of any GHRH analog — it was actually FDA-approved for pediatric GH deficiency. The safety profile is excellent because it works through your body's natural feedback loops. I use this as a foundation for anti-aging and recovery protocols.",
   },
   {
     id: "ipamorelin",
@@ -347,9 +338,6 @@ export const peptides: Peptide[] = [
         finding: "Ipamorelin induced dose-proportional GH release at all dose levels in healthy male volunteers with predictable pharmacokinetics and reliable GH stimulation.",
       },
     ],
-    researchScore: 7,
-    safetyScore: 9,
-    drTaylorNote: "What sets ipamorelin apart is its selectivity — it stimulates GH release without spiking cortisol or prolactin, which is a problem with older secretagogues like GHRP-6. I combine it with CJC-1295 in most of my GH optimization protocols. Patients love it because it improves sleep almost immediately, and the body composition changes follow within weeks.",
   },
   {
     id: "cjc-1295",
@@ -441,9 +429,6 @@ export const peptides: Peptide[] = [
         finding: "CJC-1295 preserved natural GH pulsatility while increasing basal GH levels 7.5-fold and IGF-I levels by 45%, indicating physiologically normal stimulation.",
       },
     ],
-    researchScore: 7,
-    safetyScore: 8,
-    drTaylorNote: "CJC-1295 is the sustained-release partner to ipamorelin. The DAC version gives you steady GH elevation over days, while the non-DAC version (Mod GRF 1-29) provides sharper pulses. I use the non-DAC version combined with ipamorelin for most patients — it's more physiological. This combo is the backbone of my body recomposition and anti-aging stacks.",
   },
   {
     id: "semaglutide",
@@ -542,9 +527,6 @@ export const peptides: Peptide[] = [
         finding: "Semaglutide produced weight loss sustained for up to 4 years, with a mean reduction of 10.2% at 208 weeks and 12% of patients achieving normal weight status.",
       },
     ],
-    researchScore: 10,
-    safetyScore: 10,
-    drTaylorNote: "Semaglutide is the most well-studied peptide on this list, period. The STEP trials are gold-standard evidence — 15-17% body weight loss sustained over years. As someone who lost over 100 lbs after Cushing's syndrome, I deeply understand the metabolic challenges of weight loss. GLP-1 agonists are game-changers, but they require medical supervision for dose titration and monitoring. The GI side effects are real but manageable with proper protocol.",
   },
   {
     id: "tirzepatide",
@@ -643,9 +625,6 @@ export const peptides: Peptide[] = [
         finding: "Tirzepatide achieved mean weight reductions of 13.4% (10 mg) and 15.7% (15 mg) versus 3.3% with placebo, with significant improvements in blood pressure, triglycerides, and HDL cholesterol.",
       },
     ],
-    researchScore: 10,
-    safetyScore: 10,
-    drTaylorNote: "Tirzepatide is the most exciting development in metabolic medicine. The dual GIP/GLP-1 mechanism produces weight loss results we've never seen before — 20%+ in clinical trials. I'm seeing similar results in practice. It's particularly effective for patients with insulin resistance and metabolic syndrome. The key is slow dose titration to minimize GI side effects. This is prescription-only and requires close physician monitoring.",
   },
   {
     id: "pt-141",
@@ -727,9 +706,6 @@ export const peptides: Peptide[] = [
         finding: "Intranasal PT-141 induced a statistically significant erectile response vs placebo at doses above 7 mg, with onset in approximately 30 minutes and no clinically significant adverse effects.",
       },
     ],
-    researchScore: 8,
-    safetyScore: 7,
-    drTaylorNote: "PT-141 is unique because it works on desire, not just mechanics. It's the only FDA-approved treatment for hypoactive sexual desire disorder, and it works through a completely different mechanism than Viagra or Cialis. I use it for both men and women. The main side effect is nausea, which can be significant, so I always start with a test dose. It's an on-demand medication — you don't take it daily.",
   },
   {
     id: "selank",
@@ -811,9 +787,6 @@ export const peptides: Peptide[] = [
         finding: "Selank significantly activated the learning process in rats with initially poor learning ability, with effects apparent after the first dose, demonstrating nootropic properties comparable to piracetam.",
       },
     ],
-    researchScore: 6,
-    safetyScore: 9,
-    drTaylorNote: "Selank is my favorite anxiolytic peptide because it provides meaningful anxiety relief without any of the downsides of benzodiazepines — no sedation, no dependence, no cognitive impairment. The Russian clinical data is solid. I use it for patients with generalized anxiety, brain fog, and stress-related cognitive issues. The nasal spray format makes it extremely convenient. I often combine it with other peptides in my cognitive stacks.",
   },
   {
     id: "epithalon",
@@ -894,9 +867,6 @@ export const peptides: Peptide[] = [
         finding: "Epitalon demonstrated dose-dependent telomere extension in normal human cells through hTERT upregulation, with 12-fold hTERT expression increase at 1 mcg/ml.",
       },
     ],
-    researchScore: 6,
-    safetyScore: 9,
-    drTaylorNote: "Epithalon is the most intriguing anti-aging peptide available. The telomerase activation data from Khavinson's lab is compelling, and the safety profile is remarkably clean for something that acts at such a fundamental level. I include it in my longevity protocols as a 10-20 day cycle a few times per year. It's also one of the few peptides shown to normalize melatonin secretion, which is a bonus for sleep.",
   },
   {
     id: "ghk-cu",
@@ -983,9 +953,6 @@ export const peptides: Peptide[] = [
         finding: "GHK-Cu stimulates blood vessel and nerve outgrowth, increases collagen and elastin synthesis, with gene profiling demonstrating tissue repair activity across skin, lung, bone, liver, and stomach.",
       },
     ],
-    researchScore: 8,
-    safetyScore: 9,
-    drTaylorNote: "GHK-Cu is the Swiss Army knife of skin and tissue health. The gene expression data is staggering — it modulates over 4,000 genes involved in tissue repair. I use it both topically and as an injectable, depending on the clinical goal. For skin rejuvenation and hair regrowth, topical is usually sufficient. For systemic tissue repair and anti-aging, I add the injectable form. It pairs beautifully with BPC-157.",
   },
   {
     id: "dsip",
@@ -1072,9 +1039,6 @@ export const peptides: Peptide[] = [
         finding: "In 14 chronic insomniacs, DSIP substantially improved night sleep with the first dose and further with repeated doses, with sleep efficiency reaching levels comparable to normal controls.",
       },
     ],
-    researchScore: 5,
-    safetyScore: 8,
-    drTaylorNote: "DSIP is a niche peptide that I reserve for patients with genuine sleep architecture problems — people who can fall asleep but don't get restorative deep sleep. It works as a neuromodulator, not a sedative, which means it normalizes your sleep rather than knocking you out. I typically use it in short 2-4 week cycles. The research is older but consistent. I combine it with ipamorelin for patients who also need GH optimization.",
   },
   {
     id: "aod-9604",
@@ -1160,9 +1124,6 @@ export const peptides: Peptide[] = [
         finding: "AOD-9604 reduced body weight and fat while restoring suppressed beta-3 adrenergic receptor expression in obese mice to lean-comparable levels, establishing a mechanism for enhanced fat burning.",
       },
     ],
-    researchScore: 5,
-    safetyScore: 8,
-    drTaylorNote: "AOD-9604 is the fat-targeting fragment of growth hormone without the growth or insulin effects. I use it as a complement to GLP-1 agonists, not as a standalone weight loss solution. The clinical trial results for weight loss alone were underwhelming, but it earned FDA GRAS status for safety, which says a lot. It's best suited as part of a broader metabolic optimization protocol.",
   },
   {
     id: "kpv",
@@ -1248,9 +1209,6 @@ export const peptides: Peptide[] = [
         finding: "KPV led to earlier recovery and significantly stronger weight regain in colitis models, and rescued all treated animals from death during severe colitis.",
       },
     ],
-    researchScore: 6,
-    safetyScore: 9,
-    drTaylorNote: "KPV is a powerhouse anti-inflammatory that I use extensively for gut health. It's a tiny tripeptide derived from alpha-MSH, but it packs a serious punch against NF-kB-driven inflammation. The IBD research is particularly promising. I use it orally for gut-specific inflammation and subcutaneously for systemic inflammatory conditions. It's one of the best-tolerated peptides I prescribe.",
   },
   {
     id: "ll-37",
@@ -1338,8 +1296,5 @@ export const peptides: Peptide[] = [
         finding: "LL-37 demonstrated three protective mechanisms in sepsis: suppression of macrophage pyroptosis, enhanced neutrophil extracellular trap release, and stimulation of antimicrobial microvesicles.",
       },
     ],
-    researchScore: 7,
-    safetyScore: 7,
-    drTaylorNote: "LL-37 is our body's own antimicrobial peptide, and supplementing it can meaningfully boost immune defense. I use it for patients with chronic infections, biofilm-related conditions, and those who seem to catch everything. It's also excellent for wound healing. The main caution is for patients with autoimmune skin conditions like psoriasis — LL-37 overexpression is actually part of the psoriasis pathology, so I avoid it in those cases.",
   },
 ];

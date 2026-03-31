@@ -7,14 +7,14 @@
 :root {
   --color-primary: 37 99 235;
   --color-accent: 13 148 136;
-  --color-surface: 10 10 10;
-  --color-card: 23 23 23;
+  --color-surface: 255 255 255;
+  --color-card: 255 255 255;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: #0a0a0a;
-  color: #e2e8f0;
+  background-color: #f8fafc;
+  color: #334155;
 }
 
 @layer utilities {
@@ -25,7 +25,7 @@ body {
     background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
   }
   .gradient-text {
-    background: linear-gradient(135deg, #60a5fa 0%, #2dd4bf 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
