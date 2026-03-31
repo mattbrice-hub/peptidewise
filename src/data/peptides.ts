@@ -92,6 +92,19 @@ export const peptides: Peptide[] = [
     researchScore: 7,
     safetyScore: 8,
     drTaylorNote: "BPC-157 is the single most versatile peptide in my clinical toolkit. I've seen it accelerate recovery from tendon injuries, calm gut inflammation, and even support patients healing from surgery. The animal data is extensive and consistent — we're still waiting on formal human trials, but the mechanism of action is well-understood. I recommend this to almost every patient dealing with musculoskeletal or GI issues.",
+    mechanismOfAction: "BPC-157 promotes angiogenesis, upregulates growth factor receptors (VEGF, EGF), modulates the nitric oxide system, and accelerates wound healing by increasing collagen production and fibroblast migration.",
+    whoMayBenefit: ["Athletes recovering from tendon, ligament, or muscle injuries", "Individuals with gut issues such as IBS or inflammatory bowel conditions", "People with joint pain or post-surgical healing needs", "Those seeking to accelerate recovery from soft tissue damage"],
+    timeline: "Many users report improvement in 2-4 weeks. Significant tissue repair at 4-8 weeks. Gut benefits within 1-2 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is BPC-157 and how does it work?", answer: "BPC-157 is a synthetic peptide derived from a protein found in human gastric juice. It promotes blood vessel formation and enhances tissue repair." },
+      { question: "How is BPC-157 administered?", answer: "Typically via subcutaneous injection near the injury site, or orally for gut conditions. Dosages range from 250 to 500 mcg per day." },
+      { question: "Is BPC-157 safe?", answer: "Animal studies show excellent safety. Human studies are limited but favorable. Mild side effects may include nausea and injection site irritation." },
+      { question: "How long does a BPC-157 cycle last?", answer: "Typical cycles last 4-12 weeks depending on the condition." },
+      { question: "Can BPC-157 be combined with other peptides?", answer: "Yes, often combined with TB-500 for synergistic healing via complementary repair pathways." },
+      { question: "Is BPC-157 FDA approved?", answer: "Not FDA-approved. Available through compounding pharmacies with a prescription as a research peptide." },
+      { question: "What conditions has BPC-157 been studied for?", answer: "Tendon and ligament healing, muscle repair, gut inflammation, wound healing, bone fractures, and neuroprotection." }
+    ],
   },
   {
     id: "tb-500",
@@ -177,6 +190,18 @@ export const peptides: Peptide[] = [
     researchScore: 6,
     safetyScore: 8,
     drTaylorNote: "TB-500 is my second favorite repair peptide. I typically pair it with BPC-157 for synergistic healing — they hit different pathways. TB-500 excels at systemic repair because it's small enough to travel through the bloodstream to find injury sites. Great for athletes and patients with chronic injuries that haven't responded to conventional treatment.",
+    mechanismOfAction: "TB-500 upregulates cell-building proteins like actin for cell migration and proliferation. It promotes angiogenesis, reduces inflammation, and supports tissue remodeling.",
+    whoMayBenefit: ["Athletes with chronic or acute musculoskeletal injuries", "Individuals with slow-healing wounds", "People with inflammatory conditions", "Those seeking enhanced flexibility"],
+    timeline: "Anti-inflammatory effects in 1-2 weeks. Tissue repair at 4-6 weeks. Full cycle of 8-12 weeks recommended.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is TB-500?", answer: "A synthetic version of Thymosin Beta-4, involved in tissue repair and regeneration." },
+      { question: "How does TB-500 differ from BPC-157?", answer: "TB-500 upregulates actin and promotes cell migration; BPC-157 focuses on growth factors. Often used together." },
+      { question: "What is the typical dosage?", answer: "Loading phase: 4-8 mg/week for 4-6 weeks, then maintenance of 2-4 mg/week." },
+      { question: "Is TB-500 legal?", answer: "Available through compounding pharmacies with prescription. Not FDA-approved. Banned by WADA." },
+      { question: "What side effects can occur?", answer: "Generally well-tolerated. Possible temporary lethargy, head rush, injection site irritation." },
+      { question: "How long should I take TB-500?", answer: "Typical cycles are 8-12 weeks with periodic breaks." }
+    ],
   },
   {
     id: "sermorelin",
@@ -264,6 +289,18 @@ export const peptides: Peptide[] = [
     researchScore: 9,
     safetyScore: 9,
     drTaylorNote: "Sermorelin is my go-to GH secretagogue for patients new to peptide therapy. It has the longest track record of any GHRH analog — it was actually FDA-approved for pediatric GH deficiency. The safety profile is excellent because it works through your body's natural feedback loops. I use this as a foundation for anti-aging and recovery protocols.",
+    mechanismOfAction: "Sermorelin is a synthetic GHRH analog mimicking the first 29 amino acids of natural GHRH. It stimulates the pituitary to produce growth hormone through natural feedback mechanisms.",
+    whoMayBenefit: ["Adults over 30 with age-related GH decline", "Individuals seeking improved sleep and recovery", "People optimizing body composition", "Athletes wanting natural GH optimization"],
+    timeline: "Improved sleep in 2-4 weeks. Body composition changes at 6-12 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is Sermorelin?", answer: "A synthetic GHRH that stimulates your pituitary to produce more natural growth hormone." },
+      { question: "How is it different from HGH?", answer: "Sermorelin stimulates natural GH production preserving pulsatile release, while HGH is direct synthetic injection." },
+      { question: "When should I take Sermorelin?", answer: "Typically at bedtime via subcutaneous injection to align with natural GH release." },
+      { question: "What are the benefits?", answer: "Improved sleep, recovery, body composition, skin health, energy, and cognition." },
+      { question: "How long until results?", answer: "Sleep improvements in 2-4 weeks. Body composition changes over 2-3 months." },
+      { question: "Is it safe long-term?", answer: "Decades of clinical use with a well-established safety profile." }
+    ],
   },
   {
     id: "ipamorelin",
@@ -350,6 +387,17 @@ export const peptides: Peptide[] = [
     researchScore: 7,
     safetyScore: 9,
     drTaylorNote: "What sets ipamorelin apart is its selectivity — it stimulates GH release without spiking cortisol or prolactin, which is a problem with older secretagogues like GHRP-6. I combine it with CJC-1295 in most of my GH optimization protocols. Patients love it because it improves sleep almost immediately, and the body composition changes follow within weeks.",
+    mechanismOfAction: "Ipamorelin is a selective GH secretagogue that binds to ghrelin receptors on pituitary cells, stimulating GH release without affecting cortisol, prolactin, or ACTH.",
+    whoMayBenefit: ["Adults seeking GH optimization with minimal side effects", "Individuals improving body composition and recovery", "People wanting GH benefits without cortisol elevation", "Those combining with CJC-1295"],
+    timeline: "Sleep and recovery improvements in 2-3 weeks. Body composition changes at 6-8 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What makes Ipamorelin different?", answer: "The first truly selective GH secretagogue that does not affect cortisol or prolactin even at high doses." },
+      { question: "Is it combined with other peptides?", answer: "Frequently combined with CJC-1295 as the gold standard for GH optimization." },
+      { question: "What dosage is typical?", answer: "200-300 mcg 2-3 times daily via subcutaneous injection, most important dose before bedtime." },
+      { question: "Does Ipamorelin cause hunger?", answer: "Minimal to no hunger increase, unlike GHRP-6." },
+      { question: "How long can I take it?", answer: "Typical cycles are 8-12 weeks with periodic breaks." }
+    ],
   },
   {
     id: "cjc-1295",
@@ -444,6 +492,17 @@ export const peptides: Peptide[] = [
     researchScore: 7,
     safetyScore: 8,
     drTaylorNote: "CJC-1295 is the sustained-release partner to ipamorelin. The DAC version gives you steady GH elevation over days, while the non-DAC version (Mod GRF 1-29) provides sharper pulses. I use the non-DAC version combined with ipamorelin for most patients — it's more physiological. This combo is the backbone of my body recomposition and anti-aging stacks.",
+    mechanismOfAction: "CJC-1295 is a modified GHRH analog with DAC technology extending its half-life. It produces sustained GH and IGF-1 elevation for days after a single injection.",
+    whoMayBenefit: ["Adults seeking sustained GH elevation", "Those wanting less frequent dosing", "People combining with Ipamorelin", "Those with age-related GH decline"],
+    timeline: "GH elevation within hours. Sleep improvements at 2-3 weeks. Body composition changes over 6-12 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is CJC-1295 with DAC?", answer: "A modified GHRH analog with extended half-life of 6-8 days for sustained GH elevation." },
+      { question: "How does it differ from Sermorelin?", answer: "Much longer half-life (6-8 days vs minutes) providing sustained vs pulsatile elevation." },
+      { question: "How often is it administered?", answer: "With DAC: 1-2 times per week. Without DAC: 2-3 times daily." },
+      { question: "Can it be used alone?", answer: "Yes, but often paired with Ipamorelin for synergistic GH release." },
+      { question: "What results can I expect?", answer: "Improved sleep, recovery, body composition, energy, and skin quality." }
+    ],
   },
   {
     id: "semaglutide",
@@ -545,6 +604,19 @@ export const peptides: Peptide[] = [
     researchScore: 10,
     safetyScore: 10,
     drTaylorNote: "Semaglutide is the most well-studied peptide on this list, period. The STEP trials are gold-standard evidence — 15-17% body weight loss sustained over years. As someone who lost over 100 lbs after Cushing's syndrome, I deeply understand the metabolic challenges of weight loss. GLP-1 agonists are game-changers, but they require medical supervision for dose titration and monitoring. The GI side effects are real but manageable with proper protocol.",
+    mechanismOfAction: "Semaglutide is a GLP-1 receptor agonist that reduces appetite, slows gastric emptying, enhances insulin secretion, and suppresses glucagon release.",
+    whoMayBenefit: ["Individuals with obesity (BMI 30+) or overweight with comorbidities", "People with type 2 diabetes", "Those who struggled with diet and exercise alone", "Patients seeking medically supervised weight management"],
+    timeline: "Appetite reduction in 1-2 weeks. Meaningful weight loss by 12-16 weeks. Average 14.9% loss over 68 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "How much weight can I lose?", answer: "Trials show average 14.9% body weight loss over 68 weeks. 86% achieved at least 5% loss." },
+      { question: "How is it administered?", answer: "Weekly subcutaneous injection. Starts at 0.25 mg, increases to 2.4 mg over 16 weeks." },
+      { question: "What are common side effects?", answer: "Nausea, vomiting, diarrhea, constipation. Usually improve during dose escalation." },
+      { question: "Is Semaglutide FDA approved?", answer: "Yes, for type 2 diabetes (Ozempic) and weight management (Wegovy)." },
+      { question: "Do I need to diet?", answer: "Works best with reduced-calorie diet and exercise." },
+      { question: "What happens when I stop?", answer: "Weight regain is common. Long-term maintenance strategy recommended." },
+      { question: "How does it compare to Tirzepatide?", answer: "Both effective. Tirzepatide shows slightly higher average weight loss (20-25% vs 15-17%)." }
+    ],
   },
   {
     id: "tirzepatide",
@@ -646,6 +718,18 @@ export const peptides: Peptide[] = [
     researchScore: 10,
     safetyScore: 10,
     drTaylorNote: "Tirzepatide is the most exciting development in metabolic medicine. The dual GIP/GLP-1 mechanism produces weight loss results we've never seen before — 20%+ in clinical trials. I'm seeing similar results in practice. It's particularly effective for patients with insulin resistance and metabolic syndrome. The key is slow dose titration to minimize GI side effects. This is prescription-only and requires close physician monitoring.",
+    mechanismOfAction: "Tirzepatide is a dual GIP and GLP-1 receptor agonist that activates both receptors for enhanced insulin secretion, reduced appetite, and improved metabolic function.",
+    whoMayBenefit: ["Individuals seeking maximum weight loss potential", "People with type 2 diabetes needing aggressive control", "Patients who plateaued on Semaglutide", "Those seeking the most potent weight management peptide"],
+    timeline: "Appetite suppression in the first week. Significant weight loss by 12 weeks. Up to 22.5% average loss at 72 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What makes it different from Semaglutide?", answer: "Activates both GIP and GLP-1 receptors (dual agonist) showing higher average weight loss." },
+      { question: "How much weight loss is possible?", answer: "SURMOUNT-1 showed 20-25% body weight loss over 72 weeks." },
+      { question: "Is Tirzepatide FDA approved?", answer: "Yes, for type 2 diabetes (Mounjaro) and weight management (Zepbound)." },
+      { question: "What are the side effects?", answer: "Nausea, diarrhea, constipation. Most pronounced during dose escalation." },
+      { question: "How is it dosed?", answer: "Weekly injection starting at 2.5 mg, increasing every 4 weeks to 5, 10, or 15 mg." },
+      { question: "Can I switch from Semaglutide?", answer: "Yes, switching is common. Provider guides transition at lower dose." }
+    ],
   },
   {
     id: "pt-141",
@@ -730,6 +814,17 @@ export const peptides: Peptide[] = [
     researchScore: 8,
     safetyScore: 7,
     drTaylorNote: "PT-141 is unique because it works on desire, not just mechanics. It's the only FDA-approved treatment for hypoactive sexual desire disorder, and it works through a completely different mechanism than Viagra or Cialis. I use it for both men and women. The main side effect is nausea, which can be significant, so I always start with a test dose. It's an on-demand medication — you don't take it daily.",
+    mechanismOfAction: "PT-141 activates melanocortin-4 receptors (MC4R) in the brain, directly stimulating neural pathways involved in sexual arousal and desire.",
+    whoMayBenefit: ["Women with hypoactive sexual desire disorder", "Men with ED not responding to PDE5 inhibitors", "Those addressing both desire and arousal", "People seeking alternatives to traditional ED medications"],
+    timeline: "Effects in 30-60 minutes lasting 24-72 hours. Used as-needed.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "How is PT-141 different from Viagra?", answer: "Works in the brain on melanocortin receptors for desire and arousal, not just blood flow." },
+      { question: "Is PT-141 FDA approved?", answer: "Yes, for premenopausal women with HSDD (Vyleesi). Off-label use in men is common." },
+      { question: "How is it administered?", answer: "Subcutaneous injection about 45 minutes before activity, as-needed." },
+      { question: "What are the side effects?", answer: "Nausea (about 40%), flushing, headache. Usually mild and temporary." },
+      { question: "Does it work for both sexes?", answer: "Yes, effective in both. Only FDA-approved treatment for female sexual desire disorder." }
+    ],
   },
   {
     id: "selank",
@@ -814,6 +909,17 @@ export const peptides: Peptide[] = [
     researchScore: 6,
     safetyScore: 9,
     drTaylorNote: "Selank is my favorite anxiolytic peptide because it provides meaningful anxiety relief without any of the downsides of benzodiazepines — no sedation, no dependence, no cognitive impairment. The Russian clinical data is solid. I use it for patients with generalized anxiety, brain fog, and stress-related cognitive issues. The nasal spray format makes it extremely convenient. I often combine it with other peptides in my cognitive stacks.",
+    mechanismOfAction: "Selank modulates GABAergic and serotonergic systems, enhances BDNF expression, and influences T-helper cytokine balance for anxiolytic and nootropic effects without sedation.",
+    whoMayBenefit: ["Individuals with anxiety disorders", "People seeking cognitive enhancement without stimulants", "Those wanting non-addictive anxiolytic alternatives", "Individuals wanting immune support with mental clarity"],
+    timeline: "Anxiolytic effects within days. Cognitive benefits over 2-4 weeks. Standard course is 14 days.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is Selank used for?", answer: "Anti-anxiety and cognitive enhancement. Approved in Russia for anxiety disorders." },
+      { question: "How does it reduce anxiety?", answer: "Modulates GABA and serotonin and increases BDNF. No sedation or addiction." },
+      { question: "How is it administered?", answer: "Typically as a nasal spray for rapid onset. Subcutaneous injection also used." },
+      { question: "Is Selank addictive?", answer: "No addictive properties. Does not produce dependence or withdrawal." },
+      { question: "What are the side effects?", answer: "Very well tolerated. Possible mild nasal irritation and occasional fatigue." }
+    ],
   },
   {
     id: "epithalon",
@@ -897,6 +1003,17 @@ export const peptides: Peptide[] = [
     researchScore: 6,
     safetyScore: 9,
     drTaylorNote: "Epithalon is the most intriguing anti-aging peptide available. The telomerase activation data from Khavinson's lab is compelling, and the safety profile is remarkably clean for something that acts at such a fundamental level. I include it in my longevity protocols as a 10-20 day cycle a few times per year. It's also one of the few peptides shown to normalize melatonin secretion, which is a bonus for sleep.",
+    mechanismOfAction: "Epithalon stimulates telomerase production to maintain and lengthen telomeres, potentially slowing cellular aging and extending cell replication capacity.",
+    whoMayBenefit: ["Adults interested in cellular anti-aging", "Individuals concerned about age-related decline", "People complementing anti-aging protocols", "Those interested in telomere health"],
+    timeline: "Cellular-level effects. Subjective improvements at 4-8 weeks. Telomere benefits need longer use.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is Epithalon?", answer: "A synthetic version of Epithalamin that stimulates telomerase to maintain telomere length." },
+      { question: "How does it relate to aging?", answer: "Telomeres shorten with cell division. Epithalon may slow this process." },
+      { question: "What is a typical protocol?", answer: "5-10 mg subcutaneous injection daily for 10-20 days, repeated 2-3 times per year." },
+      { question: "Is there human research?", answer: "Studied in elderly patients showing improvements in melatonin and immune function." },
+      { question: "What are the side effects?", answer: "Generally well tolerated. Possible injection site irritation." }
+    ],
   },
   {
     id: "ghk-cu",
@@ -986,6 +1103,18 @@ export const peptides: Peptide[] = [
     researchScore: 8,
     safetyScore: 9,
     drTaylorNote: "GHK-Cu is the Swiss Army knife of skin and tissue health. The gene expression data is staggering — it modulates over 4,000 genes involved in tissue repair. I use it both topically and as an injectable, depending on the clinical goal. For skin rejuvenation and hair regrowth, topical is usually sufficient. For systemic tissue repair and anti-aging, I add the injectable form. It pairs beautifully with BPC-157.",
+    mechanismOfAction: "GHK-Cu activates stem cells, stimulates collagen synthesis, promotes tissue remodeling, reduces oxidative damage, and modulates over 4,000 genes related to anti-aging.",
+    whoMayBenefit: ["Individuals seeking skin rejuvenation", "People with hair thinning or loss", "Those improving wound healing and scars", "Individuals seeking anti-aging options"],
+    timeline: "Topical skin improvements in 2-4 weeks. Hair benefits at 3-6 months. Injectable cycles over 2-3 months.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is GHK-Cu?", answer: "A naturally occurring copper peptide in blood that declines with age. Involved in tissue remodeling and gene modulation." },
+      { question: "How can it be used?", answer: "Topical creams/serums for skin and hair, or subcutaneous injections for systemic effects." },
+      { question: "Does it help with hair loss?", answer: "Research suggests it increases follicle size and extends the growth phase." },
+      { question: "What anti-aging benefits?", answer: "Stimulates collagen, reduces wrinkles, improves elasticity, modulates 4,000+ genes." },
+      { question: "Is GHK-Cu safe?", answer: "Excellent safety profile as a naturally occurring compound." },
+      { question: "How long for results?", answer: "Skin improvements in 2-4 weeks. Hair benefits at 2-6 months." }
+    ],
   },
   {
     id: "dsip",
@@ -1075,6 +1204,17 @@ export const peptides: Peptide[] = [
     researchScore: 5,
     safetyScore: 8,
     drTaylorNote: "DSIP is a niche peptide that I reserve for patients with genuine sleep architecture problems — people who can fall asleep but don't get restorative deep sleep. It works as a neuromodulator, not a sedative, which means it normalizes your sleep rather than knocking you out. I typically use it in short 2-4 week cycles. The research is older but consistent. I combine it with ipamorelin for patients who also need GH optimization.",
+    mechanismOfAction: "DSIP promotes delta-wave deep sleep through GABAergic and serotonin receptor interactions. It normalizes circadian disruptions and reduces cortisol.",
+    whoMayBenefit: ["Individuals with chronic insomnia", "People seeking deep sleep without sedatives", "Those with stress-related sleep disturbances", "Shift workers with disrupted rhythms"],
+    timeline: "Improved sleep within first few doses. Deeper patterns over 1-2 weeks. Standard courses 5-10 days.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is DSIP?", answer: "A neuropeptide promoting deep sleep and regulating circadian rhythms without sedation or dependency." },
+      { question: "How does it differ from sleeping pills?", answer: "Promotes natural deep sleep without dependency, grogginess, or cognitive impairment." },
+      { question: "How is it administered?", answer: "Subcutaneous or IV injection in the evening. Nasal spray also available." },
+      { question: "Is it safe for regular use?", answer: "Favorable safety profile with no dependency risk reported." },
+      { question: "Can it help stress-related sleep?", answer: "Yes, reduces cortisol and normalizes the stress response." }
+    ],
   },
   {
     id: "aod-9604",
@@ -1163,6 +1303,17 @@ export const peptides: Peptide[] = [
     researchScore: 5,
     safetyScore: 8,
     drTaylorNote: "AOD-9604 is the fat-targeting fragment of growth hormone without the growth or insulin effects. I use it as a complement to GLP-1 agonists, not as a standalone weight loss solution. The clinical trial results for weight loss alone were underwhelming, but it earned FDA GRAS status for safety, which says a lot. It's best suited as part of a broader metabolic optimization protocol.",
+    mechanismOfAction: "AOD-9604 is a modified HGH fragment (amino acids 177-191) that stimulates lipolysis and inhibits lipogenesis without affecting blood sugar or tissue growth.",
+    whoMayBenefit: ["Individuals seeking targeted fat reduction", "People with stubborn adipose tissue", "Those wanting fat loss without blood sugar disruption", "Individuals combining with GLP-1 peptides"],
+    timeline: "Body composition changes in 4-6 weeks. Significant fat reduction over 8-12 weeks with diet and exercise.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is AOD-9604?", answer: "A modified HGH fragment isolating fat-burning properties without growth or blood sugar effects." },
+      { question: "How does it burn fat?", answer: "Stimulates lipolysis and inhibits lipogenesis via beta-3 adrenergic receptors." },
+      { question: "Does it affect blood sugar?", answer: "No, does not affect insulin sensitivity or blood sugar." },
+      { question: "Is it effective for weight loss?", answer: "Promotes fat loss when combined with nutrition and exercise." },
+      { question: "How is it administered?", answer: "Subcutaneous injection in the morning on empty stomach. Typical dose: 300 mcg/day." }
+    ],
   },
   {
     id: "kpv",
@@ -1251,6 +1402,17 @@ export const peptides: Peptide[] = [
     researchScore: 6,
     safetyScore: 9,
     drTaylorNote: "KPV is a powerhouse anti-inflammatory that I use extensively for gut health. It's a tiny tripeptide derived from alpha-MSH, but it packs a serious punch against NF-kB-driven inflammation. The IBD research is particularly promising. I use it orally for gut-specific inflammation and subcutaneously for systemic inflammatory conditions. It's one of the best-tolerated peptides I prescribe.",
+    mechanismOfAction: "KPV is a tripeptide from alpha-MSH that inhibits NF-kB activation and suppresses pro-inflammatory cytokines with antimicrobial properties.",
+    whoMayBenefit: ["Individuals with inflammatory bowel conditions", "People with inflammatory skin conditions", "Those seeking gut inflammation reduction", "Those wanting anti-inflammatory support without immunosuppression"],
+    timeline: "Anti-inflammatory effects in 1-2 weeks. Gut improvements at 2-4 weeks. Skin at 4-6 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is KPV?", answer: "A tripeptide from alpha-MSH providing potent anti-inflammatory effects via NF-kB inhibition." },
+      { question: "What conditions is it used for?", answer: "IBD, gut inflammation, inflammatory skin conditions. Also has antimicrobial properties." },
+      { question: "How is it administered?", answer: "Orally for gut, subcutaneously, or topically for skin." },
+      { question: "Is KPV safe?", answer: "Natural hormone fragment with good safety profile and minimal side effects." },
+      { question: "How does it compare to other anti-inflammatories?", answer: "Targets NF-kB specifically without broadly suppressing the immune system." }
+    ],
   },
   {
     id: "ll-37",
@@ -1341,5 +1503,16 @@ export const peptides: Peptide[] = [
     researchScore: 7,
     safetyScore: 7,
     drTaylorNote: "LL-37 is our body's own antimicrobial peptide, and supplementing it can meaningfully boost immune defense. I use it for patients with chronic infections, biofilm-related conditions, and those who seem to catch everything. It's also excellent for wound healing. The main caution is for patients with autoimmune skin conditions like psoriasis — LL-37 overexpression is actually part of the psoriasis pathology, so I avoid it in those cases.",
+    mechanismOfAction: "LL-37 is a human cathelicidin antimicrobial peptide that disrupts microbial membranes, recruits immune cells, promotes wound healing, with broad-spectrum antimicrobial activity.",
+    whoMayBenefit: ["Individuals with recurrent or chronic infections", "People seeking immune optimization", "Those with wound healing challenges", "Individuals supporting innate immune defense"],
+    timeline: "Immune benefits in 1-2 weeks. Chronic infection improvements over 2-4 weeks. Full protocols 4-8 weeks.",
+    lastUpdated: "2026-03-15",
+    faqs: [
+      { question: "What is LL-37?", answer: "A naturally occurring antimicrobial peptide from immune cells for first-line defense." },
+      { question: "How does it fight infections?", answer: "Disrupts pathogen cell membranes, recruits immune cells, breaks down biofilms." },
+      { question: "What pathogens is it effective against?", answer: "Broad-spectrum against bacteria, viruses, and fungi." },
+      { question: "How is it administered?", answer: "Subcutaneous injection with dosages varying by condition." },
+      { question: "Is LL-37 safe?", answer: "Naturally occurring human peptide with favorable safety profile." }
+    ],
   },
 ];

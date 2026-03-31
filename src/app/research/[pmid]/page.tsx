@@ -5,6 +5,8 @@ import { researchStudies } from "@/data/research";
 import { peptides } from "@/data/peptides";
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
+import { buildMeta, PRODUCTION_DOMAIN } from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const peptideColors: Record<string, string> = {
   "bpc-157": "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -33,10 +35,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { pmid: string } }): Metadata {
   const study = researchStudies.find((s) => s.pmid === params.pmid);
   if (!study) return { title: "Study Not Found" };
-  return {
-    title: `${study.title} - PeptideWise Research`,
+  return buildMeta({
+    title: study.title + " — Research",
     description: study.keyFinding,
-  };
+    path: "/research/" + study.pmid,
+  });
 }
 
 export default function StudyDetailPage({ params }: { params: { pmid: string } }) {
@@ -54,14 +57,14 @@ export default function StudyDetailPage({ params }: { params: { pmid: string } }
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-      {/* Back link */}
-      <Link
-        href="/research"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-8 transition-colors"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back to Research
-      </Link>
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Research", href: "/research" },
+          { label: study.peptideName + " Study", href: "/research/" + study.pmid },
+        ]}
+      />
 
       {/* Header */}
       <div className="mb-8">

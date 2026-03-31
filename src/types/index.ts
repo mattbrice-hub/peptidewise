@@ -32,9 +32,15 @@ export interface Peptide {
   pubmedKeywords: string[];
   imageUrl: string;
   references?: StudyReference[];
+  modifiedDate?: string;
   researchScore: number; // 1-10 scale based on volume and quality of published evidence
   safetyScore: number; // 1-10 scale based on known side-effect profile and tolerability
   drTaylorNote: string; // Dr. Taylor's clinical perspective
+  faqs?: { question: string; answer: string }[];
+  mechanismOfAction?: string;
+  whoMayBenefit?: string[];
+  timeline?: string;
+  lastUpdated?: string;
 }
 
 export interface SymptomCategory {
@@ -124,6 +130,7 @@ export interface Article {
   readingTime: number;
   imageUrl: string;
   references?: StudyReference[];
+  modifiedDate?: string;
 }
 
 export interface RecommendationResult {

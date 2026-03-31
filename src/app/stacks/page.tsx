@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ArrowLeft,
@@ -385,7 +386,7 @@ export default function StacksPage() {
                   {/* Dr. Taylor's 2 Cents */}
                   <div className="border-t border-blue-200 bg-blue-50 px-6 md:px-8 py-4">
                     <div className="flex items-start gap-3">
-                      <img src="/images/dr-taylor.jpg" alt="Dr. Taylor" className="flex-shrink-0 w-8 h-8 rounded-full object-cover mt-0.5" />
+                      <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={24} height={24} className="flex-shrink-0 w-8 h-8 rounded-full object-cover mt-0.5" />
                       <div>
                         <div className="text-xs font-semibold text-blue-600 mb-1">Dr. Taylor&apos;s 2 Cents</div>
                         <p className="text-sm text-gray-600 italic leading-relaxed">

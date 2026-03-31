@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { buildMeta } from "@/lib/seo";
+import Image from "next/image";
 import {
   TrendingUp,
   Scale,
@@ -112,11 +114,11 @@ function getScoreTextColor(score: number): string {
   return "text-amber-700";
 }
 
-export const metadata = {
-  title: "Browse Peptides - PeptideWise",
-  description:
-    "Explore 15+ therapeutic peptides with evidence-based information on benefits, dosage, safety, and published research.",
-};
+export const metadata = buildMeta({
+  title: "Browse Peptides — Therapeutic Peptide Database",
+  description: "Explore 15+ therapeutic peptides with evidence-based information on benefits, dosage, safety profiles, and published research. Curated by Dr. Patrick Taylor, MD.",
+  path: "/peptides",
+});
 
 export default function PeptidesPage() {
   // Group peptides by category
@@ -396,7 +398,7 @@ export default function PeptidesPage() {
                 {/* Dr. Taylor's note */}
                 <div className="border-t border-gray-100 bg-blue-50/50 px-5 py-3">
                   <div className="flex items-start gap-2">
-                    <img src="/images/dr-taylor.jpg" alt="Dr. Taylor" className="flex-shrink-0 w-6 h-6 rounded-full object-cover mt-0.5" />
+                    <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={24} height={24} className="flex-shrink-0 w-6 h-6 rounded-full object-cover mt-0.5" />
                     <p className="text-xs text-gray-600 italic leading-relaxed line-clamp-3">
                       &ldquo;{stack.drTaylorNote}&rdquo;
                     </p>

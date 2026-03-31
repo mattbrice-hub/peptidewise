@@ -150,9 +150,9 @@ export default function ResearchPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors leading-snug">
+                  <h2 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors leading-snug">
                     {study.title}
-                  </h3>
+                  </h2>
 
                   {/* Authors + Journal */}
                   <p className="text-xs text-gray-500 mb-3">

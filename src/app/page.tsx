@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Shield,
@@ -14,6 +15,14 @@ import {
   GraduationCap,
   Stethoscope,
 } from "lucide-react";
+import { buildMeta } from "@/lib/seo";
+
+export const metadata = buildMeta({
+  title: "PeptideWise — Evidence-Based Peptide Therapy Education",
+  description:
+    "Physician-curated, research-backed peptide therapy education by Dr. Patrick Taylor, MD. Explore 15+ peptides, 100+ PubMed studies, and personalized stack recommendations.",
+  path: "/",
+});
 
 const quickSymptoms = [
   { label: "Weight Loss", icon: Scale, symptoms: "difficulty-losing-weight,slow-metabolism" },
@@ -108,7 +117,7 @@ export default function HomePage() {
       <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <img src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" className="w-28 h-28 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
+            <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Board-Eligible Family Medicine Physician" width={112} height={112} className="w-28 h-28 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Led by Dr. Patrick Taylor, MD
             </h2>

@@ -18,6 +18,7 @@ Always work with a qualified healthcare provider who can assess your needs, moni
     category: "guide",
     peptideIds: ["bpc-157", "sermorelin", "semaglutide"],
     publishedAt: "2025-12-15",
+    modifiedDate: "2026-02-20",
     readingTime: 8,
     imageUrl: "/images/articles/beginner-guide.svg",
     references: [
@@ -62,6 +63,7 @@ BPC-157 is often combined with TB-500 for synergistic healing effects, particula
     category: "research",
     peptideIds: ["bpc-157", "tb-500"],
     publishedAt: "2025-11-20",
+    modifiedDate: "2026-01-15",
     readingTime: 10,
     imageUrl: "/images/articles/bpc-157-guide.svg",
     references: [
@@ -113,6 +115,7 @@ The choice between them often comes down to individual response, insurance cover
     category: "comparison",
     peptideIds: ["semaglutide", "tirzepatide"],
     publishedAt: "2026-01-10",
+    modifiedDate: "2026-03-01",
     readingTime: 7,
     imageUrl: "/images/articles/glp1-guide.svg",
     references: [
@@ -167,6 +170,7 @@ Look for providers that offer ongoing medical support, including follow-up consu
     category: "safety",
     peptideIds: [],
     publishedAt: "2026-02-05",
+    modifiedDate: "2026-03-10",
     readingTime: 6,
     imageUrl: "/images/articles/choosing-provider.svg",
   },
@@ -189,6 +193,7 @@ These peptides are typically administered via subcutaneous injection before bedt
     category: "guide",
     peptideIds: ["sermorelin", "ipamorelin", "cjc-1295"],
     publishedAt: "2025-10-28",
+    modifiedDate: "2026-02-01",
     readingTime: 9,
     imageUrl: "/images/articles/gh-peptides.svg",
     references: [

@@ -1,12 +1,19 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  FlaskConical, ArrowLeft, CheckCircle, AlertTriangle, BookOpen,
+  FlaskConical, CheckCircle, AlertTriangle, BookOpen,
   Pill, Clock, ShieldCheck, Beaker, TrendingUp, Scale, Activity,
-  Hourglass, Brain, Shield, Heart, Moon, Sparkles, Quote
+  Hourglass, Brain, Shield, Heart, Moon, Sparkles, Quote,
+  ChevronDown
 } from "lucide-react";
 import { peptides } from "@/data/peptides";
+import { articles } from "@/data/articles";
+import { stacks } from "@/data/stacks";
 import { cn, getCategoryLabel, getCategoryColor } from "@/lib/utils";
+import { buildMeta, PRODUCTION_DOMAIN } from "@/lib/seo";
+import JsonLd, { medicalWebPageSchema, faqSchema } from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export function generateStaticParams() {
   return peptides.map((p) => ({ slug: p.slug }));
@@ -15,10 +22,12 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const peptide = peptides.find((p) => p.slug === params.slug);
   if (!peptide) return { title: "Peptide Not Found" };
-  return {
-    title: `${peptide.name}: Benefits, Dosage & Research - PeptideWise`,
+  return buildMeta({
+    title: `${peptide.name}: Benefits, Dosage & Research`,
     description: peptide.description,
-  };
+    path: `/peptides/${peptide.slug}`,
+    modifiedTime: peptide.lastUpdated,
+  });
 }
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -41,14 +50,39 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
     .map((id) => peptides.find((p) => p.id === id))
     .filter(Boolean);
 
+  const relatedStacks = stacks.filter((s) =>
+    s.peptideIds.includes(peptide.id)
+  );
+
+  const relatedArticles = articles.filter(
+    (a) =>
+      a.content.toLowerCase().includes(peptide.name.toLowerCase()) ||
+      a.title.toLowerCase().includes(peptide.name.toLowerCase())
+  );
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-      <Link
-        href="/peptides"
-        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-blue-600 mb-6"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to Peptides
-      </Link>
+      {/* JSON-LD */}
+      <JsonLd
+        data={medicalWebPageSchema({
+          name: `${peptide.name}: Benefits, Dosage & Research`,
+          description: peptide.description,
+          url: `${PRODUCTION_DOMAIN}/peptides/${peptide.slug}`,
+          lastReviewed: peptide.lastUpdated,
+        })}
+      />
+      {peptide.faqs && peptide.faqs.length > 0 && (
+        <JsonLd data={faqSchema(peptide.faqs)} />
+      )}
+
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Peptides", href: "/peptides" },
+          { label: peptide.name, href: `/peptides/${peptide.slug}` },
+        ]}
+      />
 
       {/* Header */}
       <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 md:p-8 mb-6">
@@ -135,6 +169,16 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
         </div>
       </div>
 
+      {/* Mechanism of Action */}
+      {peptide.mechanismOfAction && (
+        <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <Beaker className="h-5 w-5 text-purple-600" /> How It Works
+          </h2>
+          <p className="text-gray-700 leading-relaxed">{peptide.mechanismOfAction}</p>
+        </div>
+      )}
+
       {/* Benefits */}
       <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
@@ -149,6 +193,23 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
           ))}
         </ul>
       </div>
+
+      {/* Who May Benefit */}
+      {peptide.whoMayBenefit && peptide.whoMayBenefit.length > 0 && (
+        <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <Heart className="h-5 w-5 text-pink-600" /> Who May Benefit
+          </h2>
+          <ul className="space-y-2">
+            {peptide.whoMayBenefit.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-pink-500 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Dosage & Administration */}
       <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
@@ -176,6 +237,16 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
           </div>
         </div>
       </div>
+
+      {/* Timeline */}
+      {peptide.timeline && (
+        <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <Clock className="h-5 w-5 text-indigo-600" /> Expected Timeline
+          </h2>
+          <p className="text-gray-700 leading-relaxed">{peptide.timeline}</p>
+        </div>
+      )}
 
       {/* Safety */}
       <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
@@ -208,10 +279,16 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
         </div>
       </div>
 
-      {/* Dr. Taylor's 2 Cents */}
+      {/* Dr. Taylor&apos;s 2 Cents */}
       <div className="bg-blue-50 rounded-2xl border border-blue-200 p-6 mb-6">
         <div className="flex items-start gap-4">
-          <img src="/images/dr-taylor.jpg" alt="Dr. Taylor" className="flex-shrink-0 w-12 h-12 rounded-full object-cover" />
+          <Image
+            src="/images/dr-taylor.jpg"
+            alt="Dr. Patrick Taylor, MD"
+            width={48}
+            height={48}
+            className="flex-shrink-0 rounded-full object-cover"
+          />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <h2 className="text-lg font-semibold text-gray-900">Dr. Taylor&apos;s 2 Cents</h2>
@@ -229,6 +306,28 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
           </div>
         </div>
       </div>
+
+      {/* FAQ Accordion */}
+      {peptide.faqs && peptide.faqs.length > 0 && (
+        <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <BookOpen className="h-5 w-5 text-teal-600" /> Frequently Asked Questions
+          </h2>
+          <div className="space-y-2">
+            {peptide.faqs.map((faq, idx) => (
+              <details key={idx} className="group rounded-xl border border-gray-200 overflow-hidden">
+                <summary className="flex items-center justify-between cursor-pointer p-4 hover:bg-gray-50 transition-colors">
+                  <span className="text-sm font-medium text-gray-800 pr-4">{faq.question}</span>
+                  <ChevronDown className="h-4 w-4 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Research References */}
       {peptide.references && peptide.references.length > 0 && (
@@ -281,6 +380,30 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
         </div>
       )}
 
+      {/* Related Stacks */}
+      {relatedStacks.length > 0 && (
+        <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Stacks Featuring {peptide.name}</h2>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {relatedStacks.map((stack) => (
+              <Link
+                key={stack.id}
+                href="/stacks"
+                className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 transition-all"
+              >
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-blue-600 flex items-center justify-center">
+                  <FlaskConical className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <div className="font-medium text-gray-700 text-sm">{stack.name}</div>
+                  <div className="text-xs text-gray-500">{stack.subtitle}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Related Peptides */}
       {relatedPeptides.length > 0 && (
         <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
@@ -307,9 +430,28 @@ export default function PeptideDetailPage({ params }: { params: { slug: string }
         </div>
       )}
 
+      {/* Related Reading */}
+      {relatedArticles.length > 0 && (
+        <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Related Reading</h2>
+          <div className="space-y-3">
+            {relatedArticles.map((article) => (
+              <Link
+                key={article.slug}
+                href={`/learn/${article.slug}`}
+                className="block p-3 rounded-xl border border-gray-200 hover:border-blue-300 transition-all"
+              >
+                <div className="font-medium text-gray-700 text-sm">{article.title}</div>
+                <div className="text-xs text-gray-500 mt-1">{article.excerpt}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Consult CTA */}
       <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 mb-6 text-center">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Want personalized guidance?</h3>
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Want personalized guidance?</h2>
         <p className="text-sm text-gray-600 mb-4">
           Consult with Dr. Patrick Taylor for a comprehensive evaluation and personalized protocol.
         </p>

@@ -2,11 +2,14 @@ import Link from "next/link";
 import { BookOpen, Clock, ArrowRight } from "lucide-react";
 import { articles } from "@/data/articles";
 import { cn } from "@/lib/utils";
+import { buildMeta } from "@/lib/seo";
 
-export const metadata = {
-  title: "Learn About Peptides - PeptideWise",
-  description: "Educational articles about peptide therapy, safety guides, and research insights by Dr. Patrick Taylor.",
-};
+export const metadata = buildMeta({
+  title: "Learn About Peptides — Educational Articles",
+  description:
+    "Educational articles about peptide therapy, safety guides, and research insights by Dr. Patrick Taylor, MD.",
+  path: "/learn",
+});
 
 const categoryStyles: Record<string, string> = {
   guide: "bg-blue-50 text-blue-600",

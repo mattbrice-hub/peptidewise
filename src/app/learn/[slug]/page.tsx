@@ -4,6 +4,9 @@ import { ArrowLeft, Clock, BookOpen, FlaskConical } from "lucide-react";
 import { articles } from "@/data/articles";
 import { peptides } from "@/data/peptides";
 import { cn } from "@/lib/utils";
+import { buildMeta, PRODUCTION_DOMAIN } from "@/lib/seo";
+import JsonLd, { articleSchema } from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -12,10 +15,14 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) return { title: "Article Not Found" };
-  return {
-    title: `${article.title} - PeptideWise`,
+  return buildMeta({
+    title: article.title,
     description: article.excerpt,
-  };
+    path: "/learn/" + article.slug,
+    ogType: "article",
+    publishedTime: article.publishedAt,
+    modifiedTime: article.modifiedDate,
+  });
 }
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
@@ -30,12 +37,23 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-      <Link
-        href="/learn"
-        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-blue-600 mb-6"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to Articles
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Learn", href: "/learn" },
+          { label: article.title, href: "/learn/" + article.slug },
+        ]}
+      />
+
+      <JsonLd
+        data={articleSchema({
+          headline: article.title,
+          description: article.excerpt,
+          url: PRODUCTION_DOMAIN + "/learn/" + article.slug,
+          datePublished: article.publishedAt,
+          dateModified: article.modifiedDate,
+        })}
+      />
 
       <article>
         <div className="mb-8">
@@ -141,6 +159,30 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       )}
+
+      {/* Related Reading */}
+      {(() => {
+        const otherArticles = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+        if (otherArticles.length === 0) return null;
+        return (
+          <div className="mt-10 pt-8 border-t border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">More from PeptideWise</h2>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {otherArticles.map((a) => (
+                <Link key={a.id} href={"/learn/" + a.slug} className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 transition-all">
+                  <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
+                    <BookOpen className="h-4 w-4 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-700 text-sm">{a.title}</div>
+                    <div className="text-xs text-gray-500">{a.readingTime} min read</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }

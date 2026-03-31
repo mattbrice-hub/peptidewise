@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ExternalLink,
@@ -12,19 +13,23 @@ import {
   Dumbbell,
   FlaskConical,
 } from "lucide-react";
+import JsonLd, { physicianSchema } from "@/components/JsonLd";
+import { buildMeta } from "@/lib/seo";
 
-export const metadata = {
-  title: "About Dr. Patrick Taylor, MD - PeptideWise",
+export const metadata = buildMeta({
+  title: "About Dr. Patrick Taylor, MD",
   description:
-    "Meet Dr. Patrick Taylor — board-eligible family medicine physician, cancer survivor, and founder of Live Vital MD. Learn about his approach to evidence-based peptide therapy.",
-};
+    "Meet Dr. Patrick Taylor — board-eligible family medicine physician, cancer survivor, and founder of Live Vital MD. Evidence-based peptide therapy education.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+      <JsonLd data={physicianSchema()} />
       {/* Hero */}
       <div className="text-center mb-12">
-        <img src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" className="w-36 h-36 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
+        <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Board-Eligible Family Medicine Physician specializing in peptide therapy" width={144} height={144} className="w-36 h-36 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
           Dr. Patrick Taylor, MD
         </h1>
