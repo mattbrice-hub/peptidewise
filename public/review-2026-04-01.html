@@ -339,7 +339,7 @@ function renderNumberEdit(sectionId,fieldKey,value){
 // Store original arrays by key so we don't inline JSON in HTML attributes
 const _origLists = {};
 function _origKey(sectionId, fieldKey) { return sectionId + "::" + fieldKey; }
-function _storeOrig(sectionId, fieldKey, arr) { _origLists[_origKey(sectionId, fieldKey)] = arr; }
+function _storeOrig(sectionId, fieldKey, arr) { const k=_origKey(sectionId,fieldKey); if(!(k in _origLists)) _origLists[k]=arr; }
 function _getOrig(sectionId, fieldKey) { return _origLists[_origKey(sectionId, fieldKey)] || []; }
 
 function getListVal(sectionId, fieldKey) {
