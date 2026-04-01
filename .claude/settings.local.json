@@ -33,7 +33,10 @@
       "Bash(wc -l C:/Users/Nanu/Desktop/Claude/peptidewise/src/data/*.ts)",
       "Bash(node build-research-review.js)",
       "Bash(gh auth:*)",
-      "Bash(gh repo:*)"
+      "Bash(gh repo:*)",
+      "Bash(curl -s \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=$term&retmax=6&sort=relevance&retmode=json\")",
+      "Bash(curl -s \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=NAD%2B+supplementation+aging+metabolism&retmax=6&sort=relevance&retmode=json\")",
+      "Bash(curl -s \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=NMN+nicotinamide+mononucleotide+clinical+trial&retmax=6&sort=relevance&retmode=json\")"
     ]
   }
 }

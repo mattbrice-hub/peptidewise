@@ -68,10 +68,10 @@ public/
 ## Key Data Models
 
 ### Peptide (`src/data/peptides.ts`)
-15 peptides with: name, category, description, detailedDescription, benefits, commonUses, dosage, cycleLength, sideEffects, contraindications, researchStatus, legalStatus, researchScore (1-10), safetyScore (1-10), drTaylorNote, references, mechanismOfAction, whoMayBenefit, timeline, faqs, lastUpdated.
+19 peptides with: name, category, description, detailedDescription, benefits, commonUses, dosage, cycleLength, sideEffects, contraindications, researchStatus, legalStatus, researchScore (1-10), safetyScore (1-10), drTaylorNote, references, mechanismOfAction, whoMayBenefit, timeline, faqs, lastUpdated. Includes C-Max (NAD+), 5-Amino-1MQ (NNMT inhibitor), MOTS-c (exercise mimetic), and Kisspeptin (reproductive).
 
 ### ResearchStudy (`src/data/research.ts`)
-99 PubMed studies with: pmid, title, authors, journal, pubDate, peptideId, peptideName, keyFinding, takeaways (1-3 plain English points), content (3-5 paragraph breakdown).
+~127 PubMed studies with: pmid, title, authors, journal, pubDate, peptideId, peptideName, keyFinding, takeaways (1-3 plain English points), content (3-5 paragraph breakdown).
 
 ### PeptideProtocol (`src/data/stacks.ts`)
 12 protocols (formerly "stacks") with: name, subtitle, peptideIds, targetSymptoms, ageRange, genders, bmiCategory, drTaylorNote. Type alias `PeptideStack` is deprecated.
