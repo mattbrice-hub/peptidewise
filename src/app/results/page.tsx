@@ -1,8 +1,9 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
+import LeadCaptureGate from "@/components/LeadCaptureGate";
 import {
   FlaskConical, ArrowRight, CheckCircle, AlertTriangle, BookOpen, ShieldCheck
 } from "lucide-react";
@@ -17,6 +18,11 @@ function ResultsContent() {
   const symptomIds = searchParams.get("symptoms")?.split(",").filter(Boolean) || [];
   const severity = (searchParams.get("severity") as "mild" | "moderate" | "severe") || "moderate";
   const priority = (searchParams.get("priority") as "effectiveness" | "safety" | "value") || "effectiveness";
+
+  const [unlocked, setUnlocked] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("peptidewise_unlocked") === "true") setUnlocked(true);
+  }, []);
 
   const results = getRecommendations(
     { symptomIds, severity, priority },
@@ -91,8 +97,6 @@ function ResultsContent() {
                 <h2 className="text-lg font-bold text-gray-900 mb-1">
                   {result.peptide.name}
                 </h2>
-                <p className="text-sm text-gray-600 mb-3">{result.reasoning}</p>
-
                 {/* Matched symptoms */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {result.matchedSymptoms.map((s) => (
@@ -106,65 +110,76 @@ function ResultsContent() {
                   ))}
                 </div>
 
-                {/* Research & Safety Scores */}
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  <div className="flex items-center gap-2.5">
-                    <BookOpen className="h-3.5 w-3.5 text-blue-600 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-gray-500">Research</span>
-                        <span className={cn("text-xs font-bold",
-                          result.peptide.researchScore >= 8 ? "text-green-600" :
-                          result.peptide.researchScore >= 6 ? "text-blue-400" : "text-amber-700"
-                        )}>{result.peptide.researchScore}/10</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className={cn("h-full rounded-full",
-                            result.peptide.researchScore >= 8 ? "bg-green-500" :
-                            result.peptide.researchScore >= 6 ? "bg-blue-500" : "bg-amber-500"
-                          )}
-                          style={{ width: `${result.peptide.researchScore * 10}%` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <ShieldCheck className="h-3.5 w-3.5 text-green-600 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-gray-500">Safety</span>
-                        <span className={cn("text-xs font-bold",
-                          result.peptide.safetyScore >= 8 ? "text-green-600" :
-                          result.peptide.safetyScore >= 6 ? "text-blue-400" : "text-amber-700"
-                        )}>{result.peptide.safetyScore}/10</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className={cn("h-full rounded-full",
-                            result.peptide.safetyScore >= 8 ? "bg-green-500" :
-                            result.peptide.safetyScore >= 6 ? "bg-blue-500" : "bg-amber-500"
-                          )}
-                          style={{ width: `${result.peptide.safetyScore * 10}%` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {/* Gated content: reasoning, scores, actions */}
+                {(unlocked || idx === 0) && (
+                  <div className={!unlocked && idx === 0 ? "blur-sm pointer-events-none select-none" : ""}>
+                    <p className="text-sm text-gray-600 mb-3">{result.reasoning}</p>
 
-                {/* Actions */}
-                <div className="flex items-center justify-end">
-                  <Link
-                    href={`/peptides/${result.peptide.slug}`}
-                    className="inline-flex items-center gap-1 text-sm font-medium px-3 py-1.5 rounded-lg gradient-primary text-white hover:opacity-90 transition-opacity"
-                  >
-                    Learn More <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
+                    {/* Research & Safety Scores */}
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      <div className="flex items-center gap-2.5">
+                        <BookOpen className="h-3.5 w-3.5 text-blue-600 flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-xs text-gray-500">Research</span>
+                            <span className={cn("text-xs font-bold",
+                              result.peptide.researchScore >= 8 ? "text-green-600" :
+                              result.peptide.researchScore >= 6 ? "text-blue-400" : "text-amber-700"
+                            )}>{result.peptide.researchScore}/10</span>
+                          </div>
+                          <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div
+                              className={cn("h-full rounded-full",
+                                result.peptide.researchScore >= 8 ? "bg-green-500" :
+                                result.peptide.researchScore >= 6 ? "bg-blue-500" : "bg-amber-500"
+                              )}
+                              style={{ width: `${result.peptide.researchScore * 10}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <ShieldCheck className="h-3.5 w-3.5 text-green-600 flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-xs text-gray-500">Safety</span>
+                            <span className={cn("text-xs font-bold",
+                              result.peptide.safetyScore >= 8 ? "text-green-600" :
+                              result.peptide.safetyScore >= 6 ? "text-blue-400" : "text-amber-700"
+                            )}>{result.peptide.safetyScore}/10</span>
+                          </div>
+                          <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div
+                              className={cn("h-full rounded-full",
+                                result.peptide.safetyScore >= 8 ? "bg-green-500" :
+                                result.peptide.safetyScore >= 6 ? "bg-blue-500" : "bg-amber-500"
+                              )}
+                              style={{ width: `${result.peptide.safetyScore * 10}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center justify-end">
+                      <Link
+                        href={`/peptides/${result.peptide.slug}`}
+                        className="inline-flex items-center gap-1 text-sm font-medium px-3 py-1.5 rounded-lg gradient-primary text-white hover:opacity-90 transition-opacity"
+                      >
+                        Learn More <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         ))}
+
+        {!unlocked && (
+          <LeadCaptureGate source="symptom-checker" onUnlocked={() => setUnlocked(true)} />
+        )}
       </div>
 
       {/* Disclaimer */}

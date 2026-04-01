@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -27,6 +27,7 @@ import {
 import { cn } from "@/lib/utils";
 import { stacks, type PeptideProtocol } from "@/data/stacks";
 import { peptides } from "@/data/peptides";
+import LeadCaptureGate from "@/components/LeadCaptureGate";
 
 const iconMap: Record<string, React.ElementType> = {
   flame: Flame,
@@ -203,6 +204,11 @@ export default function StacksPage() {
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("peptidewise_unlocked") === "true") setUnlocked(true);
+  }, []);
 
   const toggleSymptom = (id: string) => {
     setSelectedSymptoms((prev) =>
@@ -291,7 +297,7 @@ export default function StacksPage() {
           </div>
         ) : (
           <div className="space-y-6">
-            {results.map(({ stack, relevance, matchedSymptoms }) => {
+            {results.map(({ stack, relevance, matchedSymptoms }, idx) => {
               const Icon = iconMap[stack.icon] || FlaskConical;
               const stackPeptides = stack.peptideIds
                 .map((id) => peptides.find((p) => p.id === id))
@@ -352,52 +358,59 @@ export default function StacksPage() {
                     </div>
                   </div>
 
-                  {/* Peptides in this protocol */}
-                  <div className="border-t border-gray-200 bg-white px-6 md:px-8 py-4">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                      Peptides in your protocol
-                    </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {stackPeptides.map(
-                        (p) =>
-                          p && (
-                            <Link
-                              key={p.id}
-                              href={`/peptides/${p.slug}`}
-                              className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-200 hover:border-blue-300 transition-all group"
-                            >
-                              <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
-                                <FlaskConical className="h-4 w-4 text-white" />
-                              </div>
-                              <div className="min-w-0">
-                                <div className="font-medium text-gray-800 text-sm group-hover:text-blue-600 transition-colors">
-                                  {p.name}
-                                </div>
-                                <div className="text-xs text-gray-500 truncate">
-                                  {p.typicalDosage}
-                                </div>
-                              </div>
-                            </Link>
-                          )
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Dr. Taylor's 2 Cents */}
-                  <div className="border-t border-blue-200 bg-blue-50 px-6 md:px-8 py-4">
-                    <div className="flex items-start gap-3">
-                      <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={24} height={24} className="flex-shrink-0 w-8 h-8 rounded-full object-cover mt-0.5" />
-                      <div>
-                        <div className="text-xs font-semibold text-blue-600 mb-1">Dr. Taylor&apos;s 2 Cents</div>
-                        <p className="text-sm text-gray-600 italic leading-relaxed">
-                          &ldquo;{stack.drTaylorNote}&rdquo;
-                        </p>
+                  {/* Gated: Peptides + Dr. Taylor's notes */}
+                  {unlocked && (
+                    <>
+                      <div className="border-t border-gray-200 bg-white px-6 md:px-8 py-4">
+                        <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                          Peptides in your protocol
+                        </div>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                          {stackPeptides.map(
+                            (p) =>
+                              p && (
+                                <Link
+                                  key={p.id}
+                                  href={`/peptides/${p.slug}`}
+                                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-200 hover:border-blue-300 transition-all group"
+                                >
+                                  <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
+                                    <FlaskConical className="h-4 w-4 text-white" />
+                                  </div>
+                                  <div className="min-w-0">
+                                    <div className="font-medium text-gray-800 text-sm group-hover:text-blue-600 transition-colors">
+                                      {p.name}
+                                    </div>
+                                    <div className="text-xs text-gray-500 truncate">
+                                      {p.typicalDosage}
+                                    </div>
+                                  </div>
+                                </Link>
+                              )
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </div>
+
+                      <div className="border-t border-blue-200 bg-blue-50 px-6 md:px-8 py-4">
+                        <div className="flex items-start gap-3">
+                          <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={24} height={24} className="flex-shrink-0 w-8 h-8 rounded-full object-cover mt-0.5" />
+                          <div>
+                            <div className="text-xs font-semibold text-blue-600 mb-1">Dr. Taylor&apos;s 2 Cents</div>
+                            <p className="text-sm text-gray-600 italic leading-relaxed">
+                              &ldquo;{stack.drTaylorNote}&rdquo;
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               );
             })}
+
+            {!unlocked && (
+              <LeadCaptureGate source="protocols" onUnlocked={() => setUnlocked(true)} />
+            )}
           </div>
         )}
 
