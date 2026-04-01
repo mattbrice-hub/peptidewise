@@ -336,56 +336,64 @@ function renderNumberEdit(sectionId,fieldKey,value){
   return `<input type="number" class="edit-number${changed?" changed":""}" value="${current}" data-section="${sectionId}" data-field="${fieldKey}" data-original="${value}" oninput="handleInline(this)">`;
 }
 
-function getListVal(sectionId, fieldKey, originalArr) {
+// Store original arrays by key so we don't inline JSON in HTML attributes
+const _origLists = {};
+function _origKey(sectionId, fieldKey) { return sectionId + "::" + fieldKey; }
+function _storeOrig(sectionId, fieldKey, arr) { _origLists[_origKey(sectionId, fieldKey)] = arr; }
+function _getOrig(sectionId, fieldKey) { return _origLists[_origKey(sectionId, fieldKey)] || []; }
+
+function getListVal(sectionId, fieldKey) {
   const s = state[sectionId];
   if (s && s.changes && s.changes[fieldKey] !== undefined) {
-    return s.changes[fieldKey];
+    return [...s.changes[fieldKey]];
   }
-  return [...originalArr];
+  return [..._getOrig(sectionId, fieldKey)];
 }
 
-function handleListChange(sectionId, fieldKey, originalArr, newArr) {
+function handleListChange(sectionId, fieldKey, newArr) {
   if (!state[sectionId]) state[sectionId] = {status:"pending", note:"", changes:{}};
   if (!state[sectionId].changes) state[sectionId].changes = {};
-  const same = JSON.stringify(newArr) === JSON.stringify(originalArr);
+  const orig = _getOrig(sectionId, fieldKey);
+  const same = JSON.stringify(newArr) === JSON.stringify(orig);
   if (same) delete state[sectionId].changes[fieldKey];
   else state[sectionId].changes[fieldKey] = newArr;
   saveState(); render();
 }
 
-function handleListItemEdit(sectionId, fieldKey, originalArr, index, newValue) {
-  const current = getListVal(sectionId, fieldKey, originalArr);
+function handleListItemEdit(sectionId, fieldKey, index, newValue) {
+  const current = getListVal(sectionId, fieldKey);
   current[index] = newValue;
-  handleListChange(sectionId, fieldKey, originalArr, current);
+  handleListChange(sectionId, fieldKey, current);
 }
 
-function handleListItemRemove(sectionId, fieldKey, originalArr, index) {
-  const current = getListVal(sectionId, fieldKey, originalArr);
+function handleListItemRemove(sectionId, fieldKey, index) {
+  const current = getListVal(sectionId, fieldKey);
   current.splice(index, 1);
-  handleListChange(sectionId, fieldKey, originalArr, current);
+  handleListChange(sectionId, fieldKey, current);
 }
 
-function handleListItemAdd(sectionId, fieldKey, originalArr) {
-  const current = getListVal(sectionId, fieldKey, originalArr);
+function handleListItemAdd(sectionId, fieldKey) {
+  const current = getListVal(sectionId, fieldKey);
   current.push("");
-  handleListChange(sectionId, fieldKey, originalArr, current);
+  handleListChange(sectionId, fieldKey, current);
 }
 
 function renderEditableList(sectionId, fieldKey, originalArr, borderStyle) {
-  const current = getListVal(sectionId, fieldKey, originalArr);
-  const changed = JSON.stringify(current) !== JSON.stringify(originalArr);
+  _storeOrig(sectionId, fieldKey, originalArr);
+  const current = getListVal(sectionId, fieldKey);
   const bs = borderStyle || "";
   let html = `<div class="list-editor">`;
   current.forEach((item, i) => {
-    const itemChanged = i >= originalArr.length || item !== originalArr[i];
+    const orig = _getOrig(sectionId, fieldKey);
+    const itemChanged = i >= orig.length || item !== orig[i];
     html += `<div class="list-item">
-      <input value="${(item||"").replace(/"/g,"&quot;")}" class="${itemChanged?"changed":""}" style="${bs}"
-        onchange="handleListItemEdit('${sectionId}','${fieldKey}',${JSON.stringify(originalArr).replace(/'/g,"\\'")},${i},this.value)"
+      <input value="${(item||"").replace(/"/g,"&amp;quot;")}" class="${itemChanged?"changed":""}" style="${bs}"
+        onchange="handleListItemEdit('${sectionId}','${fieldKey}',${i},this.value)"
         placeholder="Enter item...">
-      <button class="remove-btn" onclick="handleListItemRemove('${sectionId}','${fieldKey}',${JSON.stringify(originalArr).replace(/'/g,"\\'")},${i})" title="Remove">&times;</button>
+      <button class="remove-btn" onclick="handleListItemRemove('${sectionId}','${fieldKey}',${i})" title="Remove">&times;</button>
     </div>`;
   });
-  html += `<button class="add-btn" onclick="handleListItemAdd('${sectionId}','${fieldKey}',${JSON.stringify(originalArr).replace(/'/g,"\\'")})">+ Add item</button>`;
+  html += `<button class="add-btn" onclick="handleListItemAdd('${sectionId}','${fieldKey}')">+ Add item</button>`;
   html += `</div>`;
   return html;
 }
