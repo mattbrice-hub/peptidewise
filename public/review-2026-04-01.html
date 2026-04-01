@@ -679,7 +679,13 @@ function exportMarkdown(){
       if(changes){
         md += `\n**Content Changes:**\n`;
         for(const[field,value] of Object.entries(s.changes)){
-          md += `\n#### Field: \`${field}\`\n\`\`\`\n${value}\n\`\`\`\n`;
+          if(Array.isArray(value)){
+            md += `\n#### Field: \`${field}\`\n`;
+            value.forEach((item,i) => { md += `${i+1}. ${item}\n`; });
+            md += `\n`;
+          } else {
+            md += `\n#### Field: \`${field}\`\n\`\`\`\n${value}\n\`\`\`\n`;
+          }
         }
       }
       md += "\n";
