@@ -1927,115 +1927,67 @@ export const researchStudies: ResearchStudy[] = [
   },
   {
     pmid: "33601309",
-    title: "Design of pyrido[2,3-d]pyrimidin-7-one inhibitors of receptor interacting protein kinase-2 (RIPK2) and nucleotide-binding oligomerization domain (NOD) cell signaling",
-    authors: "Nikhar S, Siokas I, Schlicher L, et al.",
-    journal: "European journal of medicinal chemistry",
-    pubDate: "2021 Apr 5",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Advanced the design of novel kinase inhibitors that modulate cellular signaling pathways related to inflammation and immune regulation, relevant to NAD+ metabolism and cellular health optimization.",
+    title: "Possible Role of Transthyretin in the Biological Mechanism of the Regulatory Peptide Neuroprotection",
+    authors: "Vyunova TV, Medvedeva EV, Andreeva LA, et al.",
+    journal: "Molecular Genetics, Microbiology and Virology",
+    pubDate: "2016",
+    peptideId: "semax",
+    peptideName: "Semax",
+    keyFinding: "Discovered that Semax dramatically altered transthyretin gene expression during brain ischemia, identifying a novel neuroprotective pathway through which the peptide may protect the brain during stroke.",
     takeaways: [
-      "Scientists are designing increasingly precise molecular tools to target inflammation at the cellular level.",
-      "These compounds work on signaling pathways closely connected to cellular energy and repair.",
-      "Better targeting of inflammatory pathways supports overall cellular health and longevity."
+      "Semax changed the expression of a key brain-protective protein (transthyretin) during stroke conditions.",
+      "This suggests Semax works through a previously unknown neuroprotective pathway.",
+      "Understanding this mechanism opens the door to more targeted brain-protective therapies."
     ],
-    content: "The development of targeted molecular therapeutics continues to advance our ability to modulate specific cellular pathways involved in health and disease. This study by Nikhar, Siokas, Schlicher, and colleagues, published in the European Journal of Medicinal Chemistry, described the design of novel inhibitors targeting the RIPK2-NOD cell signaling pathway.\n\nThe researchers used structure-based drug design to develop pyrido[2,3-d]pyrimidin-7-one compounds that selectively inhibit RIPK2, a key kinase in the NOD inflammatory signaling pathway. They optimized the compounds for potency, selectivity, and drug-like properties through iterative design and testing cycles.\n\nThe resulting compounds demonstrated effective inhibition of the RIPK2-NOD signaling cascade, which plays important roles in innate immune activation and inflammatory responses. These signaling pathways intersect with NAD+ metabolism and cellular energy regulation, connecting inflammation control to the broader landscape of cellular health optimization.\n\nFor the field of cellular health and anti-aging medicine, this work illustrates how targeted modulation of inflammatory signaling can complement NAD+ optimization strategies. By reducing chronic low-grade inflammation — a hallmark of aging — alongside supporting NAD+ levels through compounds like C-Max, clinicians can address multiple pillars of cellular aging simultaneously."
+    content: "Understanding how neuroprotective peptides work at the molecular level is essential for optimizing their clinical use. This study by Vyunova, Medvedeva, Andreeva, and colleagues investigated a potential new mechanism behind Semax's well-documented neuroprotective effects during ischemic stroke.\n\nThe researchers examined how Semax affects gene transcription profiles in rat brain tissue experiencing focal ischemia (reduced blood flow). They focused particularly on changes in transthyretin (Ttr) expression, a protein with known neuroprotective properties that transports thyroid hormones and helps clear amyloid beta from the brain.\n\nThe results revealed that Semax significantly altered transthyretin gene expression, with dramatic differences observed between untreated ischemic conditions and those treated with Semax. The magnitude of the Ttr expression change suggested this pathway may be a major mediator of Semax's protective effects during stroke.\n\nThis discovery adds an important piece to our understanding of how Semax protects the brain. Transthyretin has established roles in neuroprotection, amyloid clearance, and thyroid hormone transport — all processes critical for brain health. By identifying Ttr as a potential mediator of Semax's effects, this study suggests the peptide's benefits extend beyond simple neurotrophic factor activation to encompass broader neuroprotective mechanisms."
   },
   {
-    pmid: "26785480",
-    title: "NAD\u207a in aging, metabolism, and neurodegeneration",
-    authors: "Verdin E",
-    journal: "Science (New York, N.Y.)",
-    pubDate: "2015 Dec 4",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Established the critical importance of NAD+ decline in aging, metabolism, and neurodegeneration, providing the scientific foundation for NAD+ optimization as an anti-aging strategy.",
+    pmid: "19633950",
+    title: "Semax and Pro-Gly-Pro activate the transcription of neurotrophins and their receptor genes after cerebral ischemia",
+    authors: "Dmitrieva VG, Povarova OV, Skvortsova VI, et al.",
+    journal: "Cell and Molecular Neurobiology",
+    pubDate: "2010 Oct",
+    peptideId: "semax",
+    peptideName: "Semax",
+    keyFinding: "Demonstrated that Semax selectively activates transcription of BDNF, TrkC, and TrkA neurotrophins in ischemic brain cortex, providing targeted neuroprotective gene activation after stroke.",
     takeaways: [
-      "NAD+ levels naturally decline with age, and this decline drives many aspects of aging.",
-      "Low NAD+ contributes to metabolic dysfunction, brain aging, and cellular deterioration.",
-      "Boosting NAD+ levels is one of the most promising strategies for healthy aging."
+      "Semax turned on genes for BDNF and other brain growth factors within hours after stroke.",
+      "Unlike its component PGP, Semax showed selective and targeted effects on specific neurotrophic pathways.",
+      "This means Semax doesn't just broadly stimulate the brain — it precisely activates the repair systems needed after injury."
     ],
-    content: "Published in Science, one of the world's most prestigious scientific journals, this landmark review by Verdin established the central role of NAD+ in aging biology. It became a foundational reference for the entire field of NAD+ optimization and anti-aging medicine.\n\nThe author conducted a comprehensive examination of the evidence linking NAD+ metabolism to aging, metabolic health, and neurodegenerative disease. The review synthesized findings from molecular biology, animal studies, and emerging human research to build a compelling case for NAD+ as a critical molecule in the aging process.\n\nThe evidence presented was decisive: NAD+ levels decline significantly with age, and this decline directly contributes to mitochondrial dysfunction, impaired DNA repair, metabolic deterioration, and neurodegeneration. NAD+ serves as an essential cofactor for sirtuins and PARPs — enzymes that protect genomic integrity and regulate cellular metabolism. As NAD+ falls, these protective systems become less effective.\n\nThis Science publication was instrumental in launching the modern NAD+ optimization movement. By establishing the mechanistic links between NAD+ decline and age-related disease, it provided the scientific rationale for supplementation strategies aimed at restoring youthful NAD+ levels. Compounds like C-Max, designed to optimize NAD+ availability, directly address the biological pathways identified in this foundational review."
+    content: "Neurotrophic factors like BDNF are essential for brain repair after injury, and finding ways to boost their production during the critical window after stroke could save lives and cognitive function. This study by Dmitrieva, Povarova, Skvortsova, and colleagues, published in Cell and Molecular Neurobiology, examined how Semax activates neurotrophin gene expression after cerebral ischemia.\n\nThe researchers induced focal cerebral ischemia in rats and administered either Semax or its component tripeptide Pro-Gly-Pro (PGP) during the acute phase. They measured the transcription of neurotrophin genes and their receptors at multiple time points — 3, 24, and 72 hours after the ischemic event — to track the temporal dynamics of the neuroprotective response.\n\nThe findings revealed a precisely orchestrated response. Semax enhanced transcription of BDNF, TrkC, and TrkA at 3 hours post-ischemia, while later time points showed increased NT-3 and NGF expression. Critically, Semax selectively affected neurotrophin transcription in the ischemic rat cortex, whereas PGP's influence was mainly nonspecific. This selectivity suggests Semax has more targeted therapeutic potential for acute stroke treatment.\n\nThis study provides crucial mechanistic evidence for Semax's neuroprotective effects. By showing that the peptide rapidly and selectively activates the brain's own neurotrophic repair systems, it supports Semax's use in acute neuroprotective protocols. The temporal dynamics — early BDNF activation followed by sustained NGF and NT-3 expression — suggest Semax supports both immediate brain protection and longer-term neural repair."
   },
   {
-    pmid: "24786309",
-    title: "NAD+ and sirtuins in aging and disease",
-    authors: "Imai S, Guarente L",
-    journal: "Trends in cell biology",
-    pubDate: "2014 Aug",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Detailed the critical relationship between NAD+ and sirtuin enzymes in aging and disease, explaining how maintaining NAD+ levels supports the body's most important cellular protection pathways.",
+    pmid: "24661604",
+    title: "The peptide semax affects the expression of genes related to the immune and vascular systems in rat brain focal ischemia: genome-wide transcriptional analysis",
+    authors: "Medvedeva EV, Dmitrieva VG, Povarova OV, et al.",
+    journal: "BMC Genomics",
+    pubDate: "2014 Mar 24",
+    peptideId: "semax",
+    peptideName: "Semax",
+    keyFinding: "Genome-wide analysis revealed Semax predominantly enhances immune-related gene expression and modifies vascular development genes during brain ischemia, explaining its broad neuroprotective mechanism.",
     takeaways: [
-      "NAD+ fuels sirtuin enzymes — the body's key regulators of aging, stress resistance, and metabolism.",
-      "When NAD+ drops with age, sirtuins can't do their job, accelerating cellular decline.",
-      "Restoring NAD+ levels reactivates these protective enzymes and supports healthier aging."
+      "A genome-wide study showed Semax activates over 50% of its affected genes in the immune system category.",
+      "It also enhanced genes controlling blood vessel development, helping restore circulation to damaged brain areas.",
+      "This dual immune-vascular mechanism explains why Semax is so effective at protecting the brain during stroke."
     ],
-    content: "The relationship between NAD+ and the sirtuin family of enzymes represents one of the most important discoveries in aging biology. This influential review by Imai and Guarente, published in Trends in Cell Biology, explored this critical connection and its implications for aging and disease.\n\nThe authors, both pioneers in sirtuin and NAD+ research, synthesized decades of research on how NAD+ serves as the essential substrate for sirtuin activity. They examined the evidence showing that age-related NAD+ decline compromises sirtuin function, and how this contributes to the hallmarks of aging including genomic instability, mitochondrial dysfunction, and metabolic deterioration.\n\nThe review established that sirtuins function as critical sensors of cellular NAD+ status, linking metabolic inputs to protective biological responses. When NAD+ is abundant, sirtuins actively protect cells by deacetylating key regulatory proteins, maintaining genomic stability, promoting mitochondrial health, and modulating inflammation. When NAD+ declines, these protective functions diminish, leaving cells vulnerable to age-related damage.\n\nThis work provides the mechanistic foundation for NAD+ supplementation as an anti-aging strategy. By restoring NAD+ levels through compounds like C-Max, it becomes possible to reactivate sirtuin-mediated protective pathways. The Imai-Guarente framework has become one of the most cited models in longevity science and continues to guide both research and clinical approaches to healthy aging."
+    content: "Understanding the full scope of a drug's effects at the genetic level provides the deepest insights into how it works. This genome-wide transcriptional analysis by Medvedeva, Dmitrieva, Povarova, and colleagues, published in BMC Genomics, mapped Semax's complete genetic fingerprint during brain ischemia.\n\nThe researchers performed whole-genome transcriptional profiling of brain tissue from rats experiencing focal ischemia, comparing animals treated with Semax to untreated controls at 3 and 24 hours after the ischemic event. This comprehensive approach captured the full spectrum of Semax's effects on gene expression.\n\nThe results revealed a striking pattern: Semax predominantly enhanced genes associated with the immune system. At 24 hours post-stroke, over 50% of the genes altered by Semax treatment related to immune function, including those encoding immunoglobulins and chemokines. Additionally, Semax significantly modified expression of genes governing vascular development and endothelial tissue migration, suggesting it actively promotes the restoration of blood supply to damaged brain regions.\n\nThis genome-wide study provides the most comprehensive picture yet of how Semax protects the brain. The dual immunomodulatory and vascular mechanism explains the peptide's remarkable effectiveness in stroke models — it simultaneously calms harmful inflammation while promoting the blood vessel growth needed to restore circulation. This broad genomic impact positions Semax as one of the most mechanistically well-understood neuroprotective peptides available."
   },
   {
-    pmid: "34843394",
-    title: "NAD(+) Metabolism in Cardiac Health, Aging, and Disease",
-    authors: "Abdellatif M, Sedej S, Kroemer G",
-    journal: "Circulation",
-    pubDate: "2021 Nov 30",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Demonstrated that NAD+ metabolism is critically important for heart health, with declining NAD+ levels contributing to cardiac aging and heart disease, supporting NAD+ optimization for cardiovascular protection.",
+    pmid: "10358912",
+    title: "Investigation of mechanisms of neuro-protective effect of semax in acute period of ischemic stroke",
+    authors: "Miasoedova NF, Skvortsova VI, Nasonov EL, et al.",
+    journal: "Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova",
+    pubDate: "1999",
+    peptideId: "semax",
+    peptideName: "Semax",
+    keyFinding: "Demonstrated Semax's angioprotective and antihypoxic properties during acute ischemic stroke, with a key mechanism involving the shift from pro-inflammatory to anti-inflammatory cytokine balance.",
     takeaways: [
-      "Your heart is especially dependent on NAD+ to keep functioning well as you age.",
-      "Declining NAD+ levels contribute to heart disease and cardiac aging.",
-      "Boosting NAD+ could help protect the heart and support cardiovascular longevity."
+      "Semax protected brain blood vessels and reduced oxygen deprivation damage during acute stroke.",
+      "It shifted the immune response from harmful inflammation toward protective anti-inflammatory activity.",
+      "This foundational study helped establish Semax as a clinically used neuroprotective treatment in Russia."
     ],
-    content: "The heart is one of the most metabolically active organs in the body, making it particularly dependent on robust NAD+ metabolism for optimal function. This review by Abdellatif, Sedej, and Kroemer, published in Circulation, examined the role of NAD+ in cardiac health, aging, and disease.\n\nThe authors reviewed the evidence connecting NAD+ metabolism to cardiac function across the lifespan. They examined how NAD+ supports the enormous energy demands of cardiac muscle, protects against oxidative damage, regulates cardiac cell survival pathways, and maintains the structural integrity of the aging heart.\n\nThe findings confirmed that NAD+ decline plays a significant role in cardiac aging and disease. As NAD+ levels fall with age, the heart becomes more vulnerable to oxidative stress, mitochondrial dysfunction, and impaired energy production. This contributes to conditions including heart failure, arrhythmias, and reduced cardiac reserve. Conversely, NAD+ supplementation in preclinical models showed cardioprotective effects.\n\nFor patients concerned about cardiovascular health, this research provides strong rationale for NAD+ optimization as part of a comprehensive heart health strategy. By maintaining adequate NAD+ levels through compounds like C-Max, it may be possible to support cardiac mitochondrial function, enhance cellular repair mechanisms, and protect the heart from the cumulative effects of aging."
-  },
-  {
-    pmid: "37068054",
-    title: "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
-    authors: "Freeberg KA, Udovich CC, Martens CR, et al.",
-    journal: "The journals of gerontology. Series A, Biological sciences and medical sciences",
-    pubDate: "2023 Dec 1",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Reviewed the current state of human clinical evidence for NAD+-boosting supplements, confirming safety and showing emerging evidence of benefits for aging-related outcomes.",
-    takeaways: [
-      "NAD+-boosting supplements have been shown to be safe in multiple human clinical trials.",
-      "Early human studies show promising signs for improving markers of aging and metabolic health.",
-      "The field is rapidly advancing with larger trials expected to confirm the benefits seen in preclinical research."
-    ],
-    content: "As NAD+ optimization has moved from laboratory research to clinical practice, understanding the human evidence base has become essential. This timely review by Freeberg, Udovich, Martens, and colleagues, published in The Journals of Gerontology, evaluated the current state of knowledge on NAD+-boosting supplementation in humans.\n\nThe authors systematically reviewed human clinical trials of NAD+ precursors and boosting compounds, assessing safety data, pharmacokinetic profiles, biomarker changes, and clinical outcomes. They examined multiple NAD+ supplementation strategies and compared their effectiveness in raising NAD+ levels and producing measurable health benefits.\n\nThe review confirmed that NAD+-boosting compounds have a strong safety profile across multiple human trials. Several studies demonstrated effective elevation of blood NAD+ levels following supplementation. Emerging evidence also pointed to improvements in aging-related biomarkers, including markers of inflammation, oxidative stress, and metabolic function, though larger trials are needed for definitive clinical outcome data.\n\nThis review is particularly valuable for clinicians and patients considering NAD+ optimization strategies. The confirmed safety profile, combined with promising early efficacy signals, supports the use of NAD+-boosting compounds like C-Max as part of a proactive approach to healthy aging. The authors note that the field is moving rapidly toward the larger randomized controlled trials that will establish definitive clinical guidelines."
-  },
-  {
-    pmid: "34497121",
-    title: "NAD(+) supplementation reduces neuroinflammation and cell senescence in a transgenic mouse model of Alzheimer's disease via cGAS-STING",
-    authors: "Hou Y, Wei Y, Lautrup S, et al.",
-    journal: "Proceedings of the National Academy of Sciences of the United States of America",
-    pubDate: "2021 Sep 14",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Showed that NAD+ supplementation significantly reduces brain inflammation and cellular aging in an Alzheimer's disease model, revealing a specific protective mechanism through the cGAS-STING pathway.",
-    takeaways: [
-      "NAD+ supplementation reduced brain inflammation and slowed cellular aging in Alzheimer's research models.",
-      "It works by calming a specific inflammatory pathway (cGAS-STING) that drives neurodegeneration.",
-      "These findings suggest NAD+ optimization could play a role in protecting brain health as we age."
-    ],
-    content: "Neuroinflammation and cellular senescence are major drivers of Alzheimer's disease progression, and finding ways to combat these processes is critical for protecting brain health. This study by Hou, Wei, Lautrup, and colleagues, published in PNAS, investigated whether NAD+ supplementation could reduce these harmful processes in an Alzheimer's disease model.\n\nThe researchers used a well-characterized transgenic mouse model of Alzheimer's disease and administered NAD+ supplementation over an extended period. They measured neuroinflammation, cellular senescence markers, cognitive function, and specifically examined the cGAS-STING innate immune signaling pathway as a potential mediator of NAD+'s effects.\n\nThe results were highly encouraging: NAD+ supplementation significantly reduced neuroinflammation and cellular senescence in the Alzheimer's model brains. The protective effects were mediated through suppression of the cGAS-STING pathway, which is increasingly recognized as a key driver of age-related inflammation. Treated animals also showed improvements in cognitive-related measures.\n\nThis PNAS publication provides compelling evidence that NAD+ optimization could play an important role in brain health and neuroprotection. By targeting the cGAS-STING inflammatory pathway, NAD+ supplementation addresses a fundamental mechanism of neurodegeneration. For individuals looking to protect cognitive function as they age, these findings support NAD+ optimization through compounds like C-Max as part of a comprehensive brain health strategy."
-  },
-  {
-    pmid: "37683629",
-    title: "NAD(+) rescues aging-induced blood-brain barrier damage via the CX43-PARP1 axis",
-    authors: "Zhan R, Meng X, Tian D, et al.",
-    journal: "Neuron",
-    pubDate: "2023 Nov 15",
-    peptideId: "c-max",
-    peptideName: "C-Max",
-    keyFinding: "Demonstrated that NAD+ supplementation can rescue the aging-damaged blood-brain barrier, restoring a critical protective structure that shields the brain from harmful substances.",
-    takeaways: [
-      "NAD+ can repair the blood-brain barrier, a critical shield that protects the brain from toxins and inflammation.",
-      "This barrier naturally weakens with age, contributing to cognitive decline and neurodegeneration.",
-      "Restoring NAD+ levels helps maintain this protective barrier and supports long-term brain health."
-    ],
-    content: "The blood-brain barrier (BBB) is one of the body's most important protective structures, shielding the brain from harmful substances circulating in the blood. This groundbreaking study by Zhan, Meng, Tian, and colleagues, published in Neuron, discovered that NAD+ supplementation can rescue the BBB from age-related damage.\n\nThe researchers investigated how aging affects blood-brain barrier integrity and whether NAD+ supplementation could reverse this damage. They used aged animal models and examined the BBB at both the structural and molecular levels, identifying the CX43-PARP1 signaling axis as a critical mediator of NAD+'s protective effects.\n\nThe findings were striking: aging caused significant blood-brain barrier deterioration, allowing harmful substances to leak into the brain and promoting neuroinflammation. NAD+ supplementation effectively reversed this damage by restoring CX43-PARP1 signaling, rebuilding tight junction integrity, and re-establishing the barrier's protective function. The rescued BBB showed function comparable to that of much younger animals.\n\nThis Neuron publication represents one of the most compelling demonstrations of NAD+'s neuroprotective potential. The blood-brain barrier is essential for cognitive health, and its deterioration with age is thought to contribute significantly to dementia and neurodegenerative disease. By showing that NAD+ optimization can restore this critical protective structure, the study provides powerful rationale for including NAD+-boosting compounds like C-Max in brain health and longevity protocols."
+    content: "This pioneering study by Miasoedova, Skvortsova, Nasonov, and colleagues was among the first to investigate the specific mechanisms behind Semax's neuroprotective effects during acute ischemic stroke, laying the groundwork for its clinical adoption.\n\nThe researchers studied patients and animal models during the acute phase of ischemic stroke, examining how Semax at doses of 100-150 micrograms per kilogram affected vascular protection, oxygen deprivation resistance, and inflammatory markers. They measured cytokine levels in cerebrospinal fluid to understand the immunological mechanisms at play.\n\nThe findings demonstrated that Semax provided significant angioprotective (blood vessel protective) and antihypoxic (oxygen deprivation resistance) effects during acute stroke. The key mechanistic discovery was that Semax shifted the inflammatory balance — promoting anti-inflammatory cytokines like interleukin-10 while suppressing pro-inflammatory markers including interleukin-8 and C-reactive protein. This immune rebalancing appeared central to its neuroprotective effects.\n\nThis foundational study was instrumental in establishing Semax as a clinically approved treatment for stroke recovery in Russia. By demonstrating both the clinical benefit and the specific immunological mechanism, it provided the evidence base that has supported decades of clinical use. The cytokine-balancing mechanism discovered here remains one of the best-understood pathways of peptide-mediated neuroprotection."
   },
   {
     pmid: "27138887",

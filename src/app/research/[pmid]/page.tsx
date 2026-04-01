@@ -24,7 +24,7 @@ const peptideColors: Record<string, string> = {
   "aod-9604": "bg-orange-50 text-orange-700 border-orange-200",
   "kpv": "bg-teal-50 text-teal-700 border-teal-200",
   "ll-37": "bg-teal-50 text-teal-700 border-teal-200",
-  "c-max": "bg-amber-50 text-amber-700 border-amber-200",
+  "semax": "bg-indigo-50 text-indigo-700 border-indigo-200",
   "5-amino-1mq": "bg-orange-50 text-orange-700 border-orange-200",
   "mots-c": "bg-amber-50 text-amber-700 border-amber-200",
   "kisspeptin": "bg-pink-50 text-pink-700 border-pink-200",
