@@ -46,6 +46,8 @@ const symptomCategories = [
     id: "weight-body",
     name: "Weight & Body Composition",
     icon: Scale,
+    description: "Weight loss, metabolism, body fat",
+    color: "bg-green-50 border-green-200 hover:bg-green-100",
     symptoms: [
       { id: "difficulty-losing-weight", name: "Difficulty losing weight" },
       { id: "slow-metabolism", name: "Slow metabolism" },
@@ -58,6 +60,8 @@ const symptomCategories = [
     id: "sleep-recovery",
     name: "Sleep & Recovery",
     icon: Moon,
+    description: "Sleep quality, muscle recovery, HGH",
+    color: "bg-violet-50 border-violet-200 hover:bg-violet-100",
     symptoms: [
       { id: "poor-sleep-quality", name: "Poor sleep quality" },
       { id: "difficulty-falling-asleep", name: "Difficulty falling asleep" },
@@ -70,6 +74,8 @@ const symptomCategories = [
     id: "pain-inflammation",
     name: "Pain & Inflammation",
     icon: Flame,
+    description: "Joint pain, chronic inflammation, healing",
+    color: "bg-orange-50 border-orange-200 hover:bg-orange-100",
     symptoms: [
       { id: "joint-pain", name: "Joint pain or stiffness" },
       { id: "chronic-inflammation", name: "Chronic inflammation" },
@@ -82,6 +88,8 @@ const symptomCategories = [
     id: "cognitive-mood",
     name: "Cognitive & Mood",
     icon: Brain,
+    description: "Brain fog, anxiety, focus, mood",
+    color: "bg-indigo-50 border-indigo-200 hover:bg-indigo-100",
     symptoms: [
       { id: "brain-fog", name: "Brain fog" },
       { id: "anxiety", name: "Anxiety or nervousness" },
@@ -94,6 +102,8 @@ const symptomCategories = [
     id: "aging-longevity",
     name: "Aging & Longevity",
     icon: Clock,
+    description: "Anti-aging, vitality, longevity",
+    color: "bg-purple-50 border-purple-200 hover:bg-purple-100",
     symptoms: [
       { id: "premature-aging", name: "Premature aging signs" },
       { id: "low-energy-aging", name: "Declining energy levels" },
@@ -106,6 +116,8 @@ const symptomCategories = [
     id: "immune-health",
     name: "Immune Health",
     icon: Shield,
+    description: "Immunity, infections, autoimmune",
+    color: "bg-red-50 border-red-200 hover:bg-red-100",
     symptoms: [
       { id: "frequent-infections", name: "Frequent infections" },
       { id: "slow-immune-healing", name: "Slow healing from illness" },
@@ -118,6 +130,8 @@ const symptomCategories = [
     id: "sexual-health",
     name: "Sexual Health",
     icon: Heart,
+    description: "Libido, performance, hormones",
+    color: "bg-pink-50 border-pink-200 hover:bg-pink-100",
     symptoms: [
       { id: "low-libido", name: "Low libido" },
       { id: "erectile-dysfunction", name: "Erectile dysfunction" },
@@ -129,6 +143,8 @@ const symptomCategories = [
     id: "skin-hair",
     name: "Skin & Hair",
     icon: Sparkles,
+    description: "Skin rejuvenation, hair growth, healing",
+    color: "bg-amber-50 border-amber-200 hover:bg-amber-100",
     symptoms: [
       { id: "wrinkles-fine-lines", name: "Wrinkles and fine lines" },
       { id: "hair-thinning", name: "Hair thinning or loss" },
@@ -141,6 +157,8 @@ const symptomCategories = [
     id: "gut-health",
     name: "Gut Health",
     icon: Apple,
+    description: "IBS, leaky gut, digestion, bloating",
+    color: "bg-emerald-50 border-emerald-200 hover:bg-emerald-100",
     symptoms: [
       { id: "ibs-symptoms", name: "IBS symptoms" },
       { id: "leaky-gut", name: "Leaky gut syndrome" },
@@ -196,7 +214,7 @@ function matchStacks(
 
 export default function StacksPage() {
   const [step, setStep] = useState(1);
-  const [age, setAge] = useState("");
+  const [birthYear, setBirthYear] = useState("");
   const [gender, setGender] = useState<"male" | "female" | "">("");
   const [heightFeet, setHeightFeet] = useState("");
   const [heightInches, setHeightInches] = useState("");
@@ -209,6 +227,8 @@ export default function StacksPage() {
   useEffect(() => {
     if (localStorage.getItem("peptidewise_unlocked") === "true") setUnlocked(true);
   }, []);
+
+  const age = birthYear ? String(new Date().getFullYear() - parseInt(birthYear)) : "";
 
   const toggleSymptom = (id: string) => {
     setSelectedSymptoms((prev) =>
@@ -225,11 +245,7 @@ export default function StacksPage() {
   const totalHeightInches =
     (parseInt(heightFeet) || 0) * 12 + (parseInt(heightInches) || 0);
 
-  const canProceedStep1 =
-    age !== "" &&
-    parseInt(age) >= 18 &&
-    parseInt(age) <= 100 &&
-    gender !== "";
+  const canProceedStep1 = birthYear !== "" && gender !== "";
 
   const canProceedStep2 =
     heightFeet !== "" &&
@@ -536,22 +552,18 @@ export default function StacksPage() {
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-3">
                   <Calendar className="h-4 w-4 inline mr-2 text-gray-600" />
-                  Age
+                  Birth Year
                 </label>
-                <input
-                  type="number"
-                  min="18"
-                  max="100"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  placeholder="Enter your age"
-                  className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
-                />
-                {age !== "" && parseInt(age) < 18 && (
-                  <p className="text-xs text-red-600 mt-1">
-                    Must be 18 or older
-                  </p>
-                )}
+                <select
+                  value={birthYear}
+                  onChange={(e) => setBirthYear(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 focus:border-blue-500 focus:outline-none transition-colors appearance-none"
+                >
+                  <option value="">Select your birth year</option>
+                  {Array.from({ length: 83 }, (_, i) => new Date().getFullYear() - 18 - i).map((year) => (
+                    <option key={year} value={String(year)}>{year}</option>
+                  ))}
+                </select>
               </div>
 
               <div>
@@ -610,28 +622,28 @@ export default function StacksPage() {
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <input
-                      type="number"
-                      min="3"
-                      max="8"
+                    <select
                       value={heightFeet}
                       onChange={(e) => setHeightFeet(e.target.value)}
-                      placeholder="Feet"
-                      className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
-                    />
-                    <span className="text-xs text-gray-500 mt-1 block">ft</span>
+                      className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 focus:border-blue-500 focus:outline-none transition-colors appearance-none"
+                    >
+                      <option value="">Feet</option>
+                      {[4, 5, 6, 7].map((ft) => (
+                        <option key={ft} value={String(ft)}>{ft} ft</option>
+                      ))}
+                    </select>
                   </div>
                   <div>
-                    <input
-                      type="number"
-                      min="0"
-                      max="11"
+                    <select
                       value={heightInches}
                       onChange={(e) => setHeightInches(e.target.value)}
-                      placeholder="Inches"
-                      className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
-                    />
-                    <span className="text-xs text-gray-500 mt-1 block">in</span>
+                      className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 focus:border-blue-500 focus:outline-none transition-colors appearance-none"
+                    >
+                      <option value="">Inches</option>
+                      {Array.from({ length: 12 }, (_, i) => i).map((inch) => (
+                        <option key={inch} value={String(inch)}>{inch} in</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
               </div>
@@ -714,39 +726,39 @@ export default function StacksPage() {
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid sm:grid-cols-2 gap-3">
               {symptomCategories.map((cat) => {
                 const isExpanded = expandedCategories.includes(cat.id);
                 const selectedInCategory = cat.symptoms.filter((s) =>
                   selectedSymptoms.includes(s.id)
                 ).length;
+                const CatIcon = cat.icon;
 
                 return (
                   <div
                     key={cat.id}
-                    className="rounded-xl border border-gray-200 overflow-hidden"
+                    className={cn(
+                      "rounded-xl border-2 overflow-hidden transition-all",
+                      isExpanded ? "sm:col-span-2 border-blue-300 bg-white" : cat.color
+                    )}
                   >
                     <button
                       onClick={() => toggleCategory(cat.id)}
-                      className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-50 transition-colors"
+                      className={cn(
+                        "w-full flex items-center gap-4 p-4 text-left transition-all",
+                        !isExpanded && cat.color
+                      )}
                     >
-                      <cat.icon className="h-5 w-5 text-gray-600 flex-shrink-0" />
+                      <CatIcon className="h-6 w-6 text-gray-700 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-900 text-sm">
-                          {cat.name}
-                        </div>
+                        <div className="font-medium text-gray-900">{cat.name}</div>
+                        <div className="text-sm text-gray-500">{cat.description}</div>
                       </div>
                       {selectedInCategory > 0 && (
                         <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200">
                           {selectedInCategory}
                         </span>
                       )}
-                      <ArrowRight
-                        className={cn(
-                          "h-4 w-4 text-gray-500 transition-transform",
-                          isExpanded && "rotate-90"
-                        )}
-                      />
                     </button>
 
                     {isExpanded && (
@@ -756,15 +768,15 @@ export default function StacksPage() {
                             key={symptom.id}
                             onClick={() => toggleSymptom(symptom.id)}
                             className={cn(
-                              "w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all text-sm",
+                              "w-full flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all",
                               selectedSymptoms.includes(symptom.id)
-                                ? "bg-blue-50 border border-blue-200"
-                                : "hover:bg-gray-50 border border-transparent"
+                                ? "border-blue-500 bg-blue-50"
+                                : "border-gray-200 bg-white hover:border-gray-300"
                             )}
                           >
                             <div
                               className={cn(
-                                "w-4 h-4 rounded border flex items-center justify-center flex-shrink-0",
+                                "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0",
                                 selectedSymptoms.includes(symptom.id)
                                   ? "border-blue-500 bg-blue-500"
                                   : "border-gray-300"
@@ -776,8 +788,9 @@ export default function StacksPage() {
                             </div>
                             <span
                               className={cn(
+                                "font-medium",
                                 selectedSymptoms.includes(symptom.id)
-                                  ? "text-gray-800"
+                                  ? "text-gray-900"
                                   : "text-gray-600"
                               )}
                             >
