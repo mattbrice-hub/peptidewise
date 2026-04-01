@@ -102,7 +102,7 @@ function extractYear(pubDate: string): string {
 export default function ResearchPage() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
 
   const filteredStudies = useMemo(() => {
     return researchStudies.filter((study) => {
