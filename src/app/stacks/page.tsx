@@ -292,10 +292,14 @@ export default function StacksPage() {
             Analysis Complete
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-            We have {results.length} protocol{results.length !== 1 ? "s" : ""} that fit your needs
+            {results.length > 0
+              ? `We have ${results.length} protocol${results.length !== 1 ? "s" : ""} that fit your needs`
+              : "Dr. Taylor can build a custom protocol for you"}
           </h1>
           <p className="text-gray-500 mb-8">
-            Matched for a {age}-year-old {gender}, BMI {bmiValue}
+            {results.length > 0
+              ? `Matched for a ${age}-year-old ${gender}, BMI ${bmiValue}`
+              : "Your profile may benefit from a physician-designed protocol tailored to your specific needs."}
           </p>
           <LeadCaptureGate source="protocols" onUnlocked={() => setUnlocked(true)} />
         </div>
@@ -315,27 +319,41 @@ export default function StacksPage() {
           <p className="text-gray-600">
             {results.length > 0
               ? `Dr. Taylor selected ${results.length} protocol${results.length !== 1 ? "s" : ""} for a ${age}-year-old ${gender}, BMI ${bmiValue}`
-              : "No protocols matched your profile"}
+              : `Personalized recommendation for a ${age}-year-old ${gender}, BMI ${bmiValue}`}
           </p>
         </div>
 
         {results.length === 0 ? (
-          <div className="text-center py-16 bg-white shadow-sm rounded-2xl border border-gray-200">
-            <AlertTriangle className="h-12 w-12 text-amber-700 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">No Matching Protocols</h2>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
-              We couldn&apos;t find protocols matching your specific profile. Try selecting
-              different symptoms or adjusting your inputs.
+          <div className="text-center py-12 bg-white shadow-sm rounded-2xl border border-gray-200">
+            <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={80} height={80} className="w-20 h-20 rounded-full object-cover mx-auto mb-5 border-4 border-white shadow-md" />
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Your Goals Deserve a Custom Protocol</h2>
+            <p className="text-gray-600 mb-2 max-w-md mx-auto">
+              Based on your profile, Dr. Taylor recommends a personalized consultation
+              to design a protocol tailored specifically to your body, labs, and health goals.
             </p>
-            <button
-              onClick={() => {
-                setShowResults(false);
-                setStep(3);
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium"
+            <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+              Every patient is different &mdash; a one-on-one evaluation ensures the safest
+              and most effective approach for your situation.
+            </p>
+            <a
+              href="https://tinyurl.com/drtaylorfreeconsult"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-sm mb-4"
             >
-              <ArrowLeft className="h-4 w-4" /> Adjust Symptoms
-            </button>
+              Book a Free Consultation <ArrowRight className="h-4 w-4" />
+            </a>
+            <div>
+              <button
+                onClick={() => {
+                  setShowResults(false);
+                  setStep(3);
+                }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" /> Or adjust your symptoms
+              </button>
+            </div>
           </div>
         ) : (
           <div className="space-y-6">
