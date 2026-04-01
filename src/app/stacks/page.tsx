@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -260,6 +260,25 @@ export default function StacksPage() {
       : null;
 
   if (showResults) {
+    // Gate: show splash + form before any results
+    if (!unlocked) {
+      return (
+        <div className="max-w-lg mx-auto px-4 sm:px-6 py-16 md:py-24 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-600 text-sm font-medium mb-6 border border-green-200">
+            <Check className="h-4 w-4" />
+            Analysis Complete
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            We have {results.length} protocol{results.length !== 1 ? "s" : ""} that fit your needs
+          </h1>
+          <p className="text-gray-500 mb-8">
+            Matched for a {age}-year-old {gender}, BMI {bmiValue}
+          </p>
+          <LeadCaptureGate source="protocols" onUnlocked={() => setUnlocked(true)} />
+        </div>
+      );
+    }
+
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         {/* Header */}
@@ -297,16 +316,15 @@ export default function StacksPage() {
           </div>
         ) : (
           <div className="space-y-6">
-            {results.map(({ stack, relevance, matchedSymptoms }, idx) => {
-              if (!unlocked && idx > 0) return null;
+            {results.map(({ stack, relevance, matchedSymptoms }) => {
               const Icon = iconMap[stack.icon] || FlaskConical;
               const stackPeptides = stack.peptideIds
                 .map((id) => peptides.find((p) => p.id === id))
                 .filter(Boolean);
 
               return (
-                <React.Fragment key={stack.id}>
                 <div
+                  key={stack.id}
                   className="bg-white shadow-sm rounded-2xl border border-gray-200 overflow-hidden"
                 >
                   {/* Protocol header */}
@@ -406,12 +424,8 @@ export default function StacksPage() {
                     </>
                   )}
                 </div>
-              {!unlocked && idx === 0 && (
-                <LeadCaptureGate source="protocols" onUnlocked={() => setUnlocked(true)} />
-              )}
-            </React.Fragment>
-          );
-          })}
+              );
+            })}
 
           </div>
         )}
