@@ -2,58 +2,107 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { BookOpen, ExternalLink, Search, Filter, FlaskConical, ArrowRight } from "lucide-react";
+import {
+  BookOpen,
+  ExternalLink,
+  Search,
+  Filter,
+  FlaskConical,
+  ArrowRight,
+  TrendingUp,
+  Scale,
+  Activity,
+  Hourglass,
+  Brain,
+  Shield,
+  Heart,
+  Moon,
+  Sparkles,
+  ChevronDown,
+} from "lucide-react";
 import { researchStudies } from "@/data/research";
-import { cn } from "@/lib/utils";
+import { peptides } from "@/data/peptides";
+import { cn, getCategoryLabel, getCategoryColor } from "@/lib/utils";
 
-const peptideFilters = [
-  { id: "all", label: "All Peptides" },
-  { id: "bpc-157", label: "BPC-157" },
-  { id: "tb-500", label: "TB-500" },
-  { id: "sermorelin", label: "Sermorelin" },
-  { id: "ipamorelin", label: "Ipamorelin" },
-  { id: "cjc-1295", label: "CJC-1295" },
-  { id: "semaglutide", label: "Semaglutide" },
-  { id: "tirzepatide", label: "Tirzepatide" },
-  { id: "pt-141", label: "PT-141" },
-  { id: "selank", label: "Selank" },
-  { id: "epithalon", label: "Epithalon" },
-  { id: "ghk-cu", label: "GHK-Cu" },
-  { id: "dsip", label: "DSIP" },
-  { id: "aod-9604", label: "AOD-9604" },
-  { id: "kpv", label: "KPV" },
-  { id: "ll-37", label: "LL-37" },
-  { id: "c-max", label: "C-Max" },
-  { id: "5-amino-1mq", label: "5-Amino-1MQ" },
-  { id: "mots-c", label: "MOTS-c" },
-  { id: "kisspeptin", label: "Kisspeptin" },
+// Category display order — matches peptides page
+const categoryOrder = [
+  "tissue-repair",
+  "weight-management",
+  "growth-hormone",
+  "anti-aging",
+  "cognitive",
+  "sleep",
+  "immune",
+  "sexual-health",
+  "skin-hair",
 ];
 
-const peptideColors: Record<string, string> = {
-  "bpc-157": "bg-emerald-50 text-emerald-700 border-emerald-200",
-  "tb-500": "bg-emerald-50 text-emerald-700 border-emerald-200",
-  "sermorelin": "bg-blue-50 text-blue-700 border-blue-200",
-  "ipamorelin": "bg-blue-50 text-blue-700 border-blue-200",
-  "cjc-1295": "bg-blue-50 text-blue-700 border-blue-200",
-  "semaglutide": "bg-orange-50 text-orange-700 border-orange-200",
-  "tirzepatide": "bg-orange-50 text-orange-700 border-orange-200",
-  "pt-141": "bg-pink-50 text-pink-700 border-pink-200",
-  "selank": "bg-violet-50 text-violet-700 border-violet-200",
-  "epithalon": "bg-amber-50 text-amber-700 border-amber-200",
-  "ghk-cu": "bg-rose-50 text-rose-700 border-rose-200",
-  "dsip": "bg-indigo-50 text-indigo-700 border-indigo-200",
-  "aod-9604": "bg-orange-50 text-orange-700 border-orange-200",
-  "kpv": "bg-teal-50 text-teal-700 border-teal-200",
-  "ll-37": "bg-teal-50 text-teal-700 border-teal-200",
-  "c-max": "bg-amber-50 text-amber-700 border-amber-200",
-  "5-amino-1mq": "bg-orange-50 text-orange-700 border-orange-200",
-  "mots-c": "bg-amber-50 text-amber-700 border-amber-200",
-  "kisspeptin": "bg-pink-50 text-pink-700 border-pink-200",
+const categoryIcons: Record<string, React.ElementType> = {
+  "growth-hormone": TrendingUp,
+  "weight-management": Scale,
+  "tissue-repair": Activity,
+  "anti-aging": Hourglass,
+  cognitive: Brain,
+  immune: Shield,
+  "sexual-health": Heart,
+  sleep: Moon,
+  "skin-hair": Sparkles,
 };
+
+// Full static class strings so Tailwind scanner detects them
+const categoryGradients: Record<string, string> = {
+  "growth-hormone": "bg-gradient-to-br from-blue-600 to-blue-400",
+  "weight-management": "bg-gradient-to-br from-green-600 to-green-400",
+  "tissue-repair": "bg-gradient-to-br from-orange-600 to-orange-400",
+  "anti-aging": "bg-gradient-to-br from-purple-600 to-purple-400",
+  cognitive: "bg-gradient-to-br from-indigo-600 to-indigo-400",
+  immune: "bg-gradient-to-br from-red-600 to-red-400",
+  "sexual-health": "bg-gradient-to-br from-pink-600 to-pink-400",
+  sleep: "bg-gradient-to-br from-violet-600 to-violet-400",
+  "skin-hair": "bg-gradient-to-br from-amber-600 to-amber-400",
+};
+
+const categoryBorderColors: Record<string, string> = {
+  "growth-hormone": "border-l-blue-500",
+  "weight-management": "border-l-green-500",
+  "tissue-repair": "border-l-orange-500",
+  "anti-aging": "border-l-purple-500",
+  cognitive: "border-l-indigo-500",
+  immune: "border-l-red-500",
+  "sexual-health": "border-l-pink-500",
+  sleep: "border-l-violet-500",
+  "skin-hair": "border-l-amber-500",
+};
+
+// Build lookup: peptideId → category
+const peptideCategoryMap: Record<string, string> = {};
+for (const p of peptides) {
+  peptideCategoryMap[p.id] = p.category;
+}
+
+// Group peptides by category for filter panel
+const peptidesByCategory: Record<string, { id: string; name: string }[]> = {};
+for (const cat of categoryOrder) {
+  peptidesByCategory[cat] = peptides
+    .filter((p) => p.category === cat)
+    .map((p) => ({ id: p.id, name: p.name }));
+}
+
+// Study counts per peptide (static)
+const studyCountByPeptide: Record<string, number> = {};
+for (const study of researchStudies) {
+  studyCountByPeptide[study.peptideId] = (studyCountByPeptide[study.peptideId] || 0) + 1;
+}
+
+function extractYear(pubDate: string): string {
+  const match = pubDate.match(/\d{4}/);
+  return match ? match[0] : "";
+}
 
 export default function ResearchPage() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showFilters, setShowFilters] = useState(true);
 
   const filteredStudies = useMemo(() => {
     return researchStudies.filter((study) => {
@@ -68,9 +117,17 @@ export default function ResearchPage() {
     });
   }, [activeFilter, searchQuery]);
 
-  const studyCount = activeFilter === "all"
-    ? researchStudies.length
-    : researchStudies.filter((s) => s.peptideId === activeFilter).length;
+  // Group filtered studies by category (only used when activeFilter === "all")
+  const groupedStudies = useMemo(() => {
+    if (activeFilter !== "all") return null;
+    const groups: Record<string, typeof filteredStudies> = {};
+    for (const study of filteredStudies) {
+      const cat = peptideCategoryMap[study.peptideId] || "other";
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(study);
+    }
+    return groups;
+  }, [filteredStudies, activeFilter]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -87,7 +144,7 @@ export default function ResearchPage() {
           PubMed and linked directly to their original publications.
         </p>
         <p className="text-sm text-gray-400 mt-2">
-          {researchStudies.length} studies across {peptideFilters.length - 1} peptides
+          {researchStudies.length} studies across {categoryOrder.length} categories
         </p>
       </div>
 
@@ -103,97 +160,156 @@ export default function ResearchPage() {
         />
       </div>
 
-      {/* Filter Pills */}
-      <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
-        <Filter className="h-4 w-4 text-gray-400 flex-shrink-0" />
-        {peptideFilters.map((filter) => (
-          <button
-            key={filter.id}
-            onClick={() => setActiveFilter(filter.id)}
-            className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all border",
-              activeFilter === filter.id
-                ? "gradient-primary text-white border-transparent shadow-sm"
-                : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600"
-            )}
-          >
-            {filter.label}
-            {filter.id !== "all" && (
-              <span className="ml-1 opacity-70">
-                ({researchStudies.filter((s) => s.peptideId === filter.id).length})
-              </span>
-            )}
-          </button>
-        ))}
+      {/* Filter Panel */}
+      <div className="mb-6">
+        <button
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors mb-3"
+        >
+          <Filter className="h-4 w-4" />
+          Filter by Peptide
+          <ChevronDown
+            className={cn("h-4 w-4 transition-transform", showFilters && "rotate-180")}
+          />
+        </button>
+
+        {showFilters && (
+          <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 space-y-4">
+            {/* All Studies pill */}
+            <button
+              onClick={() => setActiveFilter("all")}
+              className={cn(
+                "px-4 py-2 rounded-lg text-sm font-medium transition-all border",
+                activeFilter === "all"
+                  ? "gradient-primary text-white border-transparent shadow-sm"
+                  : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600"
+              )}
+            >
+              All Studies ({researchStudies.length})
+            </button>
+
+            {/* Category-grouped pills */}
+            {categoryOrder.map((cat) => {
+              const catPeptides = peptidesByCategory[cat];
+              if (!catPeptides || catPeptides.length === 0) return null;
+              const catStudyCount = catPeptides.reduce(
+                (sum, p) => sum + (studyCountByPeptide[p.id] || 0),
+                0
+              );
+              if (catStudyCount === 0) return null;
+
+              return (
+                <div key={cat}>
+                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                    {getCategoryLabel(cat)} ({catStudyCount})
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {catPeptides
+                      .filter((p) => (studyCountByPeptide[p.id] || 0) > 0)
+                      .map((p) => (
+                        <button
+                          key={p.id}
+                          onClick={() => setActiveFilter(p.id)}
+                          className={cn(
+                            "px-3 py-1.5 rounded-lg text-xs font-medium transition-all border",
+                            activeFilter === p.id
+                              ? "gradient-primary text-white border-transparent shadow-sm"
+                              : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600"
+                          )}
+                        >
+                          {p.name}
+                          <span className="ml-1 opacity-70">
+                            ({studyCountByPeptide[p.id] || 0})
+                          </span>
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
+
+      {/* Jump-to-Category Nav (only when grouped) */}
+      {activeFilter === "all" && groupedStudies && (
+        <div className="flex flex-wrap gap-2 mb-6">
+          {categoryOrder.map((cat) => {
+            const studies = groupedStudies[cat];
+            if (!studies || studies.length === 0) return null;
+            return (
+              <a
+                key={cat}
+                href={`#research-${cat}`}
+                className={cn(
+                  "px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                  getCategoryColor(cat)
+                )}
+              >
+                {getCategoryLabel(cat)} ({studies.length})
+              </a>
+            );
+          })}
+        </div>
+      )}
 
       {/* Results Count */}
       <p className="text-sm text-gray-500 mb-4">
         Showing {filteredStudies.length} {filteredStudies.length === 1 ? "study" : "studies"}
-        {activeFilter !== "all" && ` for ${peptideFilters.find((f) => f.id === activeFilter)?.label}`}
+        {activeFilter !== "all" &&
+          ` for ${peptides.find((p) => p.id === activeFilter)?.name || activeFilter}`}
         {searchQuery && ` matching "${searchQuery}"`}
       </p>
 
-      {/* Study Cards */}
-      <div className="space-y-4">
-        {filteredStudies.map((study) => (
-          <div
-            key={study.pmid}
-            className="group bg-white rounded-xl border border-gray-200 p-5 hover:border-blue-300 hover:shadow-md transition-all"
-          >
-            <Link href={`/research/${study.pmid}`} className="block">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  {/* Peptide tag + date */}
-                  <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span
-                      className={cn(
-                        "text-xs font-medium px-2 py-0.5 rounded-full border",
-                        peptideColors[study.peptideId] || "bg-gray-50 text-gray-600 border-gray-200"
-                      )}
-                    >
-                      {study.peptideName}
-                    </span>
-                    <span className="text-xs text-gray-400">{study.pubDate}</span>
+      {/* Study Cards — Grouped or Flat */}
+      {activeFilter === "all" && groupedStudies ? (
+        // Grouped by category
+        <div className="space-y-10">
+          {categoryOrder.map((cat) => {
+            const studies = groupedStudies[cat];
+            if (!studies || studies.length === 0) return null;
+            const Icon = categoryIcons[cat] || FlaskConical;
+
+            return (
+              <section key={cat} id={`research-${cat}`}>
+                {/* Section header */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className={cn(
+                      "w-9 h-9 rounded-lg flex items-center justify-center",
+                      categoryGradients[cat]
+                    )}
+                  >
+                    <Icon className="h-4.5 w-4.5 text-white" />
                   </div>
-
-                  {/* Title */}
-                  <h2 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors leading-snug">
-                    {study.title}
-                  </h2>
-
-                  {/* Authors + Journal */}
-                  <p className="text-xs text-gray-500 mb-3">
-                    {study.authors} &mdash; <em>{study.journal}</em>
-                  </p>
-
-                  {/* Key Finding */}
-                  <div className="bg-blue-50 rounded-lg px-3 py-2 border border-blue-100">
-                    <p className="text-sm text-blue-800 leading-relaxed">
-                      <span className="font-semibold">Key finding:</span> {study.keyFinding}
+                  <div>
+                    <h2 className="text-lg font-bold text-gray-900">
+                      {getCategoryLabel(cat)}
+                    </h2>
+                    <p className="text-xs text-gray-400">
+                      {studies.length} {studies.length === 1 ? "study" : "studies"}
                     </p>
                   </div>
-
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 mt-3">
-                    Read breakdown <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
                 </div>
-              </div>
-            </Link>
-            <div className="flex justify-end mt-2 pt-2 border-t border-gray-100">
-              <a
-                href={`https://pubmed.ncbi.nlm.nih.gov/${study.pmid}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-blue-500 transition-colors"
-              >
-                PubMed <ExternalLink className="h-3 w-3" />
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+
+                {/* Cards */}
+                <div className="space-y-3">
+                  {studies.map((study) => (
+                    <StudyCard key={study.pmid} study={study} />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      ) : (
+        // Flat list for specific peptide
+        <div className="space-y-3">
+          {filteredStudies.map((study) => (
+            <StudyCard key={study.pmid} study={study} />
+          ))}
+        </div>
+      )}
 
       {/* Empty State */}
       {filteredStudies.length === 0 && (
@@ -221,6 +337,74 @@ export default function ResearchPage() {
           </a>
           .
         </p>
+      </div>
+    </div>
+  );
+}
+
+// Extracted card component for reuse in both grouped and flat modes
+function StudyCard({ study }: { study: (typeof researchStudies)[number] }) {
+  const cat = peptideCategoryMap[study.peptideId] || "other";
+  const year = extractYear(study.pubDate);
+
+  return (
+    <div
+      className={cn(
+        "group bg-white rounded-xl border border-gray-200 border-l-4 p-4 hover:shadow-md transition-all",
+        categoryBorderColors[cat] || "border-l-gray-300"
+      )}
+    >
+      <Link href={`/research/${study.pmid}`} className="block">
+        {/* Top row: peptide pill + year + PubMed */}
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
+          <span
+            className={cn(
+              "text-xs font-medium px-2 py-0.5 rounded-full",
+              getCategoryColor(cat)
+            )}
+          >
+            {study.peptideName}
+          </span>
+          {year && (
+            <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+              {year}
+            </span>
+          )}
+        </div>
+
+        {/* Title */}
+        <h3 className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors leading-snug">
+          {study.title}
+        </h3>
+
+        {/* Authors + Journal */}
+        <p className="text-xs text-gray-500 mb-2 truncate">
+          {study.authors} &mdash; <em>{study.journal}</em>
+        </p>
+
+        {/* Key Finding — compact */}
+        <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+          <span className="font-medium text-gray-700">Key finding:</span> {study.keyFinding}
+        </p>
+      </Link>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+        <Link
+          href={`/research/${study.pmid}`}
+          className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700"
+        >
+          Read breakdown <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+        <a
+          href={`https://pubmed.ncbi.nlm.nih.gov/${study.pmid}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-blue-500 transition-colors"
+        >
+          PubMed <ExternalLink className="h-3 w-3" />
+        </a>
       </div>
     </div>
   );

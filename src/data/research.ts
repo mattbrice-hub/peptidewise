@@ -765,17 +765,17 @@ export const researchStudies: ResearchStudy[] = [
     pmid: "35083444",
     title: "The potential of GHK as an anti-aging peptide",
     authors: "Dou Y, Lee A, Zhu L, et al.",
-    journal: "Aging pathobiology and therapeutics",
-    pubDate: "2020 Mar 27",
+    journal: "Aging Pathobiology and Therapeutics",
+    pubDate: "2020",
     peptideId: "ghk-cu",
     peptideName: "GHK-Cu",
-    keyFinding: "Highlighted GHK's extensive anti-aging potential including skin remodeling, antioxidant activity, and gene expression modulation, positioning it as a leading anti-aging peptide.",
+    keyFinding: "Demonstrated that GHK-Cu promotes skin remodeling, wound healing, and cognitive improvement in aged mice, while documenting that natural GHK levels decline significantly with age.",
     takeaways: [
-      "GHK-Cu improves skin firmness, fights cell damage, and even influences gene activity.",
-      "It tackles aging from multiple angles, not just one.",
-      "It's one of the most scientifically supported anti-aging peptides available."
+      "Natural GHK levels drop by more than half as you age — from about 200 ng/ml at age 20 to just 80 ng/ml by age 60.",
+      "Aged mice treated with GHK showed improved memory and cognitive performance.",
+      "The peptide appears to work through epigenetic pathways, meaning it can change how your genes behave as you age."
     ],
-    content: "The search for effective anti-aging interventions is one of the most active areas in biomedical research. This study by Dou, Lee, Zhu, and colleagues examined the potential of GHK as an anti-aging peptide, reviewing its multiple biological activities relevant to aging and tissue maintenance.\n\nThe researchers reviewed the published literature on GHK's biological activities, focusing on its effects on skin health, oxidative stress, gene expression, and tissue remodeling. The analysis covered both basic science findings and translational applications of this naturally occurring tripeptide.\n\nThe review highlighted GHK's extensive anti-aging potential spanning multiple mechanisms. These include significant skin remodeling effects that improve firmness and elasticity, potent antioxidant activity that protects against cellular damage, and the ability to modulate gene expression patterns associated with aging and tissue repair.\n\nGHK's multi-target approach to anti-aging sets it apart from many single-mechanism interventions. By simultaneously addressing skin quality, oxidative stress, and gene expression, GHK-Cu represents a comprehensive anti-aging strategy that works at the fundamental level of cellular biology, making it one of the most scientifically well-supported peptides in the anti-aging space."
+    content: "Aging involves a progressive decline in the body's regenerative capacity, and this study by Dou, Lee, Zhu, and colleagues explored whether the natural tripeptide GHK — particularly in its copper-chelated form GHK-Cu — could counteract key aspects of this decline.\n\nThe researchers reviewed existing literature on GHK-Cu's anti-aging properties and conducted new experiments in aged animal models. They measured natural GHK levels across different age groups and tested the peptide's effects on skin remodeling, wound healing, and cognitive function in aged mice.\n\nThe findings painted a compelling picture. Natural GHK serum levels decline substantially with age, dropping from approximately 200 ng/ml at age 20 to just 80 ng/ml by age 60. When aged mice received GHK treatment, they showed improved cognitive performance in spatial navigation tasks. Tissue analysis suggested the compound triggers an epigenetic pathway that may ameliorate cognitive impairment. The peptide also demonstrated significant antioxidant and anti-inflammatory activity, along with skin remodeling and wound healing benefits.\n\nThis study provides important context for understanding why supplemental GHK-Cu may be particularly valuable as we age. The natural decline in GHK levels correlates with the onset of age-related changes in skin, cognition, and tissue repair capacity. By restoring GHK levels, supplementation may help address one of the underlying biochemical shifts that drive the aging process."
   },
   {
     pmid: "32257855",
@@ -2036,5 +2036,149 @@ export const researchStudies: ResearchStudy[] = [
       "Restoring NAD+ levels helps maintain this protective barrier and supports long-term brain health."
     ],
     content: "The blood-brain barrier (BBB) is one of the body's most important protective structures, shielding the brain from harmful substances circulating in the blood. This groundbreaking study by Zhan, Meng, Tian, and colleagues, published in Neuron, discovered that NAD+ supplementation can rescue the BBB from age-related damage.\n\nThe researchers investigated how aging affects blood-brain barrier integrity and whether NAD+ supplementation could reverse this damage. They used aged animal models and examined the BBB at both the structural and molecular levels, identifying the CX43-PARP1 signaling axis as a critical mediator of NAD+'s protective effects.\n\nThe findings were striking: aging caused significant blood-brain barrier deterioration, allowing harmful substances to leak into the brain and promoting neuroinflammation. NAD+ supplementation effectively reversed this damage by restoring CX43-PARP1 signaling, rebuilding tight junction integrity, and re-establishing the barrier's protective function. The rescued BBB showed function comparable to that of much younger animals.\n\nThis Neuron publication represents one of the most compelling demonstrations of NAD+'s neuroprotective potential. The blood-brain barrier is essential for cognitive health, and its deterioration with age is thought to contribute significantly to dementia and neurodegenerative disease. By showing that NAD+ optimization can restore this critical protective structure, the study provides powerful rationale for including NAD+-boosting compounds like C-Max in brain health and longevity protocols."
+  },
+  {
+    pmid: "27138887",
+    title: "Brain-gut Axis and Pentadecapeptide BPC 157: Theoretical and Practical Implications",
+    authors: "Sikiric P, Seiwerth S, Rucman R, et al.",
+    journal: "Current Neuropharmacology",
+    pubDate: "2016",
+    peptideId: "bpc-157",
+    peptideName: "BPC-157",
+    keyFinding: "Demonstrated that BPC-157 provides neuroprotection across multiple models including traumatic brain injury, spinal cord compression, and peripheral nerve regeneration, while modulating dopaminergic and serotonergic systems.",
+    takeaways: [
+      "BPC-157 protects the brain and nervous system in multiple injury models, not just the gut.",
+      "It influences key brain chemicals like dopamine and serotonin, which could help with mood and movement disorders.",
+      "The peptide works through the brain-gut axis, meaning it can benefit the nervous system even when given peripherally."
+    ],
+    content: "The brain-gut axis represents one of the most important communication pathways in the body, and BPC-157 appears to be uniquely positioned to leverage this connection for therapeutic benefit. This comprehensive review by Sikiric, Seiwerth, Rucman, and colleagues, published in Current Neuropharmacology, examines the theoretical and practical implications of BPC-157's activity across both the gut and the central nervous system.\n\nThe authors conducted an extensive literature review examining BPC-157's effects on the brain-gut axis, drawing from decades of preclinical research. They analyzed studies covering traumatic brain injury, spinal cord compression, peripheral nerve damage, dopaminergic and serotonergic system modulation, and gastrointestinal healing.\n\nThe review revealed that BPC-157 provides remarkable neuroprotection across multiple models. It improved outcomes in traumatic brain injury and spinal cord compression, promoted peripheral nerve regeneration, and modulated both dopaminergic and serotonergic neurotransmitter systems. The peptide also counteracted toxicity from NSAIDs, insulin overdose, and paracetamol, while simultaneously healing gastrointestinal lesions — all without reported toxicity.\n\nThese findings position BPC-157 as far more than a gut-healing peptide. By demonstrating activity across the brain-gut axis, this review supports its potential as a systemic therapeutic agent with applications ranging from neurological conditions to mood disorders. The absence of reported toxicity in preclinical studies further strengthens its appeal as a versatile peptide therapy."
+  },
+  {
+    pmid: "29986520",
+    title: "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data",
+    authors: "Pickart L, Margolina A",
+    journal: "International Journal of Molecular Sciences",
+    pubDate: "2018 Jul 7",
+    peptideId: "ghk-cu",
+    peptideName: "GHK-Cu",
+    keyFinding: "Revealed that GHK-Cu regulates approximately 31.2% of human genes, with broad effects on tissue regeneration, antioxidant defense, DNA repair, and anti-cancer activity.",
+    takeaways: [
+      "GHK-Cu influences nearly a third of all human genes, making it one of the most broadly active peptides known.",
+      "It stimulates collagen, elastin, and key proteins needed for skin and tissue repair.",
+      "Beyond skin benefits, it shows powerful antioxidant, anti-inflammatory, DNA repair, and even anti-cancer properties."
+    ],
+    content: "GHK-Cu is a naturally occurring tripeptide found in human plasma, and this landmark study by Pickart and Margolina, published in the International Journal of Molecular Sciences, used cutting-edge gene expression data to reveal the extraordinary breadth of its biological activity.\n\nThe researchers analyzed the effects of GHK-Cu on human gene expression using data from the Broad Institute's Connectivity Map. They examined which genes were upregulated and downregulated by GHK-Cu treatment, mapping these changes to known biological pathways and therapeutic applications.\n\nThe results were remarkable: GHK-Cu was found to regulate approximately 31.2% of human genes, with effects spanning tissue regeneration, antioxidant defense, anti-inflammatory pathways, and DNA repair. The peptide stimulated collagen, elastin, and glycosaminoglycan synthesis while improving fibroblast function. It also upregulated 41 genes related to the ubiquitin proteasome system, which is critical for cellular protein cleanup. Additionally, the peptide showed protective effects on lung tissue in COPD models and exhibited multiple anti-cancer properties.\n\nThe authors propose that GHK-Cu functions as an injury-response molecule that resets gene expression patterns toward healthier states. This study fundamentally expanded our understanding of GHK-Cu from a skin-care peptide to a systemic regenerative agent with implications for aging, tissue repair, and disease prevention."
+  },
+  {
+    pmid: "18644225",
+    title: "The human tri-peptide GHK and tissue remodeling",
+    authors: "Pickart L",
+    journal: "Journal of Biomaterials Science, Polymer Edition",
+    pubDate: "2008",
+    peptideId: "ghk-cu",
+    peptideName: "GHK-Cu",
+    keyFinding: "Established that GHK-Cu activates comprehensive tissue remodeling processes including cellular recruitment, collagen and elastin synthesis, nerve growth factor production, and wound healing.",
+    takeaways: [
+      "GHK-Cu attracts immune cells and blood vessel cells to injury sites, accelerating the repair process.",
+      "It boosts production of collagen, elastin, and nerve growth factors — all essential for tissue repair.",
+      "Clinical evidence supports its benefits for wound healing, skin tightening, hair transplant recovery, and even liver and bone repair."
+    ],
+    content: "Understanding the mechanisms behind tissue remodeling is essential for developing effective regenerative therapies. This foundational study by Loren Pickart, published in the Journal of Biomaterials Science, Polymer Edition, provided a comprehensive examination of how GHK-Cu orchestrates complex tissue repair processes.\n\nPickart reviewed the accumulated evidence on GHK-Cu's tissue remodeling activities, examining its effects on cell recruitment, protein synthesis, inflammation, and clinical applications. The analysis drew from both in vitro studies and clinical observations across multiple tissue types.\n\nThe study demonstrated that GHK-Cu activates an impressive array of remodeling processes. It recruits macrophages, mast cells, and capillary cells to injury sites. It suppresses free radicals and inflammatory mediators while simultaneously increasing production of collagen, elastin, growth factors, and nerve growth factors. The peptide also stimulated growth of fibroblasts and keratinocytes, the key cells responsible for skin structure and barrier function.\n\nClinically, GHK-Cu showed evidence of improved wound healing, skin tightening, wrinkle reduction, and benefits for hair transplant recovery, liver protection, and bone and intestinal healing. This paper established GHK-Cu as a master regulator of tissue repair, capable of coordinating multiple biological systems to promote regeneration across diverse tissue types."
+  },
+  {
+    pmid: "28212278",
+    title: "The Effect of the Human Peptide GHK on Gene Expression Relevant to Nervous System Function and Cognitive Decline",
+    authors: "Pickart L, Vasquez-Soltero JM, Margolina A",
+    journal: "Brain Sciences",
+    pubDate: "2017 Feb 15",
+    peptideId: "ghk-cu",
+    peptideName: "GHK-Cu",
+    keyFinding: "Showed that GHK modulates approximately 31% of human genes relevant to nervous system function, with effects on neuroprotection, DNA repair, and antioxidant defense that may help address cognitive decline.",
+    takeaways: [
+      "GHK influences nearly a third of genes involved in brain and nerve cell function.",
+      "It stimulates nerve cell growth and protects existing neurons from damage.",
+      "As GHK levels naturally drop with age, supplementation could help protect against age-related cognitive decline."
+    ],
+    content: "Cognitive decline is one of the most feared aspects of aging, and understanding how to protect the nervous system at the genetic level is a critical research frontier. This study by Pickart, Vasquez-Soltero, and Margolina, published in Brain Sciences, investigated how GHK influences gene expression specifically related to neurological health and cognitive function.\n\nThe researchers utilized the Broad Institute's Connectivity Map to analyze over 700 genes associated with nerve cells and neurological function. They examined which of these genes were modulated by GHK treatment, mapping the results to known pathways involved in neuroprotection, neurodegeneration, and cognitive function.\n\nThe findings were impressive: GHK modulates approximately 31% of human genes with changes of 50% or greater, and many of these are directly relevant to nervous system function and neurodegeneration. The peptide demonstrated stimulating and growth-promoting effects on neurons and glial cells, enhanced antioxidant defenses, improved DNA repair capacity, and reduced inflammatory signaling. Critically, the researchers also documented that human plasma GHK levels decline significantly with age — from 200 ng/ml in healthy young adults to just 80 ng/ml in older individuals.\n\nThis study establishes an important connection between GHK-Cu supplementation and brain health. The age-related decline in natural GHK levels may contribute to the vulnerability of the nervous system to degeneration and cognitive impairment. By restoring GHK levels through supplementation, it may be possible to support the gene expression patterns that protect neurons and maintain cognitive function into later life."
+  },
+  {
+    pmid: "20388964",
+    title: "Modulatory effect of gastric pentadecapeptide BPC 157 on angiogenesis in muscle and tendon healing",
+    authors: "Brcic L, Brcic I, Staresinic M, et al.",
+    journal: "Journal of Physiology and Pharmacology",
+    pubDate: "2009 Oct",
+    peptideId: "bpc-157",
+    peptideName: "BPC-157",
+    keyFinding: "Demonstrated that BPC-157 stimulates angiogenesis by upregulating VEGF expression in muscle and tendon injuries, directly improving tissue repair through new blood vessel formation.",
+    takeaways: [
+      "BPC-157 boosts VEGF, a key growth factor that drives new blood vessel formation at injury sites.",
+      "New blood vessel growth brings more oxygen and nutrients to damaged muscles and tendons, speeding recovery.",
+      "This mechanism explains why BPC-157 is particularly effective for tendon and muscle injuries."
+    ],
+    content: "Healing from muscle and tendon injuries depends heavily on the formation of new blood vessels to deliver oxygen and nutrients to damaged tissue. This study by Brcic, Brcic, Staresinic, and colleagues, published in the Journal of Physiology and Pharmacology, investigated exactly how BPC-157 influences this critical angiogenic process.\n\nThe researchers used animal models with induced muscle injuries and tendon damage to study BPC-157's effects on blood vessel formation. They employed immunohistochemical analysis with specific vascular markers — VEGF, CD34, and Factor VIII — to track blood vessel development in treated versus control animals. They also tested BPC-157 in cell cultures to distinguish between direct and indirect angiogenic effects.\n\nThe results revealed an important mechanism: while BPC-157 showed no direct angiogenic effect in isolated cell cultures, it demonstrated significant modulatory effects in living tissues. In both muscle and tendon injury models, BPC-157 stimulated angiogenesis by upregulating VEGF expression, resulting in measurably improved tissue repair. This distinction between in vitro and in vivo effects suggests BPC-157 works by coordinating the body's existing healing responses rather than acting as a standalone growth factor.\n\nThis study provides a crucial piece of the BPC-157 puzzle. By identifying VEGF upregulation as a key mechanism, it explains why the peptide is particularly effective for tendon and muscle injuries — it enhances the body's natural blood vessel formation process exactly where new circulation is needed most for healing."
+  },
+  {
+    pmid: "23782145",
+    title: "BPC 157 and blood vessels",
+    authors: "Seiwerth S, Brcic L, Batelja Vuletic L, et al.",
+    journal: "Current Pharmaceutical Design",
+    pubDate: "2014",
+    peptideId: "bpc-157",
+    peptideName: "BPC-157",
+    keyFinding: "Identified BPC-157 as the most potent angiomodulatory agent studied, acting through multiple vasoactive pathways including nitric oxide, VEGF, and focal adhesion kinase signaling.",
+    takeaways: [
+      "BPC-157 was identified as the most powerful blood vessel-modulating agent tested in this research.",
+      "It works through multiple pathways at once — NO, VEGF, and FAK — giving it broad vascular healing capability.",
+      "It can both promote new blood vessel growth and help repair damaged ones, depending on what the body needs."
+    ],
+    content: "The vascular system is central to virtually every healing process in the body, and understanding how BPC-157 interacts with blood vessels is key to understanding its broad therapeutic potential. This comprehensive review by Seiwerth, Brcic, Batelja Vuletic, and colleagues, published in Current Pharmaceutical Design, examines BPC-157's effects on blood vessels across multiple injury and disease models.\n\nThe authors reviewed the existing literature on BPC-157's vascular effects, examining studies on endothelial damage, clotting responses, vasoconstriction and vasodilation, angiogenesis, vasculogenesis, edema formation, and wound healing. They mapped the molecular pathways through which BPC-157 exerts its vascular effects.\n\nThe review identified BPC-157 as the most potent angiomodulatory agent studied, with effects mediated through multiple vasoactive pathways. These include the nitric oxide (NO) system, vascular endothelial growth factor (VEGF) signaling, and focal adhesion kinase (FAK) pathways. BPC-157 demonstrated the ability to both promote new blood vessel formation and repair damaged vessels, adapting its effects to the specific type of vascular injury present.\n\nThis review establishes BPC-157's vascular effects as perhaps its most important therapeutic mechanism. By acting as a master regulator of blood vessel health and formation, BPC-157 can enhance healing across virtually any tissue type. The multi-pathway approach — working through NO, VEGF, and FAK simultaneously — explains why BPC-157 shows consistent benefits across such a wide range of injury and disease models."
+  },
+  {
+    pmid: "23755725",
+    title: "Stable gastric pentadecapeptide BPC 157-NO-system relation",
+    authors: "Sikiric P, Seiwerth S, Rucman R, et al.",
+    journal: "Current Pharmaceutical Design",
+    pubDate: "2014",
+    peptideId: "bpc-157",
+    peptideName: "BPC-157",
+    keyFinding: "Demonstrated that BPC-157 modulates the nitric oxide system to promote healing across multiple tissue types, with effects on vascular responses, gene expression, and gastric protection.",
+    takeaways: [
+      "BPC-157 works closely with the body's nitric oxide system, a key regulator of blood flow and healing.",
+      "It can reduce excessive bleeding or clotting depending on the situation — an adaptive, balancing effect.",
+      "The peptide has shown a high safety profile across all the preclinical studies reviewed."
+    ],
+    content: "The nitric oxide (NO) system plays a fundamental role in blood vessel function, inflammation, and tissue repair throughout the body. This comprehensive review by Sikiric, Seiwerth, Rucman, and colleagues, published in Current Pharmaceutical Design, examines the critical relationship between BPC-157 and the NO system.\n\nThe authors reviewed extensive preclinical data on BPC-157's interactions with the nitric oxide pathway, examining studies across multiple organ systems and injury types. They investigated how BPC-157 modulates NO signaling in the context of gastric protection, cardiovascular function, wound healing, and vascular injury response.\n\nThe review demonstrated that BPC-157's interaction with the NO system is central to its healing effects. The peptide showed adaptive vascular responses — reducing blood clot formation in some contexts while reducing bleeding in others, depending on the type of injury. It also stimulated expression of specific genes (egr-1 and naB2) and modulated the nitric oxide pathway in ways that supported healing across gastric, cardiovascular, and wound repair contexts. Importantly, the peptide maintained a high safety profile throughout all studies reviewed.\n\nThis review provides important mechanistic insight into why BPC-157 is effective across such diverse conditions. By modulating the NO system — a master regulator of vascular function and tissue repair — BPC-157 can adapt its effects to the specific healing needs of different tissues. This adaptive, system-level mechanism helps explain the peptide's remarkable versatility in preclinical research."
+  },
+  {
+    pmid: "18821984",
+    title: "Thymosin beta4 is cytoprotective in human gingival fibroblasts",
+    authors: "Reti R, Kwon E, Qiu P, et al.",
+    journal: "European Journal of Oral Sciences",
+    pubDate: "2008 Oct",
+    peptideId: "tb-500",
+    peptideName: "TB-500",
+    keyFinding: "Demonstrated that thymosin beta-4 protects gingival fibroblasts from chemical damage, suppresses inflammatory IL-8 secretion, and prevents apoptosis — confirming its broad cytoprotective capabilities.",
+    takeaways: [
+      "Thymosin beta-4 protected oral cells from damage caused by common dental products like mouthwash and whitening agents.",
+      "It suppressed inflammatory signals, showing it can calm tissue inflammation at the cellular level.",
+      "The peptide prevented programmed cell death, helping cells survive under stressful conditions."
+    ],
+    content: "Thymosin beta-4 (TB-500) has well-documented healing properties in skin, corneal, and cardiac tissue, but this study by Reti, Kwon, Qiu, and colleagues, published in the European Journal of Oral Sciences, investigated whether these protective effects extend to oral tissues.\n\nThe researchers exposed human gingival fibroblasts to various damaging agents — chlorhexidine digluconate, commercial mouthwash formulations, carbamide peroxide (used in teeth whitening), and tumor necrosis factor-alpha (TNF-alpha). They then measured whether thymosin beta-4 treatment could protect cells from damage, reduce inflammation, and prevent programmed cell death.\n\nThe results confirmed thymosin beta-4's broad cytoprotective capabilities. The peptide significantly suppressed the secretion of interleukin-8 (IL-8) following TNF-alpha stimulation, demonstrating potent anti-inflammatory effects. It successfully protected gingival fibroblasts from damage caused by chlorhexidine, mouthwash formulations, and carbamide peroxide. TB-4 also prevented apoptosis induced by both TNF-alpha exposure and chlorhexidine treatment.\n\nThis study extends the known protective profile of thymosin beta-4 to oral tissues, reinforcing the peptide's role as a versatile cytoprotective agent. The combination of anti-inflammatory, anti-apoptotic, and cell-protective properties demonstrated here aligns with TB-500's documented benefits in other tissue systems, suggesting its healing potential extends throughout the body."
+  },
+  {
+    pmid: "16607611",
+    title: "Thymosin beta4 promotes matrix metalloproteinase expression during wound repair",
+    authors: "Philp D, Scheremeta B, Sibliss K, et al.",
+    journal: "Journal of Cellular Physiology",
+    pubDate: "2006 Sep",
+    peptideId: "tb-500",
+    peptideName: "TB-500",
+    keyFinding: "Showed that thymosin beta-4 accelerates wound healing by upregulating matrix metalloproteinases (MMP-1, MMP-2, MMP-9), which are essential enzymes for tissue remodeling and repair.",
+    takeaways: [
+      "TB-500 activates key enzymes (MMPs) that break down and remodel damaged tissue, a critical step in wound healing.",
+      "The wound-healing activity comes from a specific region of the peptide — the central actin-binding domain.",
+      "By day 2 of treatment, wounds showed significantly higher levels of repair enzymes compared to untreated wounds."
+    ],
+    content: "Effective wound healing requires not just building new tissue but also breaking down and remodeling damaged structures. This study by Philp, Scheremeta, Sibliss, and colleagues, published in the Journal of Cellular Physiology, investigated how thymosin beta-4 facilitates this critical remodeling phase of wound repair.\n\nThe researchers examined thymosin beta-4's effects on matrix metalloproteinase (MMP) expression in excised dermal wounds and in cultured wound-repair cells, including keratinocytes, endothelial cells, and fibroblasts. They also identified the specific region of the thymosin beta-4 molecule responsible for MMP induction.\n\nThe findings demonstrated that thymosin beta-4 substantially increased MMP-2 and MMP-9 levels in excised dermal wounds by just day 2 post-injury. When applied to cultured cells, the peptide dose-dependently elevated MMP-1, MMP-2, and MMP-9 secretion in a cell-specific manner. The researchers identified the central actin-binding domain (amino acids 17-23) as the active region responsible for MMP induction.\n\nThis study reveals a key mechanism behind TB-500's wound-healing capabilities. Matrix metalloproteinases are essential enzymes for clearing damaged extracellular matrix and creating space for new tissue growth. By upregulating these enzymes early in the healing process, thymosin beta-4 accelerates the transition from injury to active repair. This mechanism complements its known anti-inflammatory and angiogenic effects, explaining why TB-500 is such an effective promoter of tissue healing."
   },
 ];
