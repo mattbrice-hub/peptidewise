@@ -32,7 +32,8 @@
       "Bash(wc -l \"C:/Users/Nanu/Desktop/Claude/peptidewise/src/data/\"*.ts)",
       "Bash(wc -l C:/Users/Nanu/Desktop/Claude/peptidewise/src/data/*.ts)",
       "Bash(node build-research-review.js)",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)"
     ]
   }
 }

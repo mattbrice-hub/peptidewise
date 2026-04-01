@@ -19,7 +19,7 @@ import { buildMeta } from "@/lib/seo";
 export const metadata = buildMeta({
   title: "About Dr. Patrick Taylor, MD",
   description:
-    "Dr. Patrick Taylor, MD is a board-eligible family medicine physician, cancer survivor, and founder of Live Vital MD. UNC Chapel Hill trained. Specializes in peptide therapy, obesity medicine, and lifestyle optimization.",
+    "Dr. Patrick Taylor, MD is a family medicine physician, cancer survivor, and founder of Live Vital MD. UNC Chapel Hill trained. Specializes in peptide therapy, obesity medicine, and lifestyle optimization.",
   path: "/about",
 });
 
@@ -29,12 +29,12 @@ export default function AboutPage() {
       <JsonLd data={physicianSchema()} />
       {/* Hero */}
       <div className="text-center mb-12">
-        <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Board-Eligible Family Medicine Physician specializing in peptide therapy" width={144} height={144} className="w-36 h-36 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
+        <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Family Medicine Physician specializing in peptide therapy" width={144} height={144} className="w-36 h-36 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
           Dr. Patrick Taylor, MD
         </h1>
         <p className="text-lg text-blue-600 font-medium mb-1">
-          Board-Eligible Family Medicine Physician
+          Family Medicine Physician
         </p>
         <p className="text-gray-600 flex items-center justify-center gap-2">
           <MapPin className="h-4 w-4" />

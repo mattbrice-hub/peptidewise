@@ -26,7 +26,7 @@ export function organizationSchema() {
     founder: {
       "@type": "Person",
       name: "Dr. Patrick Taylor",
-      jobTitle: "Board-Eligible Family Medicine Physician",
+      jobTitle: "Family Medicine Physician",
     },
   };
 }
@@ -51,7 +51,7 @@ export function physicianSchema() {
     "@context": "https://schema.org",
     "@type": "Physician",
     name: "Dr. Patrick Taylor, MD",
-    jobTitle: "Board-Eligible Family Medicine Physician",
+    jobTitle: "Family Medicine Physician",
     description:
       "Cancer survivor and founder of Live Vital MD. Specializes in obesity medicine, peptide therapy, and lifestyle optimization.",
     url: "https://peptidewise.vercel.app/about",

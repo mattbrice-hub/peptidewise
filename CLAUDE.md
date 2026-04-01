@@ -103,7 +103,7 @@ public/
 
 ### Dr. Taylor's Identity
 - **Name:** Dr. Patrick Taylor, MD
-- **Title:** Board-Eligible Family Medicine Physician
+- **Title:** Family Medicine Physician
 - **Location:** Salt Lake City, UT
 - **Education:** UNC Chapel Hill School of Medicine, University of Utah Family Medicine Residency
 - He did his residency at University of Utah — do NOT say he currently works there

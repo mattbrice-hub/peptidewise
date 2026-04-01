@@ -11,7 +11,7 @@ export const bio: BioData = {
     homepage_bio: {
       label: "Homepage Bio",
       value:
-        "Board-eligible family medicine physician specializing in obesity and lifestyle medicine, chronic disease management, and sports medicine. A cancer and Cushing\u2019s syndrome survivor who lost over 100 lbs, Dr. Taylor founded Live Vital MD to deliver proactive, optimization-focused healthcare.",
+        "Family medicine physician specializing in obesity and lifestyle medicine, chronic disease management, and sports medicine. A cancer and Cushing\u2019s syndrome survivor who lost over 100 lbs, Dr. Taylor founded Live Vital MD to deliver proactive, optimization-focused healthcare.",
     },
     credentials_line: {
       label: "Credentials Line",
@@ -24,7 +24,7 @@ export const bio: BioData = {
     },
     header_subtitle: {
       label: "Header Subtitle",
-      value: "Board-Eligible Family Medicine Physician",
+      value: "Family Medicine Physician",
     },
     header_location: {
       label: "Location",

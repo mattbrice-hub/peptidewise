@@ -117,12 +117,12 @@ export default function HomePage() {
       <section className="py-16 md:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Board-Eligible Family Medicine Physician" width={112} height={112} className="w-28 h-28 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
+            <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Family Medicine Physician" width={112} height={112} className="w-28 h-28 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Led by Dr. Patrick Taylor, MD
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Board-eligible family medicine physician
+              Family medicine physician
               specializing in obesity and lifestyle medicine, chronic disease management,
               and sports medicine. A cancer and Cushing&apos;s syndrome survivor who lost over 100 lbs,
               Dr. Taylor founded{" "}
