@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import LeadCaptureGate from "@/components/LeadCaptureGate";
 import {
@@ -69,9 +69,11 @@ function ResultsContent() {
 
       {/* Results */}
       <div className="space-y-4">
-        {results.map((result, idx) => (
+        {results.map((result, idx) => {
+          if (!unlocked && idx > 0) return null;
+          return (
+          <React.Fragment key={result.peptide.id}>
           <div
-            key={result.peptide.id}
             className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 hover:border-blue-300 transition-all"
           >
             <div className="flex items-start gap-4">
@@ -175,11 +177,12 @@ function ResultsContent() {
               </div>
             </div>
           </div>
-        ))}
-
-        {!unlocked && (
-          <LeadCaptureGate source="symptom-checker" onUnlocked={() => setUnlocked(true)} />
-        )}
+          {!unlocked && idx === 0 && (
+            <LeadCaptureGate source="symptom-checker" onUnlocked={() => setUnlocked(true)} />
+          )}
+          </React.Fragment>
+          );
+        })}
       </div>
 
       {/* Disclaimer */}

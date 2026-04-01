@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -298,14 +298,15 @@ export default function StacksPage() {
         ) : (
           <div className="space-y-6">
             {results.map(({ stack, relevance, matchedSymptoms }, idx) => {
+              if (!unlocked && idx > 0) return null;
               const Icon = iconMap[stack.icon] || FlaskConical;
               const stackPeptides = stack.peptideIds
                 .map((id) => peptides.find((p) => p.id === id))
                 .filter(Boolean);
 
               return (
+                <React.Fragment key={stack.id}>
                 <div
-                  key={stack.id}
                   className="bg-white shadow-sm rounded-2xl border border-gray-200 overflow-hidden"
                 >
                   {/* Protocol header */}
@@ -405,12 +406,13 @@ export default function StacksPage() {
                     </>
                   )}
                 </div>
-              );
-            })}
+              {!unlocked && idx === 0 && (
+                <LeadCaptureGate source="protocols" onUnlocked={() => setUnlocked(true)} />
+              )}
+            </React.Fragment>
+          );
+          })}
 
-            {!unlocked && (
-              <LeadCaptureGate source="protocols" onUnlocked={() => setUnlocked(true)} />
-            )}
           </div>
         )}
 
