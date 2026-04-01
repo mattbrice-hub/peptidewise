@@ -49,11 +49,9 @@ const symptomCategories = [
     description: "Weight loss, metabolism, body fat",
     color: "bg-green-50 border-green-200 hover:bg-green-100",
     symptoms: [
-      { id: "difficulty-losing-weight", name: "Difficulty losing weight" },
+      { id: "difficulty-losing-weight", name: "Stubborn weight gain" },
       { id: "slow-metabolism", name: "Slow metabolism" },
-      { id: "excess-belly-fat", name: "Excess belly fat" },
-      { id: "increased-appetite", name: "Increased appetite / cravings" },
-      { id: "low-energy-weight", name: "Low energy related to weight" },
+      { id: "increased-appetite", name: "Cravings or overeating" },
     ],
   },
   {
@@ -63,53 +61,47 @@ const symptomCategories = [
     description: "Sleep quality, muscle recovery, HGH",
     color: "bg-violet-50 border-violet-200 hover:bg-violet-100",
     symptoms: [
-      { id: "poor-sleep-quality", name: "Poor sleep quality" },
-      { id: "difficulty-falling-asleep", name: "Difficulty falling asleep" },
-      { id: "waking-unrefreshed", name: "Waking up unrefreshed" },
-      { id: "slow-muscle-recovery", name: "Slow muscle recovery" },
-      { id: "low-hgh-symptoms", name: "Low growth hormone symptoms" },
+      { id: "poor-sleep-quality", name: "Poor or light sleep" },
+      { id: "waking-unrefreshed", name: "Waking up tired" },
+      { id: "slow-muscle-recovery", name: "Slow recovery" },
     ],
   },
   {
     id: "pain-inflammation",
     name: "Pain & Inflammation",
     icon: Flame,
-    description: "Joint pain, chronic inflammation, healing",
+    description: "Joint pain, injuries, healing",
     color: "bg-orange-50 border-orange-200 hover:bg-orange-100",
     symptoms: [
       { id: "joint-pain", name: "Joint pain or stiffness" },
-      { id: "chronic-inflammation", name: "Chronic inflammation" },
+      { id: "tendon-ligament-issues", name: "Tendon or ligament injury" },
       { id: "slow-wound-healing", name: "Slow wound healing" },
-      { id: "tendon-ligament-issues", name: "Tendon or ligament issues" },
-      { id: "gut-inflammation", name: "Gut-related inflammation" },
+      { id: "chronic-inflammation", name: "Chronic inflammation" },
     ],
   },
   {
     id: "cognitive-mood",
     name: "Cognitive & Mood",
     icon: Brain,
-    description: "Brain fog, anxiety, focus, mood",
+    description: "Brain fog, anxiety, focus",
     color: "bg-indigo-50 border-indigo-200 hover:bg-indigo-100",
     symptoms: [
       { id: "brain-fog", name: "Brain fog" },
-      { id: "anxiety", name: "Anxiety or nervousness" },
-      { id: "poor-focus", name: "Poor focus and concentration" },
+      { id: "anxiety", name: "Anxiety" },
+      { id: "poor-focus", name: "Poor focus" },
       { id: "mood-swings", name: "Mood swings" },
-      { id: "mental-fatigue", name: "Mental fatigue" },
     ],
   },
   {
     id: "aging-longevity",
     name: "Aging & Longevity",
     icon: Clock,
-    description: "Anti-aging, vitality, longevity",
+    description: "Anti-aging, energy, vitality",
     color: "bg-purple-50 border-purple-200 hover:bg-purple-100",
     symptoms: [
-      { id: "premature-aging", name: "Premature aging signs" },
-      { id: "low-energy-aging", name: "Declining energy levels" },
-      { id: "declining-vitality", name: "Declining vitality" },
-      { id: "telomere-concerns", name: "Telomere / cellular aging concerns" },
-      { id: "age-related-decline", name: "General age-related decline" },
+      { id: "premature-aging", name: "Feeling older than your age" },
+      { id: "declining-vitality", name: "Low energy or vitality" },
+      { id: "telomere-concerns", name: "Cellular aging concerns" },
     ],
   },
   {
@@ -119,11 +111,9 @@ const symptomCategories = [
     description: "Immunity, infections, autoimmune",
     color: "bg-red-50 border-red-200 hover:bg-red-100",
     symptoms: [
-      { id: "frequent-infections", name: "Frequent infections" },
-      { id: "slow-immune-healing", name: "Slow healing from illness" },
-      { id: "autoimmune-concerns", name: "Autoimmune concerns" },
-      { id: "chronic-immune-inflammation", name: "Chronic inflammation" },
-      { id: "gut-immune-issues", name: "Gut-related immune issues" },
+      { id: "frequent-infections", name: "Getting sick often" },
+      { id: "slow-immune-healing", name: "Slow recovery from illness" },
+      { id: "autoimmune-concerns", name: "Autoimmune issues" },
     ],
   },
   {
@@ -133,9 +123,8 @@ const symptomCategories = [
     description: "Libido, performance, hormones",
     color: "bg-pink-50 border-pink-200 hover:bg-pink-100",
     symptoms: [
-      { id: "low-libido", name: "Low libido" },
+      { id: "low-libido", name: "Low sex drive" },
       { id: "erectile-dysfunction", name: "Erectile dysfunction" },
-      { id: "sexual-performance", name: "Sexual performance concerns" },
       { id: "hormonal-imbalance", name: "Hormonal imbalance" },
     ],
   },
@@ -143,27 +132,24 @@ const symptomCategories = [
     id: "skin-hair",
     name: "Skin & Hair",
     icon: Sparkles,
-    description: "Skin rejuvenation, hair growth, healing",
+    description: "Wrinkles, hair loss, skin quality",
     color: "bg-amber-50 border-amber-200 hover:bg-amber-100",
     symptoms: [
-      { id: "wrinkles-fine-lines", name: "Wrinkles and fine lines" },
+      { id: "wrinkles-fine-lines", name: "Wrinkles or fine lines" },
       { id: "hair-thinning", name: "Hair thinning or loss" },
-      { id: "slow-skin-healing", name: "Slow skin wound healing" },
       { id: "dull-skin", name: "Dull or aging skin" },
-      { id: "acne-scarring", name: "Acne scarring" },
     ],
   },
   {
     id: "gut-health",
     name: "Gut Health",
     icon: Apple,
-    description: "IBS, leaky gut, digestion, bloating",
+    description: "IBS, bloating, digestion",
     color: "bg-emerald-50 border-emerald-200 hover:bg-emerald-100",
     symptoms: [
-      { id: "ibs-symptoms", name: "IBS symptoms" },
-      { id: "leaky-gut", name: "Leaky gut syndrome" },
-      { id: "bloating", name: "Frequent bloating" },
-      { id: "gut-inflammation-direct", name: "Gut inflammation" },
+      { id: "ibs-symptoms", name: "IBS or digestive issues" },
+      { id: "bloating", name: "Bloating" },
+      { id: "leaky-gut", name: "Leaky gut" },
       { id: "food-sensitivities", name: "Food sensitivities" },
     ],
   },
@@ -179,6 +165,29 @@ function getBmiCategory(heightInches: number, weightLbs: number): string {
   return "obese";
 }
 
+// Map concise UI symptoms to also match related stack targetSymptoms
+const symptomExpansions: Record<string, string[]> = {
+  "difficulty-losing-weight": ["excess-belly-fat", "low-energy-weight"],
+  "poor-sleep-quality": ["difficulty-falling-asleep", "low-hgh-symptoms"],
+  "chronic-inflammation": ["gut-inflammation", "chronic-immune-inflammation"],
+  "poor-focus": ["mental-fatigue"],
+  "declining-vitality": ["low-energy-aging", "age-related-decline"],
+  "slow-immune-healing": ["gut-immune-issues"],
+  "low-libido": ["sexual-performance"],
+  "dull-skin": ["slow-skin-healing", "acne-scarring"],
+  "ibs-symptoms": ["gut-inflammation-direct"],
+};
+
+function expandSymptoms(selected: string[]): string[] {
+  const expanded = new Set(selected);
+  for (const id of selected) {
+    if (symptomExpansions[id]) {
+      symptomExpansions[id].forEach((s) => expanded.add(s));
+    }
+  }
+  return Array.from(expanded);
+}
+
 function matchStacks(
   age: number,
   gender: "male" | "female",
@@ -187,19 +196,17 @@ function matchStacks(
   selectedSymptoms: string[]
 ): { stack: PeptideProtocol; relevance: number; matchedSymptoms: string[] }[] {
   const bmi = getBmiCategory(heightInches, weightLbs);
+  const expanded = expandSymptoms(selectedSymptoms);
 
   return stacks
     .filter((stack) => {
-      // Age filter
       if (age < stack.ageRange[0] || age > stack.ageRange[1]) return false;
-      // Gender filter
       if (!stack.genders.includes("all") && !stack.genders.includes(gender)) return false;
-      // BMI filter
       if (!stack.bmiCategory.includes("all") && !stack.bmiCategory.includes(bmi as any)) return false;
       return true;
     })
     .map((stack) => {
-      const matchedSymptoms = selectedSymptoms.filter((s) =>
+      const matchedSymptoms = expanded.filter((s) =>
         stack.targetSymptoms.includes(s)
       );
       const relevance =
