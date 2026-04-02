@@ -38,14 +38,14 @@ export function getCategoryLabel(category: string): string {
 
 export function getCategoryColor(category: string): string {
   const colors: Record<string, string> = {
-    "growth-hormone": "bg-[#e8e0d4] text-[#6b5a3e]",
-    "weight-management": "bg-[#e8efe3] text-[#4a5e3a]",
-    "tissue-repair": "bg-[#f0e8dc] text-[#8b6914]",
-    "anti-aging": "bg-[#f5ede4] text-[#8b5c2a]",
+    "growth-hormone": "bg-[#ede5d8] text-[#6b5a3e]",
+    "weight-management": "bg-[#e8e2d6] text-[#5a4d3a]",
+    "tissue-repair": "bg-[#f0e8dc] text-[#7a5c2a]",
+    "anti-aging": "bg-[#f0e6da] text-[#7a5c2a]",
     cognitive: "bg-[#ede8e0] text-[#5a4d3a]",
-    immune: "bg-[#e3ebe8] text-[#3e5a4a]",
-    "sexual-health": "bg-[#f0e8e4] text-[#7a4a3e]",
-    sleep: "bg-[#e8e4f0] text-[#4a3e6b]",
+    immune: "bg-[#ebe6de] text-[#5a4d3a]",
+    "sexual-health": "bg-[#f0e8e2] text-[#6b5a3e]",
+    sleep: "bg-[#ede8e0] text-[#5a4d3a]",
     "skin-hair": "bg-[#f0ebe3] text-[#6b5a3e]",
   };
   return colors[category] || "bg-card text-muted";
