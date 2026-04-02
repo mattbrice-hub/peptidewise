@@ -22,18 +22,18 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
     <>
       <JsonLd data={breadcrumbSchema(schemaItems)} />
       <nav aria-label="Breadcrumb" className="mb-6">
-        <ol className="flex items-center gap-1.5 text-sm text-gray-500">
+        <ol className="flex items-center gap-1.5 text-sm text-muted">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             return (
               <li key={item.href} className="flex items-center gap-1.5">
-                {index > 0 && <ChevronRight className="h-3.5 w-3.5 text-gray-400" />}
+                {index > 0 && <ChevronRight className="h-3.5 w-3.5 text-muted" />}
                 {isLast ? (
-                  <span className="text-gray-700 font-medium truncate max-w-[200px]">{item.label}</span>
+                  <span className="text-base font-medium truncate max-w-[200px]">{item.label}</span>
                 ) : (
                   <Link
                     href={item.href}
-                    className="hover:text-blue-600 transition-colors"
+                    className="hover:text-accent transition-colors"
                   >
                     {item.label}
                   </Link>

@@ -38,15 +38,15 @@ export function getCategoryLabel(category: string): string {
 
 export function getCategoryColor(category: string): string {
   const colors: Record<string, string> = {
-    "growth-hormone": "bg-blue-100 text-blue-700",
-    "weight-management": "bg-green-100 text-green-700",
-    "tissue-repair": "bg-orange-100 text-orange-700",
-    "anti-aging": "bg-purple-100 text-purple-700",
-    cognitive: "bg-indigo-100 text-indigo-700",
-    immune: "bg-red-100 text-red-700",
-    "sexual-health": "bg-pink-100 text-pink-700",
-    sleep: "bg-violet-100 text-violet-700",
-    "skin-hair": "bg-amber-100 text-amber-700",
+    "growth-hormone": "bg-[#e8e0d4] text-[#6b5a3e]",
+    "weight-management": "bg-[#e8efe3] text-[#4a5e3a]",
+    "tissue-repair": "bg-[#f0e8dc] text-[#8b6914]",
+    "anti-aging": "bg-[#f5ede4] text-[#8b5c2a]",
+    cognitive: "bg-[#ede8e0] text-[#5a4d3a]",
+    immune: "bg-[#e3ebe8] text-[#3e5a4a]",
+    "sexual-health": "bg-[#f0e8e4] text-[#7a4a3e]",
+    sleep: "bg-[#e8e4f0] text-[#4a3e6b]",
+    "skin-hair": "bg-[#f0ebe3] text-[#6b5a3e]",
   };
-  return colors[category] || "bg-gray-100 text-gray-600";
+  return colors[category] || "bg-card text-muted";
 }
