@@ -57,15 +57,15 @@ export default function LeadCaptureGate({ source, onUnlocked }: LeadCaptureGateP
   };
 
   return (
-    <div className="my-6 rounded-2xl border border-blue-200 bg-gradient-to-b from-blue-50 to-white p-6 md:p-8">
+    <div className="my-6 rounded-xl border border-border bg-card p-6 md:p-8">
       <div className="flex flex-col items-center text-center">
-        <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
-          <Lock className="h-5 w-5 text-blue-600" />
+        <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center mb-4">
+          <Lock className="h-5 w-5 text-accent" />
         </div>
-        <h3 className="text-lg font-bold text-gray-900 mb-1">
+        <h3 className="font-heading text-2xl font-semibold text-base mb-1">
           Unlock Dr. Taylor&apos;s Full Analysis
         </h3>
-        <p className="text-sm text-gray-600 mb-6 max-w-md">
+        <p className="font-body text-sm text-muted mb-6 max-w-md">
           {subtextMap[source]}
         </p>
 
@@ -75,14 +75,14 @@ export default function LeadCaptureGate({ source, onUnlocked }: LeadCaptureGateP
             placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-warm-white border border-border text-base placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-body"
           />
           <input
             type="email"
             placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-warm-white border border-border text-base placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-body"
           />
           {error && (
             <p className="text-sm text-red-600">{error}</p>
@@ -90,7 +90,7 @@ export default function LeadCaptureGate({ source, onUnlocked }: LeadCaptureGateP
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-accent text-surface font-body font-medium hover:bg-accent-hover transition-colors shadow-warm disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -102,7 +102,7 @@ export default function LeadCaptureGate({ source, onUnlocked }: LeadCaptureGateP
           </button>
         </form>
 
-        <p className="text-xs text-gray-400 mt-4">
+        <p className="text-xs text-muted mt-4">
           We respect your privacy. No spam, unsubscribe anytime.
         </p>
       </div>
