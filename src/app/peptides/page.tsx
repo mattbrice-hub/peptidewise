@@ -103,15 +103,15 @@ function getStackScores(peptideIds: string[]) {
 }
 
 function getScoreColor(score: number): string {
-  if (score >= 8) return "bg-green-500";
-  if (score >= 6) return "bg-blue-500";
-  return "bg-amber-500";
+  if (score >= 8) return "bg-accent";
+  if (score >= 6) return "bg-accent";
+  return "bg-accent";
 }
 
 function getScoreTextColor(score: number): string {
-  if (score >= 8) return "text-green-600";
-  if (score >= 6) return "text-blue-600";
-  return "text-amber-700";
+  if (score >= 8) return "text-accent";
+  if (score >= 6) return "text-accent";
+  return "text-accent";
 }
 
 export const metadata = buildMeta({
@@ -136,8 +136,8 @@ export default function PeptidesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Browse Peptides</h1>
-        <p className="text-gray-600">
+        <h1 className="font-heading text-3xl md:text-4xl font-semibold text-base mb-2">Browse Peptides</h1>
+        <p className="text-muted font-body">
           Explore our database of therapeutic peptides with evidence-based
           information on benefits, dosage, and safety.
         </p>
@@ -149,14 +149,14 @@ export default function PeptidesPage() {
           <a
             key={cat}
             href={`#category-${cat}`}
-            className={`text-xs font-medium px-3 py-1.5 rounded-full hover:opacity-80 transition-opacity ${getCategoryColor(cat)}`}
+            className="text-xs font-medium px-3 py-1.5 rounded-full bg-card text-muted hover:bg-accent hover:text-surface border border-border transition-colors"
           >
             {getCategoryLabel(cat)}
           </a>
         ))}
         <a
           href="#common-stacks"
-          className="text-xs font-medium px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 text-blue-700 hover:opacity-80 transition-opacity"
+          className="text-xs font-medium px-3 py-1.5 rounded-full bg-card text-muted hover:bg-accent hover:text-surface border border-border transition-colors"
         >
           Rated Protocols
         </a>
@@ -179,10 +179,10 @@ export default function PeptidesPage() {
                   <Icon className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">
+                  <h2 className="font-heading text-xl font-semibold text-base">
                     {getCategoryLabel(category)}
                   </h2>
-                  <p className="text-sm text-gray-600 mt-0.5">{description}</p>
+                  <p className="text-sm text-muted mt-0.5">{description}</p>
                 </div>
               </div>
 
@@ -197,7 +197,7 @@ export default function PeptidesPage() {
                     <Link
                       key={peptide.id}
                       href={`/peptides/${peptide.slug}`}
-                      className="group bg-white shadow-sm rounded-2xl border border-gray-200 p-6 hover:border-blue-300 hover:bg-gray-50 transition-all"
+                      className="group bg-card border border-border rounded-xl shadow-warm hover:-translate-y-0.5 hover:shadow-warm-lg transition-all duration-300 p-6"
                     >
                       {/* Header: icon + name + badge */}
                       <div className="flex items-center gap-3 mb-3">
@@ -207,7 +207,7 @@ export default function PeptidesPage() {
                           <CardIcon className="h-5 w-5 text-white" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          <h3 className="font-heading text-xl font-semibold text-base group-hover:text-accent transition-colors">
                             {peptide.name}
                           </h3>
                           <span
@@ -219,17 +219,17 @@ export default function PeptidesPage() {
                       </div>
 
                       {/* Description */}
-                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                      <p className="text-sm text-muted mb-4 line-clamp-2">
                         {peptide.description}
                       </p>
 
                       {/* Score bars */}
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-gray-500 w-20 flex-shrink-0">
+                          <span className="text-xs text-muted w-20 flex-shrink-0">
                             Research
                           </span>
-                          <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                          <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full ${getScoreColor(peptide.researchScore)}`}
                               style={{
@@ -244,10 +244,10 @@ export default function PeptidesPage() {
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-gray-500 w-20 flex-shrink-0">
+                          <span className="text-xs text-muted w-20 flex-shrink-0">
                             Safety
                           </span>
-                          <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                          <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full ${getScoreColor(peptide.safetyScore)}`}
                               style={{
@@ -264,14 +264,14 @@ export default function PeptidesPage() {
                       </div>
 
                       {/* Research status + routes */}
-                      <div className="flex items-center gap-3 text-xs text-gray-500">
+                      <div className="flex items-center gap-3 text-xs text-muted">
                         <span
                           className={`px-2 py-0.5 rounded-full ${
                             peptide.researchStatus === "well-studied"
-                              ? "bg-green-50 text-green-600"
+                              ? "bg-[#e8efe3] text-[#4a5e3a]"
                               : peptide.researchStatus === "emerging"
-                                ? "bg-blue-50 text-blue-600"
-                                : "bg-gray-100 text-gray-600"
+                                ? "bg-card text-accent"
+                                : "bg-card text-muted"
                           }`}
                         >
                           {peptide.researchStatus === "well-studied"
@@ -294,19 +294,19 @@ export default function PeptidesPage() {
       </div>
 
       {/* Curated Protocols — Rated */}
-      <section className="mt-16 pt-12 border-t border-gray-200" id="common-stacks" style={{ scrollMarginTop: "5rem" }}>
+      <section className="mt-16 pt-12 border-t border-border" id="common-stacks" style={{ scrollMarginTop: "5rem" }}>
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-1">
+            <h2 className="font-heading text-2xl font-semibold text-base mb-1">
               Dr. Taylor&apos;s Curated Protocols
             </h2>
-            <p className="text-gray-600 text-sm">
+            <p className="text-muted text-sm">
               Physician-curated peptide protocols scored by average research evidence and safety profile.
             </p>
           </div>
           <Link
             href="/stacks"
-            className="hidden md:inline-flex items-center gap-1 text-blue-600 font-medium text-sm hover:text-blue-500"
+            className="hidden md:inline-flex items-center gap-1 text-accent font-medium text-sm hover:text-base"
           >
             Get Your Protocol <ArrowRight className="h-4 w-4" />
           </Link>
@@ -323,26 +323,26 @@ export default function PeptidesPage() {
             return (
               <div
                 key={stack.id}
-                className="bg-white shadow-sm rounded-2xl border border-gray-200 overflow-hidden"
+                className="bg-card shadow-warm rounded-xl border border-border overflow-hidden"
               >
                 {/* Protocol header */}
                 <div className="p-5">
                   <div className="flex items-start gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-5 w-5 text-white" />
+                    <div className="w-10 h-10 rounded-lg bg-accent hover:bg-accent-hover flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-5 w-5 text-surface" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                         {stack.highlight && (
-                          <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                          <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-card text-accent border border-border">
                             {stack.highlight}
                           </span>
                         )}
                       </div>
-                      <h3 className="font-semibold text-gray-900 text-sm leading-tight">
+                      <h3 className="font-heading font-semibold text-base text-sm leading-tight">
                         {stack.name}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-0.5">{stack.subtitle}</p>
+                      <p className="text-xs text-muted mt-0.5">{stack.subtitle}</p>
                     </div>
                   </div>
 
@@ -354,7 +354,7 @@ export default function PeptidesPage() {
                           <Link
                             key={p.id}
                             href={`/peptides/${p.slug}`}
-                            className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100 hover:border-blue-300 transition-colors"
+                            className="text-xs px-2 py-0.5 rounded-full bg-card text-accent border border-border hover:border-accent-light transition-colors"
                           >
                             {p.name}
                           </Link>
@@ -365,10 +365,10 @@ export default function PeptidesPage() {
                   {/* Average scores */}
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-500 w-20 flex-shrink-0">
+                      <span className="text-xs text-muted w-20 flex-shrink-0">
                         Research
                       </span>
-                      <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full ${getScoreColor(avgResearch)}`}
                           style={{ width: `${(avgResearch / 10) * 100}%` }}
@@ -379,10 +379,10 @@ export default function PeptidesPage() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-500 w-20 flex-shrink-0">
+                      <span className="text-xs text-muted w-20 flex-shrink-0">
                         Safety
                       </span>
-                      <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full ${getScoreColor(avgSafety)}`}
                           style={{ width: `${(avgSafety / 10) * 100}%` }}
@@ -396,10 +396,10 @@ export default function PeptidesPage() {
                 </div>
 
                 {/* Dr. Taylor's note */}
-                <div className="border-t border-gray-100 bg-blue-50/50 px-5 py-3">
+                <div className="border-t border-border bg-warm-white px-5 py-3">
                   <div className="flex items-start gap-2">
                     <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={24} height={24} className="flex-shrink-0 w-6 h-6 rounded-full object-cover mt-0.5" />
-                    <p className="text-xs text-gray-600 italic leading-relaxed line-clamp-3">
+                    <p className="text-xs text-muted italic leading-relaxed line-clamp-3">
                       &ldquo;{stack.drTaylorNote}&rdquo;
                     </p>
                   </div>
@@ -412,7 +412,7 @@ export default function PeptidesPage() {
         <div className="mt-6 text-center">
           <Link
             href="/stacks"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-primary text-white font-medium text-sm hover:opacity-90 transition-opacity shadow-md"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-surface font-medium text-sm transition-colors shadow-warm"
           >
             <Star className="h-4 w-4" />
             Build Your Personalized Protocol
