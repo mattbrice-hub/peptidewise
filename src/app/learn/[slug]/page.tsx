@@ -59,66 +59,66 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
             <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full capitalize",
-              article.category === "guide" ? "bg-blue-50 text-blue-600" :
-              article.category === "research" ? "bg-green-50 text-green-600" :
+              article.category === "guide" ? "bg-card text-accent" :
+              article.category === "research" ? "bg-[#e8efe3] text-[#4a5e3a]" :
               article.category === "safety" ? "bg-amber-50 text-amber-700" :
               "bg-purple-50 text-purple-600"
             )}>
               {article.category}
             </span>
-            <span className="text-sm text-gray-500 flex items-center gap-1">
+            <span className="text-sm text-muted flex items-center gap-1">
               <Clock className="h-3.5 w-3.5" /> {article.readingTime} min read
             </span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="font-heading text-3xl md:text-4xl font-semibold text-base mb-4">
             {article.title}
           </h1>
-          <p className="text-lg text-gray-600">{article.excerpt}</p>
+          <p className="text-lg text-muted">{article.excerpt}</p>
         </div>
 
         <div className="prose max-w-none">
           {paragraphs.map((para, idx) => {
             if (para.startsWith("## ")) {
-              return <h2 key={idx} className="text-xl font-bold text-gray-900 mt-8 mb-3">{para.slice(3)}</h2>;
+              return <h2 key={idx} className="font-heading text-2xl font-semibold text-base mt-10 mb-4">{para.slice(3)}</h2>;
             }
             if (para.startsWith("### ")) {
-              return <h3 key={idx} className="text-lg font-semibold text-gray-900 mt-6 mb-2">{para.slice(4)}</h3>;
+              return <h3 key={idx} className="font-heading text-xl font-semibold text-base mt-8 mb-3">{para.slice(4)}</h3>;
             }
             if (para.startsWith("- ")) {
               const items = para.split("\n").filter(Boolean);
               return (
                 <ul key={idx} className="list-disc pl-6 mb-4 space-y-1">
                   {items.map((item, i) => (
-                    <li key={i} className="text-gray-700 leading-relaxed">{item.replace(/^- /, "")}</li>
+                    <li key={i} className="font-body text-text-primary leading-[1.7]">{item.replace(/^- /, "")}</li>
                   ))}
                 </ul>
               );
             }
-            return <p key={idx} className="text-gray-700 leading-relaxed mb-4">{para}</p>;
+            return <p key={idx} className="font-body text-text-primary leading-[1.7] mb-4">{para}</p>;
           })}
         </div>
       </article>
 
       {/* References */}
       {article.references && article.references.length > 0 && (
-        <div className="mt-10 pt-8 border-t border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-blue-600" /> Referenced Studies
+        <div className="mt-10 pt-8 border-t border-border">
+          <h2 className="font-heading text-lg font-semibold text-base mb-4 flex items-center gap-2">
+            <BookOpen className="h-5 w-5 text-accent" /> Referenced Studies
           </h2>
           <div className="space-y-4">
             {article.references.map((ref, idx) => (
-              <div key={ref.id} className="p-4 rounded-xl bg-white shadow-sm border border-gray-200">
+              <div key={ref.id} className="p-4 rounded-xl bg-card shadow-warm border border-border">
                 <div className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-50 text-blue-500 text-xs font-bold flex items-center justify-center mt-0.5">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-card text-accent text-xs font-bold flex items-center justify-center mt-0.5 border border-border">
                     {idx + 1}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-gray-700">{ref.title}</p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-sm font-medium text-text-primary">{ref.title}</p>
+                    <p className="text-xs text-muted mt-1">
                       {ref.authors} &middot; <em>{ref.journal}</em> ({ref.year})
                     </p>
-                    <p className="text-sm text-gray-700 mt-2 bg-gray-100 rounded-lg px-3 py-2 border border-gray-200">
-                      <span className="font-medium text-blue-600">Key Finding:</span> {ref.finding}
+                    <p className="text-sm text-text-primary mt-2 bg-surface rounded-lg px-3 py-2 border border-border">
+                      <span className="font-medium text-accent">Key Finding:</span> {ref.finding}
                     </p>
                     <div className="flex gap-3 mt-2">
                       {ref.pmid && (
@@ -126,7 +126,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                           href={`https://pubmed.ncbi.nlm.nih.gov/${ref.pmid}/`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-blue-600 hover:text-blue-500 font-medium"
+                          className="text-xs text-accent hover:text-accent-hover font-medium"
                         >
                           PubMed &rarr;
                         </a>
@@ -136,7 +136,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                           href={`https://doi.org/${ref.doi}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-blue-600 hover:text-blue-500 font-medium"
+                          className="text-xs text-accent hover:text-accent-hover font-medium"
                         >
                           DOI &rarr;
                         </a>
@@ -152,21 +152,21 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
       {/* Related Peptides */}
       {relatedPeptides.length > 0 && (
-        <div className="mt-10 pt-8 border-t border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Related Peptides</h2>
+        <div className="mt-10 pt-8 border-t border-border">
+          <h2 className="font-heading text-lg font-semibold text-base mb-4">Related Peptides</h2>
           <div className="grid sm:grid-cols-2 gap-3">
             {relatedPeptides.map((p) => p && (
               <Link
                 key={p.id}
                 href={`/peptides/${p.slug}`}
-                className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 transition-all"
+                className="flex items-center gap-3 p-3 rounded-xl border border-border hover:border-accent transition-all"
               >
-                <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-                  <FlaskConical className="h-4 w-4 text-white" />
+                <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+                  <FlaskConical className="h-4 w-4 text-surface" />
                 </div>
                 <div>
-                  <div className="font-medium text-gray-700 text-sm">{p.name}</div>
-                  <div className="text-xs text-gray-500">{p.description.slice(0, 60)}...</div>
+                  <div className="font-medium text-text-primary text-sm">{p.name}</div>
+                  <div className="text-xs text-muted">{p.description.slice(0, 60)}...</div>
                 </div>
               </Link>
             ))}
@@ -179,17 +179,17 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         const otherArticles = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
         if (otherArticles.length === 0) return null;
         return (
-          <div className="mt-10 pt-8 border-t border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">More from PeptideWise</h2>
+          <div className="mt-10 pt-8 border-t border-border">
+            <h2 className="font-heading text-lg font-semibold text-base mb-4">More from PeptideWise</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {otherArticles.map((a) => (
-                <Link key={a.id} href={"/learn/" + a.slug} className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 transition-all">
-                  <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-                    <BookOpen className="h-4 w-4 text-white" />
+                <Link key={a.id} href={"/learn/" + a.slug} className="flex items-center gap-3 p-3 rounded-xl border border-border hover:border-accent transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+                    <BookOpen className="h-4 w-4 text-surface" />
                   </div>
                   <div>
-                    <div className="font-medium text-gray-700 text-sm">{a.title}</div>
-                    <div className="text-xs text-gray-500">{a.readingTime} min read</div>
+                    <div className="font-medium text-text-primary text-sm">{a.title}</div>
+                    <div className="text-xs text-muted">{a.readingTime} min read</div>
                   </div>
                 </Link>
               ))}

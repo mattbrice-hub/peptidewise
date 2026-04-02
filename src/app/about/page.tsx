@@ -29,14 +29,14 @@ export default function AboutPage() {
       <JsonLd data={physicianSchema()} />
       {/* Hero */}
       <div className="text-center mb-12">
-        <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Family Medicine Physician specializing in peptide therapy" width={144} height={144} className="w-36 h-36 rounded-full object-cover mb-6 shadow-lg mx-auto border-4 border-white" />
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+        <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Family Medicine Physician specializing in peptide therapy" width={144} height={144} className="w-36 h-36 rounded-xl object-cover mb-6 shadow-warm-lg mx-auto border-4 border-card" />
+        <h1 className="font-heading text-3xl md:text-4xl font-semibold text-base mb-2">
           Dr. Patrick Taylor, MD
         </h1>
-        <p className="text-lg text-blue-600 font-medium mb-1">
+        <p className="font-body text-lg text-accent font-medium mb-1">
           Family Medicine Physician
         </p>
-        <p className="text-gray-600 flex items-center justify-center gap-2">
+        <p className="font-body text-muted flex items-center justify-center gap-2">
           <MapPin className="h-4 w-4" />
           Salt Lake City, UT
         </p>
@@ -45,7 +45,7 @@ export default function AboutPage() {
             href="https://www.instagram.com/drpattaylor/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-600 text-sm hover:border-pink-300 hover:text-pink-500 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-warm-white border border-border text-muted text-sm hover:border-pink-300 hover:text-pink-500 transition-all"
           >
             <Instagram className="h-4 w-4" /> @drpattaylor
           </a>
@@ -53,7 +53,7 @@ export default function AboutPage() {
             href="https://tinyurl.com/drtaylorfreeconsult"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg gradient-primary text-white text-sm font-medium hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent hover:bg-accent-hover text-surface text-sm font-medium transition-colors"
           >
             Live Vital MD <ExternalLink className="h-3.5 w-3.5" />
           </a>
@@ -61,11 +61,11 @@ export default function AboutPage() {
       </div>
 
       {/* His Story */}
-      <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 md:p-8 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-card shadow-warm rounded-xl border border-border p-6 md:p-8 mb-6">
+        <h2 className="font-heading text-xl font-semibold text-base mb-4 flex items-center gap-2">
           <Heart className="h-5 w-5 text-red-400" /> His Story
         </h2>
-        <div className="space-y-4 text-gray-600 leading-relaxed">
+        <div className="space-y-4 font-body text-text-primary leading-[1.7]">
           <p>
             Dr. Patrick Taylor&apos;s path to medicine was shaped by personal adversity. After
             surviving cancer treatment and subsequently developing Cushing&apos;s syndrome — a
@@ -87,7 +87,7 @@ export default function AboutPage() {
               href="https://tinyurl.com/drtaylorfreeconsult"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-500"
+              className="text-accent hover:text-accent-hover"
             >
               Live Vital MD
             </a>{" "}
@@ -99,11 +99,11 @@ export default function AboutPage() {
       </div>
 
       {/* Why Peptides */}
-      <div className="bg-blue-50 rounded-2xl border border-blue-100 p-6 md:p-8 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-          <FlaskConical className="h-5 w-5 text-blue-600" /> Why Peptides?
+      <div className="bg-card rounded-xl border border-border p-6 md:p-8 mb-6">
+        <h2 className="font-heading text-xl font-semibold text-base mb-4 flex items-center gap-2">
+          <FlaskConical className="h-5 w-5 text-accent" /> Why Peptides?
         </h2>
-        <div className="space-y-4 text-gray-600 leading-relaxed">
+        <div className="space-y-4 font-body text-text-primary leading-[1.7]">
           <p>
             &ldquo;Peptides represent one of the most exciting frontiers in medicine today. These
             are molecules that your body already makes — we&apos;re not introducing foreign
@@ -127,39 +127,39 @@ export default function AboutPage() {
       </div>
 
       {/* Education & Training */}
-      <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 md:p-8 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-          <GraduationCap className="h-5 w-5 text-blue-600" /> Education & Training
+      <div className="bg-card shadow-warm rounded-xl border border-border p-6 md:p-8 mb-6">
+        <h2 className="font-heading text-xl font-semibold text-base mb-6 flex items-center gap-2">
+          <GraduationCap className="h-5 w-5 text-accent" /> Education & Training
         </h2>
-        <div className="space-y-6">
+        <div className="border-l-2 border-accent-light pl-6 space-y-6">
           <div className="flex gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary-500 mt-1.5" />
+            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-accent mt-1.5 -ml-[1.875rem]" />
             <div>
-              <div className="font-medium text-gray-900">Residency — Family Medicine</div>
-              <div className="text-sm text-gray-600">University of Utah, Salt Lake City, UT</div>
+              <div className="font-medium text-base">Residency — Family Medicine</div>
+              <div className="text-sm text-muted">University of Utah, Salt Lake City, UT</div>
             </div>
           </div>
           <div className="flex gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary-500 mt-1.5" />
+            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-accent mt-1.5 -ml-[1.875rem]" />
             <div>
-              <div className="font-medium text-gray-900">Doctor of Medicine (MD)</div>
-              <div className="text-sm text-gray-600">University of North Carolina at Chapel Hill, School of Medicine</div>
+              <div className="font-medium text-base">Doctor of Medicine (MD)</div>
+              <div className="text-sm text-muted">University of North Carolina at Chapel Hill, School of Medicine</div>
             </div>
           </div>
           <div className="flex gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary-500 mt-1.5" />
+            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-accent mt-1.5 -ml-[1.875rem]" />
             <div>
-              <div className="font-medium text-gray-900">Undergraduate Studies</div>
-              <div className="text-sm text-gray-600">Brigham Young University — National Championship Rugby Team</div>
+              <div className="font-medium text-base">Undergraduate Studies</div>
+              <div className="text-sm text-muted">Brigham Young University — National Championship Rugby Team</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Clinical Interests */}
-      <div className="bg-white shadow-sm rounded-2xl border border-gray-200 p-6 md:p-8 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-          <Stethoscope className="h-5 w-5 text-blue-600" /> Clinical Interests
+      <div className="bg-card shadow-warm rounded-xl border border-border p-6 md:p-8 mb-6">
+        <h2 className="font-heading text-xl font-semibold text-base mb-4 flex items-center gap-2">
+          <Stethoscope className="h-5 w-5 text-accent" /> Clinical Interests
         </h2>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
@@ -172,19 +172,19 @@ export default function AboutPage() {
           ].map((interest) => (
             <div
               key={interest.name}
-              className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-200"
+              className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border"
             >
-              <interest.icon className="h-5 w-5 text-blue-600 flex-shrink-0" />
-              <span className="text-gray-600 text-sm font-medium">{interest.name}</span>
+              <interest.icon className="h-5 w-5 text-accent flex-shrink-0" />
+              <span className="text-text-primary text-sm font-medium">{interest.name}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* CTA */}
-      <div className="rounded-2xl gradient-primary p-8 md:p-10 text-center text-white">
-        <h2 className="text-2xl font-bold mb-3">Ready to Optimize Your Health?</h2>
-        <p className="text-white/80 mb-6 max-w-lg mx-auto">
+      <div className="rounded-xl bg-accent p-8 md:p-10 text-center">
+        <h2 className="font-heading text-2xl font-semibold mb-3 text-surface">Ready to Optimize Your Health?</h2>
+        <p className="text-surface/80 mb-6 max-w-lg mx-auto font-body">
           Dr. Taylor offers personalized peptide therapy consultations through Live Vital MD.
           Data-driven protocols tailored to your labs, goals, and health history.
         </p>
@@ -193,13 +193,13 @@ export default function AboutPage() {
             href="https://tinyurl.com/drtaylorfreeconsult"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-primary-700 font-semibold hover:bg-gray-50 transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-warm-white text-text-primary font-semibold hover:bg-surface transition-colors shadow-warm"
           >
             Book a Consultation <ArrowRight className="h-5 w-5" />
           </a>
           <Link
             href="/stacks"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-semibold border border-white/20 hover:bg-white/20 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-surface font-semibold border border-white/20 hover:bg-white/20 transition-colors"
           >
             Find Your Protocol
           </Link>

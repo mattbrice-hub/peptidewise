@@ -134,29 +134,29 @@ export default function ResearchPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-            <FlaskConical className="h-5 w-5 text-white" />
+          <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+            <FlaskConical className="h-5 w-5 text-surface" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Research</h1>
+          <h1 className="font-heading text-3xl md:text-4xl font-semibold text-base">Research</h1>
         </div>
-        <p className="text-gray-600 max-w-2xl">
+        <p className="text-muted max-w-2xl">
           The latest published studies on peptides featured on PeptideWise. All studies are sourced from
           PubMed and linked directly to their original publications.
         </p>
-        <p className="text-sm text-gray-400 mt-2">
+        <p className="text-sm text-muted mt-2">
           {researchStudies.length} studies across {categoryOrder.length} categories
         </p>
       </div>
 
       {/* Search */}
       <div className="relative mb-6">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" />
         <input
           type="text"
           placeholder="Search studies by title, author, journal, or finding..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full pl-10 pr-4 py-3 rounded-lg border border-border bg-warm-white text-sm focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent font-body"
         />
       </div>
 
@@ -164,7 +164,7 @@ export default function ResearchPage() {
       <div className="mb-6">
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors mb-3"
+          className="flex items-center gap-2 text-sm font-medium text-muted hover:text-base transition-colors mb-3"
         >
           <Filter className="h-4 w-4" />
           Filter by Peptide
@@ -174,15 +174,15 @@ export default function ResearchPage() {
         </button>
 
         {showFilters && (
-          <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 space-y-4">
+          <div className="bg-surface rounded-xl border border-border p-4 space-y-4">
             {/* All Studies pill */}
             <button
               onClick={() => setActiveFilter("all")}
               className={cn(
                 "px-4 py-2 rounded-lg text-sm font-medium transition-all border",
                 activeFilter === "all"
-                  ? "gradient-primary text-white border-transparent shadow-sm"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600"
+                  ? "bg-accent text-surface border-transparent shadow-warm"
+                  : "bg-warm-white text-muted border-border hover:border-accent hover:text-accent"
               )}
             >
               All Studies ({researchStudies.length})
@@ -200,7 +200,7 @@ export default function ResearchPage() {
 
               return (
                 <div key={cat}>
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                  <p className="text-xs font-semibold text-muted uppercase tracking-wider mb-2">
                     {getCategoryLabel(cat)} ({catStudyCount})
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -213,8 +213,8 @@ export default function ResearchPage() {
                           className={cn(
                             "px-3 py-1.5 rounded-lg text-xs font-medium transition-all border",
                             activeFilter === p.id
-                              ? "gradient-primary text-white border-transparent shadow-sm"
-                              : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600"
+                              ? "bg-accent text-surface border-transparent shadow-warm"
+                              : "bg-warm-white text-muted border-border hover:border-accent hover:text-accent"
                           )}
                         >
                           {p.name}
@@ -254,7 +254,7 @@ export default function ResearchPage() {
       )}
 
       {/* Results Count */}
-      <p className="text-sm text-gray-500 mb-4">
+      <p className="text-sm text-muted mb-4">
         Showing {filteredStudies.length} {filteredStudies.length === 1 ? "study" : "studies"}
         {activeFilter !== "all" &&
           ` for ${peptides.find((p) => p.id === activeFilter)?.name || activeFilter}`}
@@ -283,10 +283,10 @@ export default function ResearchPage() {
                     <Icon className="h-4.5 w-4.5 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-bold text-gray-900">
+                    <h2 className="font-heading text-lg font-semibold text-base">
                       {getCategoryLabel(cat)}
                     </h2>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-muted">
                       {studies.length} {studies.length === 1 ? "study" : "studies"}
                     </p>
                   </div>
@@ -314,16 +314,16 @@ export default function ResearchPage() {
       {/* Empty State */}
       {filteredStudies.length === 0 && (
         <div className="text-center py-16">
-          <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 font-medium">No studies found</p>
-          <p className="text-sm text-gray-400 mt-1">Try adjusting your search or filter</p>
+          <BookOpen className="h-12 w-12 text-muted mx-auto mb-4" />
+          <p className="text-muted font-medium">No studies found</p>
+          <p className="text-sm text-muted mt-1">Try adjusting your search or filter</p>
         </div>
       )}
 
       {/* Disclaimer */}
-      <div className="mt-12 bg-gray-50 rounded-xl border border-gray-200 p-4">
-        <p className="text-xs text-gray-500 leading-relaxed">
-          <strong className="text-gray-600">Note:</strong> Studies listed here are sourced from PubMed
+      <div className="mt-12 bg-surface rounded-xl border border-border p-4">
+        <p className="text-xs text-muted leading-relaxed">
+          <strong className="text-text-primary">Note:</strong> Studies listed here are sourced from PubMed
           and represent published research. Inclusion does not constitute endorsement or a treatment
           recommendation. Always consult with a qualified healthcare provider before making medical
           decisions. For personalized guidance, consult{" "}
@@ -331,7 +331,7 @@ export default function ResearchPage() {
             href="https://tinyurl.com/drtaylorfreeconsult"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-500"
+            className="text-accent hover:text-accent-hover"
           >
             Dr. Taylor at Live Vital MD
           </a>
@@ -350,8 +350,8 @@ function StudyCard({ study }: { study: (typeof researchStudies)[number] }) {
   return (
     <div
       className={cn(
-        "group bg-white rounded-xl border border-gray-200 border-l-4 p-4 hover:shadow-md transition-all",
-        categoryBorderColors[cat] || "border-l-gray-300"
+        "group bg-card rounded-xl border border-border border-l-4 p-4 hover:-translate-y-0.5 hover:shadow-warm-lg transition-all duration-300",
+        categoryBorderColors[cat] || "border-l-border"
       )}
     >
       <Link href={`/research/${study.pmid}`} className="block">
@@ -366,33 +366,33 @@ function StudyCard({ study }: { study: (typeof researchStudies)[number] }) {
             {study.peptideName}
           </span>
           {year && (
-            <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+            <span className="text-xs text-muted bg-surface px-2 py-0.5 rounded-full">
               {year}
             </span>
           )}
         </div>
 
         {/* Title */}
-        <h3 className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors leading-snug">
+        <h3 className="font-heading text-sm font-semibold text-base mb-1 group-hover:text-accent transition-colors leading-snug">
           {study.title}
         </h3>
 
         {/* Authors + Journal */}
-        <p className="text-xs text-gray-500 mb-2 truncate">
+        <p className="font-body text-xs text-muted mb-2 truncate">
           {study.authors} &mdash; <em>{study.journal}</em>
         </p>
 
         {/* Key Finding — compact */}
-        <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
-          <span className="font-medium text-gray-700">Key finding:</span> {study.keyFinding}
+        <p className="text-sm text-text-primary leading-relaxed line-clamp-2">
+          <span className="font-medium text-text-primary">Key finding:</span> {study.keyFinding}
         </p>
       </Link>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+      <div className="flex items-center justify-between mt-3 pt-2 border-t border-border">
         <Link
           href={`/research/${study.pmid}`}
-          className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700"
+          className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover"
         >
           Read breakdown <ArrowRight className="h-3.5 w-3.5" />
         </Link>
@@ -401,7 +401,7 @@ function StudyCard({ study }: { study: (typeof researchStudies)[number] }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-blue-500 transition-colors"
+          className="inline-flex items-center gap-1 text-xs text-muted hover:text-accent transition-colors"
         >
           PubMed <ExternalLink className="h-3 w-3" />
         </a>

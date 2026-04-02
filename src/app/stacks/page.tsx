@@ -47,7 +47,7 @@ const symptomCategories = [
     name: "Weight & Body Composition",
     icon: Scale,
     description: "Weight loss, metabolism, body fat",
-    color: "bg-green-50 border-green-200 hover:bg-green-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "difficulty-losing-weight", name: "Stubborn weight gain" },
       { id: "slow-metabolism", name: "Slow metabolism" },
@@ -59,7 +59,7 @@ const symptomCategories = [
     name: "Sleep & Recovery",
     icon: Moon,
     description: "Sleep quality, muscle recovery, HGH",
-    color: "bg-violet-50 border-violet-200 hover:bg-violet-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "poor-sleep-quality", name: "Poor or light sleep" },
       { id: "waking-unrefreshed", name: "Waking up tired" },
@@ -71,7 +71,7 @@ const symptomCategories = [
     name: "Pain & Inflammation",
     icon: Flame,
     description: "Joint pain, injuries, healing",
-    color: "bg-orange-50 border-orange-200 hover:bg-orange-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "joint-pain", name: "Joint pain or stiffness" },
       { id: "tendon-ligament-issues", name: "Tendon or ligament injury" },
@@ -84,7 +84,7 @@ const symptomCategories = [
     name: "Cognitive & Mood",
     icon: Brain,
     description: "Brain fog, anxiety, focus",
-    color: "bg-indigo-50 border-indigo-200 hover:bg-indigo-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "brain-fog", name: "Brain fog" },
       { id: "anxiety", name: "Anxiety" },
@@ -97,7 +97,7 @@ const symptomCategories = [
     name: "Aging & Longevity",
     icon: Clock,
     description: "Anti-aging, energy, vitality",
-    color: "bg-purple-50 border-purple-200 hover:bg-purple-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "premature-aging", name: "Feeling older than your age" },
       { id: "declining-vitality", name: "Low energy or vitality" },
@@ -109,7 +109,7 @@ const symptomCategories = [
     name: "Immune Health",
     icon: Shield,
     description: "Immunity, infections, autoimmune",
-    color: "bg-red-50 border-red-200 hover:bg-red-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "frequent-infections", name: "Getting sick often" },
       { id: "slow-immune-healing", name: "Slow recovery from illness" },
@@ -121,7 +121,7 @@ const symptomCategories = [
     name: "Sexual Health",
     icon: Heart,
     description: "Libido, performance, hormones",
-    color: "bg-pink-50 border-pink-200 hover:bg-pink-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "low-libido", name: "Low sex drive" },
       { id: "erectile-dysfunction", name: "Erectile dysfunction" },
@@ -133,7 +133,7 @@ const symptomCategories = [
     name: "Skin & Hair",
     icon: Sparkles,
     description: "Wrinkles, hair loss, skin quality",
-    color: "bg-amber-50 border-amber-200 hover:bg-amber-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "wrinkles-fine-lines", name: "Wrinkles or fine lines" },
       { id: "hair-thinning", name: "Hair thinning or loss" },
@@ -145,7 +145,7 @@ const symptomCategories = [
     name: "Gut Health",
     icon: Apple,
     description: "IBS, bloating, digestion",
-    color: "bg-emerald-50 border-emerald-200 hover:bg-emerald-100",
+    color: "bg-card border-border hover:bg-surface",
     symptoms: [
       { id: "ibs-symptoms", name: "IBS or digestive issues" },
       { id: "bloating", name: "Bloating" },
@@ -287,16 +287,16 @@ export default function StacksPage() {
     if (!unlocked) {
       return (
         <div className="max-w-lg mx-auto px-4 sm:px-6 py-16 md:py-24 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-600 text-sm font-medium mb-6 border border-green-200">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e8efe3] text-[#4a5e3a] text-sm font-medium mb-6 border border-border">
             <Check className="h-4 w-4" />
             Analysis Complete
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+          <h1 className="font-heading text-2xl md:text-3xl font-semibold text-base mb-3">
             {results.length > 0
               ? `We have ${results.length} protocol${results.length !== 1 ? "s" : ""} that fit your needs`
               : "Dr. Taylor can build a custom protocol for you"}
           </h1>
-          <p className="text-gray-500 mb-8">
+          <p className="text-muted mb-8">
             {results.length > 0
               ? `Matched for a ${age}-year-old ${gender}, BMI ${bmiValue}`
               : "Your profile may benefit from a physician-designed protocol tailored to your specific needs."}
@@ -310,13 +310,13 @@ export default function StacksPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4">
-            <Stethoscope className="h-8 w-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-accent mb-4">
+            <Stethoscope className="h-8 w-8 text-surface" />
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="font-heading text-2xl md:text-3xl font-semibold text-base mb-2">
             Your Personalized Protocols
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted">
             {results.length > 0
               ? `Dr. Taylor selected ${results.length} protocol${results.length !== 1 ? "s" : ""} for a ${age}-year-old ${gender}, BMI ${bmiValue}`
               : `Personalized recommendation for a ${age}-year-old ${gender}, BMI ${bmiValue}`}
@@ -324,14 +324,14 @@ export default function StacksPage() {
         </div>
 
         {results.length === 0 ? (
-          <div className="text-center py-12 bg-white shadow-sm rounded-2xl border border-gray-200">
-            <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={80} height={80} className="w-20 h-20 rounded-full object-cover mx-auto mb-5 border-4 border-white shadow-md" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Your Goals Deserve a Custom Protocol</h2>
-            <p className="text-gray-600 mb-2 max-w-md mx-auto">
+          <div className="text-center py-12 bg-warm-white shadow-warm rounded-xl border border-border">
+            <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={80} height={80} className="w-20 h-20 rounded-full object-cover mx-auto mb-5 border-4 border-card shadow-warm" />
+            <h2 className="font-heading text-xl font-semibold text-base mb-2">Your Goals Deserve a Custom Protocol</h2>
+            <p className="text-muted mb-2 max-w-md mx-auto">
               Based on your profile, Dr. Taylor recommends a personalized consultation
               to design a protocol tailored specifically to your body, labs, and health goals.
             </p>
-            <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+            <p className="text-sm text-muted mb-6 max-w-md mx-auto">
               Every patient is different &mdash; a one-on-one evaluation ensures the safest
               and most effective approach for your situation.
             </p>
@@ -339,7 +339,7 @@ export default function StacksPage() {
               href="https://tinyurl.com/drtaylorfreeconsult"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-sm mb-4"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent-hover text-surface font-semibold transition-colors shadow-warm mb-4"
             >
               Book a Free Consultation <ArrowRight className="h-4 w-4" />
             </a>
@@ -349,7 +349,7 @@ export default function StacksPage() {
                   setShowResults(false);
                   setStep(3);
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-muted hover:text-base transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" /> Or adjust your symptoms
               </button>
@@ -366,32 +366,32 @@ export default function StacksPage() {
               return (
                 <div
                   key={stack.id}
-                  className="bg-white shadow-sm rounded-2xl border border-gray-200 overflow-hidden"
+                  className="bg-card shadow-warm rounded-xl border border-border overflow-hidden"
                 >
                   {/* Protocol header */}
                   <div className="p-6 md:p-8">
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center">
-                        <Icon className="h-7 w-7 text-white" />
+                      <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-accent flex items-center justify-center">
+                        <Icon className="h-7 w-7 text-surface" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
                           {stack.highlight && (
-                            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-[#e8efe3] text-[#4a5e3a] border border-border">
                               {stack.highlight}
                             </span>
                           )}
-                          <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200">
+                          <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-card text-accent border border-border">
                             {relevance}% symptom match
                           </span>
                         </div>
-                        <h2 className="text-xl font-bold text-gray-900 mb-1">
+                        <h2 className="font-heading text-xl font-semibold text-base mb-1">
                           {stack.name}
                         </h2>
-                        <p className="text-sm text-gray-500 mb-3">
+                        <p className="text-sm text-muted mb-3">
                           {stack.subtitle}
                         </p>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <p className="text-sm text-text-primary leading-relaxed">
                           {stack.description}
                         </p>
 
@@ -405,7 +405,7 @@ export default function StacksPage() {
                               return (
                                 <span
                                   key={symptomId}
-                                  className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-green-50 text-green-600 border border-green-200"
+                                  className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#e8efe3] text-[#4a5e3a] border border-border"
                                 >
                                   <Check className="h-3 w-3" />
                                   {symptom?.name || symptomId}
@@ -421,8 +421,8 @@ export default function StacksPage() {
                   {/* Gated: Peptides + Dr. Taylor's notes */}
                   {unlocked && (
                     <>
-                      <div className="border-t border-gray-200 bg-white px-6 md:px-8 py-4">
-                        <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                      <div className="border-t border-border bg-warm-white px-6 md:px-8 py-4">
+                        <div className="text-xs font-semibold text-muted uppercase tracking-wider mb-3">
                           Peptides in your protocol
                         </div>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -432,16 +432,16 @@ export default function StacksPage() {
                                 <Link
                                   key={p.id}
                                   href={`/peptides/${p.slug}`}
-                                  className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-200 hover:border-blue-300 transition-all group"
+                                  className="flex items-center gap-3 p-3 rounded-xl bg-warm-white border border-border hover:border-accent transition-all group"
                                 >
-                                  <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
-                                    <FlaskConical className="h-4 w-4 text-white" />
+                                  <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
+                                    <FlaskConical className="h-4 w-4 text-surface" />
                                   </div>
                                   <div className="min-w-0">
-                                    <div className="font-medium text-gray-800 text-sm group-hover:text-blue-600 transition-colors">
+                                    <div className="font-medium text-text-primary text-sm group-hover:text-accent transition-colors">
                                       {p.name}
                                     </div>
-                                    <div className="text-xs text-gray-500 truncate">
+                                    <div className="text-xs text-muted truncate">
                                       {p.typicalDosage}
                                     </div>
                                   </div>
@@ -451,12 +451,12 @@ export default function StacksPage() {
                         </div>
                       </div>
 
-                      <div className="border-t border-blue-200 bg-blue-50 px-6 md:px-8 py-4">
+                      <div className="border-t border-border bg-card px-6 md:px-8 py-4">
                         <div className="flex items-start gap-3">
                           <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD" width={24} height={24} className="flex-shrink-0 w-8 h-8 rounded-full object-cover mt-0.5" />
                           <div>
-                            <div className="text-xs font-semibold text-blue-600 mb-1">Dr. Taylor&apos;s 2 Cents</div>
-                            <p className="text-sm text-gray-600 italic leading-relaxed">
+                            <div className="text-xs font-semibold text-accent mb-1">Dr. Taylor&apos;s 2 Cents</div>
+                            <p className="text-sm text-text-primary italic leading-relaxed">
                               &ldquo;{stack.drTaylorNote}&rdquo;
                             </p>
                           </div>
@@ -484,7 +484,7 @@ export default function StacksPage() {
                 href="https://tinyurl.com/drtaylorfreeconsult"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-600 underline"
+                className="text-accent hover:text-accent underline"
               >
                 Dr. Taylor at Live Vital MD
               </a>
@@ -501,7 +501,7 @@ export default function StacksPage() {
               setStep(1);
               setSelectedSymptoms([]);
             }}
-            className="px-5 py-2.5 rounded-xl border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-border text-text-primary font-medium hover:bg-surface transition-colors"
           >
             Start Over
           </button>
@@ -509,7 +509,7 @@ export default function StacksPage() {
             href="https://tinyurl.com/drtaylorfreeconsult"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
+            className="px-5 py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-surface font-medium transition-colors"
           >
             Consult Dr. Taylor
           </a>
@@ -523,13 +523,13 @@ export default function StacksPage() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-primary mb-4">
-            <Stethoscope className="h-7 w-7 text-white" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent mb-4">
+            <Stethoscope className="h-7 w-7 text-surface" />
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="font-heading text-2xl md:text-3xl font-semibold text-base mb-2">
             Build Your Personalized Protocol
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted">
             Tell us about yourself and Dr. Taylor will match you with a
             personalized peptide protocol tailored to your body and goals.
           </p>
@@ -543,8 +543,8 @@ export default function StacksPage() {
                 className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all",
                   step >= s
-                    ? "gradient-primary text-white"
-                    : "bg-gray-200 text-gray-400"
+                    ? "bg-accent text-surface"
+                    : "bg-card text-muted border border-border"
                 )}
               >
                 {step > s ? <Check className="h-4 w-4" /> : s}
@@ -553,7 +553,7 @@ export default function StacksPage() {
                 <div
                   className={cn(
                     "w-12 h-0.5",
-                    step > s ? "gradient-primary" : "bg-gray-200"
+                    step > s ? "bg-accent" : "bg-card"
                   )}
                 />
               )}
@@ -565,24 +565,24 @@ export default function StacksPage() {
         {step === 1 && (
           <div>
             <div className="text-center mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-1">
+              <h2 className="font-heading text-xl font-semibold text-base mb-1">
                 Basic Information
               </h2>
-              <p className="text-gray-500 text-sm">
+              <p className="text-muted text-sm">
                 Age and gender help us personalize the right protocol for you.
               </p>
             </div>
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-3">
-                  <Calendar className="h-4 w-4 inline mr-2 text-gray-600" />
+                <label className="block text-sm font-semibold text-base mb-3">
+                  <Calendar className="h-4 w-4 inline mr-2 text-muted" />
                   Birth Year
                 </label>
                 <select
                   value={birthYear}
                   onChange={(e) => setBirthYear(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 focus:border-blue-500 focus:outline-none transition-colors appearance-none"
+                  className="w-full px-4 py-3 rounded-lg bg-warm-white border border-border text-base focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors appearance-none font-body"
                 >
                   <option value="">Select your birth year</option>
                   {Array.from({ length: 83 }, (_, i) => new Date().getFullYear() - 18 - i).map((year) => (
@@ -592,8 +592,8 @@ export default function StacksPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-3">
-                  <User className="h-4 w-4 inline mr-2 text-gray-600" />
+                <label className="block text-sm font-semibold text-base mb-3">
+                  <User className="h-4 w-4 inline mr-2 text-muted" />
                   Biological Sex
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -604,8 +604,8 @@ export default function StacksPage() {
                       className={cn(
                         "p-4 rounded-xl border-2 text-center font-medium capitalize transition-all",
                         gender === g
-                          ? "border-blue-500 bg-blue-50 text-blue-700"
-                          : "border-gray-200 text-gray-500 hover:border-gray-300"
+                          ? "border-accent bg-accent/5 text-accent"
+                          : "border-border text-muted hover:border-accent"
                       )}
                     >
                       {g}
@@ -619,7 +619,7 @@ export default function StacksPage() {
               <button
                 onClick={() => setStep(2)}
                 disabled={!canProceedStep1}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent-hover text-surface font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Continue <ArrowRight className="h-4 w-4" />
               </button>
@@ -631,18 +631,18 @@ export default function StacksPage() {
         {step === 2 && (
           <div>
             <div className="text-center mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-1">
+              <h2 className="font-heading text-xl font-semibold text-base mb-1">
                 Body Metrics
               </h2>
-              <p className="text-gray-500 text-sm">
+              <p className="text-muted text-sm">
                 Height and weight help us fine-tune your personalized protocol.
               </p>
             </div>
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-3">
-                  <Ruler className="h-4 w-4 inline mr-2 text-gray-600" />
+                <label className="block text-sm font-semibold text-base mb-3">
+                  <Ruler className="h-4 w-4 inline mr-2 text-muted" />
                   Height
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -650,7 +650,7 @@ export default function StacksPage() {
                     <select
                       value={heightFeet}
                       onChange={(e) => setHeightFeet(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 focus:border-blue-500 focus:outline-none transition-colors appearance-none"
+                      className="w-full px-4 py-3 rounded-lg bg-warm-white border border-border text-base focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors appearance-none font-body"
                     >
                       <option value="">Feet</option>
                       {[4, 5, 6, 7].map((ft) => (
@@ -662,7 +662,7 @@ export default function StacksPage() {
                     <select
                       value={heightInches}
                       onChange={(e) => setHeightInches(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 focus:border-blue-500 focus:outline-none transition-colors appearance-none"
+                      className="w-full px-4 py-3 rounded-lg bg-warm-white border border-border text-base focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors appearance-none font-body"
                     >
                       <option value="">Inches</option>
                       {Array.from({ length: 12 }, (_, i) => i).map((inch) => (
@@ -674,8 +674,8 @@ export default function StacksPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-3">
-                  <Weight className="h-4 w-4 inline mr-2 text-gray-600" />
+                <label className="block text-sm font-semibold text-base mb-3">
+                  <Weight className="h-4 w-4 inline mr-2 text-muted" />
                   Weight (lbs)
                 </label>
                 <input
@@ -685,21 +685,21 @@ export default function StacksPage() {
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
                   placeholder="Enter weight in pounds"
-                  className="w-full px-4 py-3 rounded-xl bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-warm-white border border-border text-base placeholder-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-body"
                 />
               </div>
 
               {bmiValue && (
-                <div className="p-4 rounded-xl bg-white shadow-sm border border-gray-200">
+                <div className="p-4 rounded-xl bg-warm-white shadow-warm border border-border">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Calculated BMI</span>
+                    <span className="text-sm text-muted">Calculated BMI</span>
                     <span
                       className={cn(
                         "text-lg font-bold",
                         parseFloat(bmiValue) < 18.5
-                          ? "text-blue-400"
+                          ? "text-accent"
                           : parseFloat(bmiValue) < 25
-                          ? "text-green-600"
+                          ? "text-accent"
                           : parseFloat(bmiValue) < 30
                           ? "text-amber-700"
                           : "text-red-600"
@@ -708,7 +708,7 @@ export default function StacksPage() {
                       {bmiValue}
                     </span>
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-muted mt-1">
                     {parseFloat(bmiValue) < 18.5
                       ? "Underweight"
                       : parseFloat(bmiValue) < 25
@@ -724,14 +724,14 @@ export default function StacksPage() {
             <div className="flex gap-3 mt-8">
               <button
                 onClick={() => setStep(1)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-text-primary font-medium hover:bg-surface transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" /> Back
               </button>
               <button
                 onClick={() => setStep(3)}
                 disabled={!canProceedStep2}
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent-hover text-surface font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Continue <ArrowRight className="h-4 w-4" />
               </button>
@@ -743,10 +743,10 @@ export default function StacksPage() {
         {step === 3 && (
           <div>
             <div className="text-center mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-1">
+              <h2 className="font-heading text-xl font-semibold text-base mb-1">
                 Select Your Symptoms
               </h2>
-              <p className="text-gray-500 text-sm">
+              <p className="text-muted text-sm">
                 Choose all symptoms that apply. Tap a category to expand it.
               </p>
             </div>
@@ -764,30 +764,30 @@ export default function StacksPage() {
                     key={cat.id}
                     className={cn(
                       "rounded-xl border-2 overflow-hidden transition-all",
-                      isExpanded ? "sm:col-span-2 border-blue-300 bg-white" : cat.color
+                      isExpanded ? "sm:col-span-2 border-accent bg-warm-white" : "border-border bg-card"
                     )}
                   >
                     <button
                       onClick={() => toggleCategory(cat.id)}
                       className={cn(
                         "w-full flex items-center gap-4 p-4 text-left transition-all",
-                        !isExpanded && cat.color
+                        !isExpanded && "bg-card"
                       )}
                     >
-                      <CatIcon className="h-6 w-6 text-gray-700 flex-shrink-0" />
+                      <CatIcon className="h-6 w-6 text-text-primary flex-shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-900">{cat.name}</div>
-                        <div className="text-sm text-gray-500">{cat.description}</div>
+                        <div className="font-medium text-base">{cat.name}</div>
+                        <div className="text-sm text-muted">{cat.description}</div>
                       </div>
                       {selectedInCategory > 0 && (
-                        <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200">
+                        <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-card text-accent border border-border">
                           {selectedInCategory}
                         </span>
                       )}
                     </button>
 
                     {isExpanded && (
-                      <div className="border-t border-gray-200 bg-white px-4 py-3 space-y-2">
+                      <div className="border-t border-border bg-warm-white px-4 py-3 space-y-2">
                         {cat.symptoms.map((symptom) => (
                           <button
                             key={symptom.id}
@@ -795,28 +795,28 @@ export default function StacksPage() {
                             className={cn(
                               "w-full flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all",
                               selectedSymptoms.includes(symptom.id)
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-200 bg-white hover:border-gray-300"
+                                ? "border-accent bg-accent/5"
+                                : "border-border bg-warm-white hover:border-accent"
                             )}
                           >
                             <div
                               className={cn(
                                 "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0",
                                 selectedSymptoms.includes(symptom.id)
-                                  ? "border-blue-500 bg-blue-500"
-                                  : "border-gray-300"
+                                  ? "border-accent bg-accent"
+                                  : "border-border"
                               )}
                             >
                               {selectedSymptoms.includes(symptom.id) && (
-                                <Check className="h-3 w-3 text-white" />
+                                <Check className="h-3 w-3 text-surface" />
                               )}
                             </div>
                             <span
                               className={cn(
                                 "font-medium",
                                 selectedSymptoms.includes(symptom.id)
-                                  ? "text-gray-900"
-                                  : "text-gray-600"
+                                  ? "text-base"
+                                  : "text-text-primary"
                               )}
                             >
                               {symptom.name}
@@ -831,8 +831,8 @@ export default function StacksPage() {
             </div>
 
             {selectedSymptoms.length > 0 && (
-              <div className="mt-4 p-3 rounded-xl bg-white shadow-sm border border-gray-200">
-                <div className="text-xs text-gray-500 mb-2">
+              <div className="mt-4 p-3 rounded-xl bg-warm-white shadow-warm border border-border">
+                <div className="text-xs text-muted mb-2">
                   {selectedSymptoms.length} symptom{selectedSymptoms.length !== 1 ? "s" : ""} selected
                 </div>
                 <div className="flex flex-wrap gap-1.5">
@@ -844,7 +844,7 @@ export default function StacksPage() {
                       <button
                         key={id}
                         onClick={() => toggleSymptom(id)}
-                        className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
+                        className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-card text-accent border border-border hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
                       >
                         {symptom?.name || id}
                         <span className="ml-0.5">&times;</span>
@@ -858,14 +858,14 @@ export default function StacksPage() {
             <div className="flex gap-3 mt-8">
               <button
                 onClick={() => setStep(2)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-text-primary font-medium hover:bg-surface transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" /> Back
               </button>
               <button
                 onClick={() => setShowResults(true)}
                 disabled={!canProceedStep3}
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent-hover text-surface font-semibold transition-colors shadow-warm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Build My Protocol <ArrowRight className="h-4 w-4" />
               </button>
