@@ -51,15 +51,15 @@ const categoryIcons: Record<string, React.ElementType> = {
 
 // Full static class strings so Tailwind scanner detects them
 const categoryGradients: Record<string, string> = {
-  "growth-hormone": "bg-gradient-to-br from-blue-600 to-blue-400",
-  "weight-management": "bg-gradient-to-br from-green-600 to-green-400",
-  "tissue-repair": "bg-gradient-to-br from-orange-600 to-orange-400",
-  "anti-aging": "bg-gradient-to-br from-purple-600 to-purple-400",
-  cognitive: "bg-gradient-to-br from-indigo-600 to-indigo-400",
-  immune: "bg-gradient-to-br from-red-600 to-red-400",
-  "sexual-health": "bg-gradient-to-br from-pink-600 to-pink-400",
-  sleep: "bg-gradient-to-br from-violet-600 to-violet-400",
-  "skin-hair": "bg-gradient-to-br from-amber-600 to-amber-400",
+  "growth-hormone": "bg-accent",
+  "weight-management": "bg-accent",
+  "tissue-repair": "bg-accent",
+  "anti-aging": "bg-accent",
+  cognitive: "bg-accent",
+  immune: "bg-accent",
+  "sexual-health": "bg-accent",
+  sleep: "bg-accent",
+  "skin-hair": "bg-accent",
 };
 
 const categoryBorderColors: Record<string, string> = {
@@ -280,7 +280,7 @@ export default function ResearchPage() {
                       categoryGradients[cat]
                     )}
                   >
-                    <Icon className="h-4.5 w-4.5 text-white" />
+                    <Icon className="h-4.5 w-4.5 text-surface" />
                   </div>
                   <div>
                     <h2 className="font-heading text-lg font-semibold text-base">

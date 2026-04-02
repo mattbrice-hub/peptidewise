@@ -65,15 +65,15 @@ const categoryOrder = [
 
 // Full static class strings so Tailwind scanner can detect them
 const categoryGradients: Record<string, string> = {
-  "growth-hormone": "bg-gradient-to-br from-blue-600 to-blue-400",
-  "weight-management": "bg-gradient-to-br from-green-600 to-green-400",
-  "tissue-repair": "bg-gradient-to-br from-orange-600 to-orange-400",
-  "anti-aging": "bg-gradient-to-br from-purple-600 to-purple-400",
-  cognitive: "bg-gradient-to-br from-indigo-600 to-indigo-400",
-  immune: "bg-gradient-to-br from-red-600 to-red-400",
-  "sexual-health": "bg-gradient-to-br from-pink-600 to-pink-400",
-  sleep: "bg-gradient-to-br from-violet-600 to-violet-400",
-  "skin-hair": "bg-gradient-to-br from-amber-600 to-amber-400",
+  "growth-hormone": "bg-accent",
+  "weight-management": "bg-accent",
+  "tissue-repair": "bg-accent",
+  "anti-aging": "bg-accent",
+  cognitive: "bg-accent",
+  immune: "bg-accent",
+  "sexual-health": "bg-accent",
+  sleep: "bg-accent",
+  "skin-hair": "bg-accent",
 };
 
 const stackIcons: Record<string, React.ElementType> = {
@@ -176,7 +176,7 @@ export default function PeptidesPage() {
                 <div
                   className={`w-12 h-12 rounded-xl ${gradient} flex items-center justify-center flex-shrink-0`}
                 >
-                  <Icon className="h-6 w-6 text-white" />
+                  <Icon className="h-6 w-6 text-surface" />
                 </div>
                 <div>
                   <h2 className="font-heading text-xl font-semibold text-base">
@@ -204,7 +204,7 @@ export default function PeptidesPage() {
                         <div
                           className={`w-10 h-10 rounded-lg ${cardGradient} flex items-center justify-center flex-shrink-0`}
                         >
-                          <CardIcon className="h-5 w-5 text-white" />
+                          <CardIcon className="h-5 w-5 text-surface" />
                         </div>
                         <div>
                           <h3 className="font-heading text-xl font-semibold text-base group-hover:text-accent transition-colors">

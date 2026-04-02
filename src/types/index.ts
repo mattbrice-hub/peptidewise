@@ -19,7 +19,7 @@ export interface Peptide {
   detailedDescription: string;
   benefits: string[];
   commonUses: string[];
-  administrationRoutes: ("subcutaneous" | "oral" | "nasal" | "topical")[];
+  administrationRoutes: ("subcutaneous" | "oral" | "nasal" | "topical" | "intranasal")[];
   typicalDosage: string;
   cycleLength: string;
   sideEffects: string[];

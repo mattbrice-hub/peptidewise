@@ -150,7 +150,7 @@ export default function StudyDetailPage({ params }: { params: { pmid: string } }
           href={`https://pubmed.ncbi.nlm.nih.gov/${study.pmid}/`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-warm"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-surface font-semibold hover:bg-accent-hover transition-colors shadow-warm"
         >
           View Full Study on PubMed
           <ExternalLink className="h-4 w-4" />
@@ -198,8 +198,8 @@ export default function StudyDetailPage({ params }: { params: { pmid: string } }
       )}
 
       {/* Consult CTA */}
-      <div className="gradient-primary rounded-2xl p-6 text-center">
-        <p className="text-white/90 text-sm mb-3">
+      <div className="bg-base rounded-xl p-6 text-center">
+        <p className="text-surface/80 text-sm mb-3">
           Interested in how this research applies to your health goals?
         </p>
         <a
