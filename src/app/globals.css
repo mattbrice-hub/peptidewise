@@ -2,19 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 :root {
-  --color-primary: 37 99 235;
-  --color-accent: 13 148 136;
-  --color-surface: 255 255 255;
-  --color-card: 255 255 255;
+  --color-base: 44 36 24;
+  --color-text: 90 77 58;
+  --color-muted: 138 125 107;
+  --color-accent: 180 120 76;
+  --color-accent-hover: 154 102 64;
+  --color-accent-light: 196 168 130;
+  --color-surface: 250 247 242;
+  --color-card: 240 235 227;
+  --color-border: 232 224 212;
+  --color-white: 255 253 249;
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #f8fafc;
-  color: #334155;
+  background-color: #faf7f2;
+  color: #5a4d3a;
 }
 
 @layer utilities {
@@ -22,12 +25,32 @@ body {
     text-wrap: balance;
   }
   .gradient-primary {
-    background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+    background: linear-gradient(135deg, #b4784c 0%, #c4a882 100%);
   }
   .gradient-text {
-    background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+    background: linear-gradient(135deg, #b4784c 0%, #c4a882 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
