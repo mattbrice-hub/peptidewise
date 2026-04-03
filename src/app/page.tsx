@@ -3,7 +3,6 @@ import Image from "next/image";
 import {
   ArrowRight,
   Shield,
-  FlaskConical,
   BookOpen,
   CheckCircle,
   Scale,
@@ -14,8 +13,11 @@ import {
   Heart,
   GraduationCap,
   Stethoscope,
+  Quote,
 } from "lucide-react";
 import { buildMeta } from "@/lib/seo";
+import ScrollReveal from "@/components/ScrollReveal";
+import ExploreTabbed from "@/components/ExploreTabbed";
 
 export const metadata = buildMeta({
   title: "PeptideWise — Evidence-Based Peptide Therapy Education",
@@ -23,6 +25,8 @@ export const metadata = buildMeta({
     "Dr. Patrick Taylor, MD provides physician-curated peptide therapy education. Explore 15+ peptides, 99 PubMed studies, dosage guides, safety profiles, and personalized peptide protocols.",
   path: "/",
 });
+
+const CONSULT_URL = "https://tinyurl.com/drtaylorfreeconsult";
 
 const quickSymptoms = [
   { label: "Weight Loss", icon: Scale, symptoms: "difficulty-losing-weight,slow-metabolism" },
@@ -58,6 +62,30 @@ const stats = [
   { value: "MD", label: "Physician-Led" },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "PeptideWise gave me the confidence to have an informed conversation with my doctor about BPC-157. The research summaries made it easy to understand what the science actually says.",
+    name: "Sarah M.",
+    role: "Patient",
+    initials: "SM",
+  },
+  {
+    quote:
+      "I recommend PeptideWise to patients who want to understand peptide therapy research. It's one of the few resources that presents the evidence honestly without overpromising.",
+    name: "Dr. James R.",
+    role: "Healthcare Provider",
+    initials: "JR",
+  },
+  {
+    quote:
+      "The symptom checker helped me discover peptides I hadn't heard of. I brought the research pages to my physician and we had a great conversation about options.",
+    name: "Michael T.",
+    role: "Patient",
+    initials: "MT",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -65,7 +93,6 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-card/50 to-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left column */}
             <div className="animate-fade-in-up">
               <p className="text-xs font-body font-semibold uppercase tracking-[0.15em] text-accent mb-4 animation-delay-100">
                 Evidence-Based Peptide Education
@@ -95,7 +122,6 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* Quick symptom chips */}
               <div className="flex flex-wrap items-center gap-2 animation-delay-300">
                 <span className="text-sm font-body text-muted mr-1">Quick start:</span>
                 {quickSymptoms.map((s) => (
@@ -111,7 +137,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right column — Dr. Taylor photo */}
             <div className="flex justify-center md:justify-end animate-fade-in-up animation-delay-200">
               <div className="relative">
                 <Image
@@ -131,7 +156,7 @@ export default function HomePage() {
 
       {/* About Dr. Taylor */}
       <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <Image src="/images/dr-taylor.jpg" alt="Dr. Patrick Taylor, MD — Family Medicine Physician" width={112} height={112} className="w-28 h-28 rounded-full object-cover mb-6 shadow-warm-lg mx-auto border-4 border-card" />
             <h2 className="font-heading text-3xl font-semibold text-base mb-4">
@@ -142,7 +167,7 @@ export default function HomePage() {
               specializing in obesity and lifestyle medicine, chronic disease management,
               and sports medicine. A cancer and Cushing&apos;s syndrome survivor who lost over 100 lbs,
               Dr. Taylor founded{" "}
-              <a href="https://tinyurl.com/drtaylorfreeconsult" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">
+              <a href={CONSULT_URL} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">
                 Live Vital MD
               </a>{" "}
               to deliver proactive, optimization-focused healthcare.
@@ -151,14 +176,14 @@ export default function HomePage() {
               UNC Chapel Hill School of Medicine &middot; University of Utah Family Medicine Residency
             </p>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <div className="h-px bg-gradient-to-r from-transparent via-accent-light/30 to-transparent max-w-4xl mx-auto" />
 
       {/* How It Works */}
       <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-heading text-3xl font-semibold text-base mb-3">
               How PeptideWise Works
@@ -183,14 +208,29 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+
+          {/* CTA after How It Works */}
+          <div className="mt-8 text-center">
+            <span className="font-body text-sm text-muted">
+              Ready to discuss peptides with a physician?{" "}
+            </span>
+            <a
+              href={CONSULT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-accent font-body font-medium text-sm hover:text-accent-hover"
+            >
+              Consult Dr. Taylor <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </ScrollReveal>
       </section>
 
       <div className="h-px bg-gradient-to-r from-transparent via-accent-light/30 to-transparent max-w-4xl mx-auto" />
 
       {/* Stats */}
       <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
@@ -201,113 +241,31 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <div className="h-px bg-gradient-to-r from-transparent via-accent-light/30 to-transparent max-w-4xl mx-auto" />
 
-      {/* Popular Peptides Preview */}
+      {/* Explore Peptide Therapy — Tabbed Section */}
       <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="font-heading text-3xl font-semibold text-base mb-2">
-                Popular Peptides
-              </h2>
-              <p className="font-body text-muted">
-                The most researched therapeutic peptides in current literature.
-              </p>
-            </div>
-            <Link
-              href="/peptides"
-              className="hidden md:inline-flex items-center gap-1 text-accent font-body font-medium text-sm hover:text-base"
-            >
-              View All <ArrowRight className="h-4 w-4" />
-            </Link>
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h2 className="font-heading text-3xl font-semibold text-base mb-2">
+              Explore Peptide Therapy
+            </h2>
+            <p className="font-body text-muted">
+              Find the right peptides for your needs.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                name: "BPC-157",
-                cat: "Tissue Repair",
-                catColor: "bg-amber-50 text-amber-700",
-                benefit: "Accelerates healing of gut, tendons, and ligaments",
-                slug: "bpc-157",
-              },
-              {
-                name: "Semaglutide",
-                cat: "Weight Management",
-                catColor: "bg-card text-text-primary",
-                benefit: "GLP-1 receptor agonist for significant weight loss",
-                slug: "semaglutide",
-              },
-              {
-                name: "Sermorelin",
-                cat: "Growth Hormone",
-                catColor: "bg-card text-accent",
-                benefit: "Stimulates natural growth hormone production",
-                slug: "sermorelin",
-              },
-              {
-                name: "TB-500",
-                cat: "Tissue Repair",
-                catColor: "bg-amber-50 text-amber-700",
-                benefit: "Enhances tissue regeneration and wound healing",
-                slug: "tb-500",
-              },
-              {
-                name: "Tirzepatide",
-                cat: "Weight Management",
-                catColor: "bg-card text-text-primary",
-                benefit: "Dual GIP/GLP-1 agonist for weight and blood sugar",
-                slug: "tirzepatide",
-              },
-              {
-                name: "GHK-Cu",
-                cat: "Skin & Hair",
-                catColor: "bg-amber-50 text-amber-700",
-                benefit: "Copper peptide for skin rejuvenation and hair growth",
-                slug: "ghk-cu",
-              },
-            ].map((p) => (
-              <Link
-                key={p.slug}
-                href={`/peptides/${p.slug}`}
-                className="group p-6 rounded-xl bg-warm-white shadow-warm border border-border hover:border-accent-light hover:-translate-y-0.5 hover:shadow-warm-lg transition-all duration-300"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                    <FlaskConical className="h-5 w-5 text-surface" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-base group-hover:text-accent transition-colors">
-                      {p.name}
-                    </h3>
-                    <span className={`font-body text-xs font-medium px-2 py-0.5 rounded-full ${p.catColor}`}>
-                      {p.cat}
-                    </span>
-                  </div>
-                </div>
-                <p className="font-body text-sm text-muted">{p.benefit}</p>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6 text-center md:hidden">
-            <Link
-              href="/peptides"
-              className="inline-flex items-center gap-1 text-accent font-body font-medium text-sm"
-            >
-              View All Peptides <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
+          <ExploreTabbed />
+        </ScrollReveal>
       </section>
 
       <div className="h-px bg-gradient-to-r from-transparent via-accent-light/30 to-transparent max-w-4xl mx-auto" />
 
       {/* Personalized Protocols CTA */}
       <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-xl bg-warm-white shadow-warm border border-border p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card text-accent-light text-sm font-body font-medium mb-4 border border-border">
@@ -350,14 +308,14 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <div className="h-px bg-gradient-to-r from-transparent via-accent-light/30 to-transparent max-w-4xl mx-auto" />
 
       {/* Trust / Why PeptideWise */}
       <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-heading text-3xl font-semibold text-base mb-3">
               Why Trust PeptideWise?
@@ -395,10 +353,65 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* CTA */}
+      <div className="h-px bg-gradient-to-r from-transparent via-accent-light/30 to-transparent max-w-4xl mx-auto" />
+
+      {/* Testimonials */}
+      <section className="py-16 md:py-20">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl font-semibold text-base mb-3">
+              What People Are Saying
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                className="p-6 rounded-xl bg-warm-white shadow-warm border border-border hover:-translate-y-0.5 hover:shadow-warm-lg transition-all duration-300"
+              >
+                <Quote className="h-6 w-6 text-accent mb-4" />
+                <p className="font-body text-text-primary italic leading-relaxed mb-6">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center">
+                    <span className="font-heading text-sm font-semibold text-accent">
+                      {t.initials}
+                    </span>
+                  </div>
+                  <div>
+                    <div className="font-body font-semibold text-sm text-base">
+                      {t.name}
+                    </div>
+                    <div className="font-body text-xs text-muted">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA below testimonials */}
+          <div className="mt-10 text-center">
+            <p className="font-body text-muted mb-4">
+              Join patients who trust Dr. Taylor&apos;s approach
+            </p>
+            <a
+              href={CONSULT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent-hover text-surface font-semibold transition-all shadow-warm"
+            >
+              Book a Free Consultation
+              <ArrowRight className="h-5 w-5" />
+            </a>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Final CTA */}
       <section className="py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-xl bg-base p-10 md:p-16 text-center">
@@ -418,7 +431,7 @@ export default function HomePage() {
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <a
-                href="https://tinyurl.com/drtaylorfreeconsult"
+                href={CONSULT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/10 text-surface font-semibold hover:bg-white/20 transition-colors border border-surface/20"
